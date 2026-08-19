@@ -787,10 +787,12 @@
     <a href="#easter-eggs" data-chapter="chat">Easter Eggs</a>
     <div class="group-label" data-chapter="chat">What it remembers</div>
     <a href="#memory" data-chapter="chat">Memory</a>
+    <a href="#companion" data-chapter="chat">The companion, and Conscious</a>
     <a href="#privacy-mode" data-chapter="chat">Privacy Mode</a>
     <a href="#memory-mode" data-chapter="chat">Memory Mode</a>
     <a href="#knowledge-graph" data-chapter="chat">Knowledge Graph</a>
     <a href="#vector-db" data-chapter="chat">External vector database</a>
+    <a href="#obsidian" data-chapter="chat">Obsidian vault</a>
     <a href="#auto-compress" data-chapter="chat">Auto-Compress</a>
     <div class="group-label" data-chapter="chat">Agents and teams</div>
     <a href="#agents" data-chapter="chat">Agents</a>
@@ -1113,6 +1115,7 @@
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Chat.</strong> Four rows and nothing else: <strong>+New</strong>, <strong>Agents</strong>, <strong>Cockpit</strong>, and a <em>More</em> block that folds out into History, Projects, Teams, Group Chat, Organization and Add-Ons &amp; Skills. Tasks is not a row of its own any more - it is a tab of the Cockpit, and one thing belongs in one place. Everything under More opens in a window over the app rather than taking you away from the conversation, and More stays closed until you open it, so what you look at every day is three rows and your conversations.</li>
       </ul>
       <p>On the themes with a full sidebar (Slate, Skales-X, Classic) the Chat column also appears on its own while a conversation is open, and Home is the way back. The chat landing page always keeps whichever side you chose — the chat column belongs to a conversation, not to the chat address.</p>
+      <p><strong>Both New buttons do the same thing.</strong> The <strong>+New</strong> row in the chat column and the <strong>+</strong> at the right of the chat header both take you to the chat landing page, with the composer in the middle and the suggestions under it. Deleting the conversation you currently have open, and <em>New chat</em> in the History panel, land in the same place. Previously one of them emptied the open conversation where it stood, which left a screen of nothing; and reloading appeared to fix it only because the old conversation came back. <strong>Reloading on the landing page now keeps you on the landing page.</strong></p>
       <p>Some surfaces no longer have an entry of their own: Codework, Lio AI, Workflow, Playbooks, WordPress, Swarm, Spaces, Browser, Templates and the Business page. <strong>Nothing was removed.</strong> Their pages still work, their add-ons still work, and the tools they bring to the chat — the WordPress family, the browser the agent drives with its logged-in profile, the codework and swarm tools — are untouched and can still be switched on from the Add-Ons page. What went away is the door in the menu.</p>
       <p>An entry whose add-on is switched off is simply not in the list. Nothing is lost either way: the side you were on is remembered, and the page you are actually on is always visible in the sidebar, so a link or a finished task can never land you somewhere the menu does not show.</p>
     </section>
@@ -1214,9 +1217,11 @@
         <a href="#http-request">Calling an API</a>
         <a href="#easter-eggs">Easter Eggs</a>
         <a href="#memory">Memory<span>What it remembers</span></a>
+        <a href="#companion">The companion, and Conscious<span>What it remembers</span></a>
         <a href="#memory-mode">Memory Mode<span>What it remembers</span></a>
         <a href="#knowledge-graph">Knowledge Graph<span>What it remembers</span></a>
         <a href="#vector-db">External vector database<span>What it remembers</span></a>
+        <a href="#obsidian">Obsidian vault<span>What it remembers</span></a>
         <a href="#auto-compress">Auto-Compress<span>What it remembers</span></a>
         <a href="#agents">Agents<span>Agents and teams</span></a>
         <a href="#multi-agent">Which multi-agent mode<span>Agents and teams</span></a>
@@ -1255,6 +1260,15 @@
       <p><strong>A formula.</strong> Maths wrapped in <code>$$</code> is typeset. A single <code>$</code> deliberately does not start maths, so prices and shell variables stay as you wrote them.</p>
       <p><strong>Code with colour.</strong> Fenced code blocks are syntax-coloured and carry a copy button; naming the language after the backticks is what gets the colouring right. <kbd>Ctrl</kbd>+<kbd>A</kbd> inside a block selects that block rather than the whole conversation.</p>
       <p>Skales itself knows all of this now, in every mode rather than only in Code mode, so you can simply ask for a diagram or a page and expect one.</p>
+
+      <h3>A file it made</h3>
+      <p>When Skales writes a file for you — a spreadsheet, a document, a PDF, a note, a downloaded file, an edit to a file you already had — the file arrives as a <strong>card under the answer</strong> rather than as a path buried in a sentence. The card carries the filename, with the full path on hover, and a second line with the type and the size. Under it are <strong>Download</strong> (for files inside the Skales data folder) and <strong>Open Folder</strong>.</p>
+      <p>The card is part of the conversation, not part of that moment: it survives a reload and it is still there when you reopen the conversation tomorrow. If the file has since been deleted the card says so — the size line becomes <em>No longer on this computer</em>, the card dims and Download goes away — instead of offering you a file that is not there.</p>
+      <p>One deliberate exception: a file written by a <strong>script</strong> Skales ran gets no card, because nothing is watching a script's output closely enough to promise the card is right. In that case Skales tells you in words where it put the file.</p>
+
+      <h3>Sending while it is still writing</h3>
+      <p>You no longer have to wait for the answer before typing the next thing. Messages you send while Skales is working are <strong>collected and answered together, as one turn</strong>, in the order you wrote them — not as one answer per message, which used to mean three impatient messages became three answers to three halves of a question, and three times the wait.</p>
+      <p>A bar above the composer shows how many are waiting, lists them, and lets you remove one or clear them all before they go. Up to twenty can queue. If a run ends without the queue being taken up, a card offers to hand the whole queue back to you rather than dropping it. The same rule holds everywhere Skales listens — a run on the server, Telegram, WhatsApp and the phone all fold a queue into one answer.</p>
 
       <h3>Working with a reply</h3>
       <p>Right click a message for its menu: copy, rewrite, quote in reply, save to a document, read aloud, regenerate or branch a new session from that point. Select part of a reply first and the same right click acts on the passage instead, starting with <strong>Rewrite selection</strong>.</p>
@@ -1377,6 +1391,27 @@
       <p>Organization teams have their own shared memory pool. Team members read and write shared context — project decisions, research findings, meeting notes — that persists across execution runs. Shared memory is separate from your personal memory and managed in the Organization settings.</p>
     </section>
 
+    <section id="companion">
+      <h2><span class="icon">🫀</span> The companion, and Conscious</h2>
+      <p>Skales can carry two things from one session to the next: the topics you keep coming back to, and a working mood. That is <strong>Settings &rsaquo; Memory &rsaquo; Companion &rsaquo; Interests and mood</strong>, and it is <strong>off by default</strong>. Everything on this page happens on your machine and nowhere else.</p>
+
+      <h3>The character, and why it does not need the switch</h3>
+      <p>Who the companion is — a name, one of six starting points, and seven dials such as businesslike to warm, or answers only to asks back — is shaped on the <strong>Memory page</strong>, not in Settings; Settings links across to it. The distinction is worth holding on to: <strong>the character shapes how Skales writes to you whether or not the switch is on.</strong> What the switch decides is only what gets <em>learned</em> — your recurring topics, the mood, the history of work you have done together.</p>
+      <p>Because those are two different things, saving a character while the switch is off no longer looks like a setting that did nothing. Skales asks once, in a dialog headed <strong>Turn on interests and mood?</strong>, explaining that the character you just saved shapes how it writes either way, and that turning this on additionally carries your topics and a working mood between sessions, learned on this machine. Say yes and the switch goes on. Say no and nothing changes: the character stays saved and keeps working. <strong>Nothing is ever switched on without your answer</strong>, and the question is asked once rather than every time you save.</p>
+
+      <h3>Conscious</h3>
+      <p>The mood was always real and always kept; the trouble was that the only place to read it was the Memory page, which is not where you are while you work. <strong>Conscious</strong> gives it a row of its own, pinned above the bottom of the navigation and in view the whole time you are in a conversation. It is a child of the switch above — it appears once <em>Interests and mood</em> is on, and it can be switched off on its own under <strong>Settings &rsaquo; Memory &rsaquo; Companion</strong> without giving up the rest.</p>
+      <p>The row is labelled <strong>Working mood</strong> and reads as two things at once: <strong>the colour is the direction</strong> — warm when the work is going well, cool when it is not — and <strong>how full it stands and how fast it moves is the energy</strong>. It changes while you are talking to it, not on the next restart. The word it puts on that runs <strong>rough, uphill, steady, good, flying</strong>, and it is one scale: energy no longer changes the word.</p>
+      <p><strong>Hover the row and the panel opens; click and it stays pinned.</strong> In it, in this order: the word and what it came after, then <strong>Today</strong> — what moved it, with the times — then what it <strong>keeps coming back to</strong> if interest tracking is on, then a legend for the colour, and a closing line reminding you that this is about the work, not about you, and that it fades on its own.</p>
+      <p>The entries are things that actually happened: a goal finished, a goal that did not get there, a run that kept hitting the same wall, the last piece of work landing well, a quiet stretch, a long stretch of work together. When there is nothing to show it says so — <em>Nothing has moved it today</em> — rather than inventing a reason. <strong>"What is missing" only ever names something already in the record</strong>, such as a long silence or a day with nothing finished yet. The record is a rolling <strong>48 hours</strong>; nothing older is kept, and resetting the mood clears the day's list with it.</p>
+
+      <div class="tip"><strong>It only ever draws.</strong> Conscious never notifies, never makes a sound, and never starts a conversation. And the mood is about <strong>the work</strong>, never about you — Skales does not tell you how it feels unless you go and look.</div>
+
+      <h3>On the phone</h3>
+      <p>The phone has the same feature, drawn with the phone's own toolkit and with the same words. The bar sits <strong>directly above the message box</strong>, so it is in view for the whole conversation, and it is in the menu above the bottom row as well, which is where the desktop keeps it. <strong>Tap it</strong> and the same panel slides up as a sheet.</p>
+      <p>One deliberate difference: the phone reads <strong>its own</strong> state. No pairing, no key and no network are needed, and it works in flight mode — it is your phone's companion, not a read-out of a machine somewhere else. Saving a character on the phone asks the same question, and the character form stays reachable with the switch off, exactly as on the desktop.</p>
+    </section>
+
     <section id="privacy-mode">
       <h2><span class="icon">🔒</span> Privacy Mode</h2>
       <p>Everything Skales remembers about you normally travels into the system prompt on every turn, which means it also travels to whichever model provider is answering. <strong>Settings &rsaquo; Memory &rsaquo; Privacy Mode</strong> is the one switch that stops that. With it on, the system prompt is built without your <code>MEMORY.md</code> index, without your saved facts and learnings, and without the identity fields - name, occupation, interests - along with your stored preferences and standing instructions.</p>
@@ -1438,6 +1473,42 @@
       </ul>
 
       <div class="warn"><strong>⚠️ One thing to get right</strong> &mdash; use the same embedding model the collection was built with. A question embedded by a different model lands in a different space and comes back confidently wrong. Skales cannot detect that for you: a vector of the right size from the wrong model looks exactly like the right one.</div>
+    </section>
+
+    <section id="obsidian">
+      <h2><span class="icon">📓</span> Obsidian vault</h2>
+      <p>An Obsidian vault is a folder of markdown files, and that is exactly how Skales treats it. Point Skales at the folder in <strong>Settings &rarr; Integrations &rarr; Obsidian Vaults</strong>, give it a name you would use out loud ("Personal", "Work"), and add as many as you keep. Nothing is imported and nothing is copied: every question reads the files where they are, so what Obsidian shows you is what Skales sees, and a note you wrote a minute ago is already there.</p>
+
+      <p>The integration is a <strong>beta</strong>, desktop first. Two things are worth knowing before you connect: what Skales reads out of a note goes to your selected model <em>uncompressed</em>, so long notes cost tokens accordingly, and with a cloud provider that content leaves your machine. And backups stay your job: Skales never overwrites or deletes a note, but it is not a sync or backup tool, so keep Obsidian Sync, Git or iCloud doing that work. Connecting the first vault asks you to confirm exactly this, once.</p>
+
+      <h3>What Skales can do with it</h3>
+      <table>
+        <thead><tr><th>Tool</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>obsidian_list_vaults</td><td>Which vaults are connected, and how many notes each holds</td></tr>
+          <tr><td>obsidian_search</td><td>Keyword search across titles and bodies; <code>tag:name</code> narrows it to one tag</td></tr>
+          <tr><td>obsidian_read</td><td>One note with its frontmatter, tags, backlinks and outgoing links</td></tr>
+          <tr><td>obsidian_list_folder</td><td>The subfolders and notes of one folder</td></tr>
+          <tr><td>obsidian_create_note</td><td>Start a new note</td></tr>
+          <tr><td>obsidian_append_to_note</td><td>Add to a note that exists, at the end or under a heading you name</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Filing</h3>
+      <p>Under the vault list you decide where notes written by Skales land and how they look: target folder, filename pattern, note template and a tag on everything it files. The placeholders are <code>{title}</code>, <code>{date}</code>, <code>{time}</code>, <code>{content}</code> and <code>{tag}</code>. Leave the fields empty and a note lands in the vault root under its own title.</p>
+
+      <h3>Your notes cannot be overwritten</h3>
+      <p>Skales can create a note and append to one. It has no tool that replaces a note body, and no tool that deletes or renames one. A create that would land on a note that already exists refuses and points at appending instead. Disconnecting a vault forgets the folder; it never touches what is in it.</p>
+
+      <div class="warn"><strong>Where the line is</strong> &mdash; Skales speaks files, not Obsidian. It reads and writes markdown, including frontmatter and tags, because those live <em>in</em> the file. Anything that is an Obsidian <strong>plugin</strong> is outside: Dataview, Templater, Canvas, Bases, Sync, daily-note and folder-note plugins, the <code>obsidian://</code> automation. Those are other people's formats that can change without notice. If you need one of them, an MCP server can be added in <strong>Settings &rarr; Integrations &rarr; MCP Servers</strong> and used alongside this.</div>
+
+      <h3>The four places Skales keeps knowledge</h3>
+      <ul>
+        <li><strong>Memory</strong> is what Skales recorded about you while you worked: facts, preferences, what is in progress.</li>
+        <li><strong>Knowledge Graph</strong> is that same record as a network: which people, projects and tools belong together.</li>
+        <li><strong>Your vault</strong> is what you wrote for yourself, in your words, going back years.</li>
+        <li><strong>Indexed documents</strong> are outside material you deliberately fed in for search.</li>
+      </ul>
     </section>
 
     <section id="auto-compress">
@@ -2868,7 +2939,7 @@
       <p>Skales Local is in <strong>Beta</strong> and wears the label in the app. It grows release by release on real feedback — if something on your machine does not behave the way this chapter says, that report is exactly what the Beta label is asking for.</p>
 
       <h3>The tab</h3>
-      <p>The banner at the top says what is loaded right now and whether it is running on the graphics chip or on the processor. Below it stands your machine (memory, cores) with the largest catalogue model that fits comfortably. Then the model list: a search box, category filters (Language, Vision, Voice, Image, Imported, Downloaded) and a sort (size, name, recently used). Each card carries its size, its badges and its licence, because a model you cannot use commercially is worth knowing about before the download and not after it.</p>
+      <p>The banner at the top says what is loaded right now and whether it is running on the graphics chip or on the processor, and it carries the Start and Stop button for the server itself. Below it stands your machine (memory, cores) with the largest catalogue model that fits comfortably. Then the model list: a search box, category filters (Language, Vision, Voice, Image, Imported, Downloaded) and a sort (size, name, recently used). Each card carries its size, its badges and its licence, because a model you cannot use commercially is worth knowing about before the download and not after it.</p>
       <p>At the bottom: <strong>Storage</strong>, which counts what the library takes, what is free on the disk, and any leftovers from interrupted downloads, with a button that clears them.</p>
 
       <h3>Getting a model</h3>
@@ -2878,6 +2949,7 @@
         <li><strong>Import</strong> a file you already have (.gguf, .onnx, .safetensors). Importing the same file twice updates the entry rather than producing a second row.</li>
         <li><strong>Adopt</strong> what is already on the machine. Skales finds Ollama and LM Studio model folders and offers to use them where they are - the disk pays once.</li>
       </ul>
+      <p><strong>A model that reads images is two files:</strong> the weights, and a projector that turns a picture into something the weights understand. The catalogue knows which projector belongs to which model and fetches it with the download, so the size on the card is the total of both and there is nothing to pair by hand. A projector is never offered as something to chat with - it is part of a model, not a model.</p>
 
       <h3>Main or fallback, per capability</h3>
       <p>This is the part worth reading twice. The choice is not "local or cloud" for the whole product; it is one choice per capability. Images on this machine, speech on this machine, and the language model through OpenRouter is a normal setup, and so is the opposite.</p>
@@ -2891,7 +2963,10 @@
       <h3>Starting the server</h3>
       <p>The server starts on its own when this machine is the one you chose to answer: Skales Local is your active provider, or a row above is set to Main or Fallback. Nothing else has to be pressed, and a chat that goes to a local model brings the server up if it is not already running.</p>
       <p><strong>Start it on its own</strong> at the top of the tab is the switch for that, and it is on by default. It is worth knowing what it does <em>not</em> do: if nothing on this machine points at Skales Local, no server starts and no memory is used, whether the switch is on or off. Downloading a model does not by itself start anything. Turn the switch off if you would rather press Start yourself every time.</p>
-      <p>When the server cannot come up, the tab names which of three it is - no server for this platform, no model installed, or a model that will not load - instead of reporting a connection problem.</p>
+      <p>When the server cannot come up, the tab names which of four it is - this build carries no server for your platform, no model is installed, the ports it uses are all taken, or a model will not load - instead of reporting a connection problem. A start that fails shows the engine's own last lines with it, because that is the part anyone can act on.</p>
+
+      <h3>Thinking, and the effort dial</h3>
+      <p>Some local models think before they answer. On a machine that produces a few tokens a second that is worth choosing rather than inheriting: a long thinking block can use up the whole answer budget and leave nothing to read. The effort dial in the composer is wired to it - the lowest rung switches thinking off for that turn, and the rungs above leave the model's own habit alone.</p>
 
       <h3>Per-model settings</h3>
       <p>Each installed model has its own context length (Auto reads what the model was trained for and is almost always right), temperature, top-p, repeat penalty, threads, GPU layers and chat template. Two of them explain themselves when they cannot be combined: a draft model and a vision file cannot be loaded together, so the draft is switched off with the reason next to it.</p>
@@ -2910,7 +2985,7 @@
 
     <section id="ollama-marketplace">
       <h2><span class="icon">🛒</span> Ollama Model Marketplace</h2>
-      <p>Browse and install recommended local AI models with one click — no terminal required. Available in <strong>Settings → Local AI → Ollama Marketplace</strong>.</p>
+      <p>Browse and install recommended Ollama models with one click, no terminal required. It lives under <strong>Settings &rarr; AI Providers &rarr; Ollama &rarr; Model Marketplace</strong>, folded away by default, and it needs Ollama installed and running. These are Ollama's models, not Skales Local's &mdash; Skales Local brings its own server and its own list.<strong>Settings → Local AI → Ollama Marketplace</strong>.</p>
 
       <h3>Available Models</h3>
       <table>
@@ -2926,7 +3001,7 @@
         </tbody>
       </table>
 
-      <p>Click <strong>Install</strong> next to any model to start the download. A progress bar tracks the download. Once complete, the model is immediately available in all Skales modules.</p>
+      <p>Click <strong>Install</strong> next to any model to start the download. A progress bar tracks the download. Once complete, the model is available everywhere Ollama is. The sizes in the table are the ones Ollama publishes and move with the tags; the card in the app shows the current number.</p>
 
       <div class="tip"><strong>💡 Tip:</strong> ComfyUI and Stable Diffusion WebUI are auto-detected if running locally — no manual URL entry needed. Check <strong>Settings → Local AI → Local Image Tools</strong>.</div>
     </section>
@@ -3073,6 +3148,15 @@
         <li><strong>On the phone itself.</strong> With a provider key entered on the phone, it answers on its own, including with no computer running at all.</li>
         <li><strong>Through the desktop.</strong> Paired, it starts work on the computer at home and shows it happening: the same sessions, the same tools, the same files. A long build or a background command started by a coding session is in the same list on the phone, with the same stop button.</li>
       </ul>
+
+      <h3>Things the phone does the same way</h3>
+      <p>Several of the things described in the Chat chapter have a pendant on the phone, worded and coloured the same and drawn with the phone's own toolkit:</p>
+      <ul>
+        <li><strong>Conscious</strong> — the working-mood bar sits above the message box and in the menu above the bottom row, and a tap slides up the same panel the desktop opens on hover. The phone reads its own state, so it works with no pairing, no key and no network. See <a href="#companion">The companion, and Conscious</a>.</li>
+        <li><strong>A file it made</strong> — a file the phone writes, edits or exports arrives as a card in the answer: tap the row to preview it, or the share icon to hand it to another app. A file that has since been deleted says <em>No longer on this device</em> rather than opening onto nothing.</li>
+        <li><strong>Messages sent while it is working</strong> are answered together as one turn, with a bar showing how many are waiting and a button to send or clear them. The queue survives leaving the chat and coming back.</li>
+      </ul>
+      <p>One limit that belongs to the connection rather than to either app: a file fetched <em>from</em> the paired desktop has to fit through the bridge between them. A file too big for it is refused before it is sent, and the phone tells you the size and where the file is on the computer, instead of failing quietly.</p>
 
       <h3>Approving from the phone</h3>
       <p>If you allow it, a tool call that needs permission can be answered from the phone instead of at the desk. This is a switch on the desktop and it is off unless you turn it on: <strong>Skales Mobile &rsaquo; Allow approvals via mobile</strong>. Screen sharing, which lets a paired phone see the desktop screen, is a second switch beside it, also off until you turn it on.</p>
@@ -3229,6 +3313,11 @@
 
       <h3>Telegram</h3>
       <p>Create a bot via <strong>@BotFather</strong>, paste the token in Settings → Integrations → Telegram. Send messages to your bot to talk to Skales from your phone.</p>
+
+      <h3>One answer, one message</h3>
+      <p>The bot posts a short <em>Thinking…</em> and then writes the answer <strong>into that same message</strong>, growing it as it goes. There is no second post and no stream of fragments to scroll past, so the chat keeps one message per answer. The edits are paced about a second apart, and if Telegram asks the bot to slow down it widens that gap for the rest of the answer rather than dropping text. The last edit always lands.</p>
+      <p>A message you send while it is still writing is not lost and does not start a second answer: you get one short note that it will be answered together with the previous one, and it is folded into the next turn. See <a href="#chat" style="color:var(--accent)">Sending while it is still writing</a>.</p>
+      <p>A <strong>file</strong> Skales makes for you is sent as a document into <em>the chat that asked</em>, rather than into the main chat. Telegram takes files up to 50 MB; above that, or if the upload fails, Skales names the file and tells you where it is on the computer instead of leaving you with nothing.</p>
 
       <h3>One bot, several chats</h3>
       <p>Pairing <em>adds</em> a chat rather than replacing one. Send <code>/pair &lt;your code&gt;</code> in a direct message, then add the bot to a group and send <code>/pair &lt;your code&gt;</code> there too: it answers in both. Previously the bot stored a single chat and every message from anywhere else was ignored by design, so a group it had been added to stayed silent.</p>
@@ -3557,21 +3646,51 @@
       <p><strong>A link opens a screen. It never acts.</strong> The first thing the scheme carries is a model: <code>skales://open_from_hf?model=owner/repo</code> opens the Ollama card with that name in it and a button underneath. A page on the internet can put a model in front of you; only you can spend the gigabytes. Anything the app does not recognise is ignored rather than followed.</p>
     </section>
 
-    <section id="notifications">
-      <h2><span class="icon">🔔</span> Notification Center</h2>
-      <p>A dedicated page for all notifications — task completions, calendar alerts, swarm results, and admin broadcasts. Access via the bell icon in the sidebar.</p>
+    <section id="notifications"><h2><span class="icon">🔔</span> Notification Center</h2>
+      <p>A dedicated page for everything Skales tells you on its own — task
+      completions, calendar reminders, Friend Mode check-ins, contact messages
+      and product updates. Open it from the bell in the sidebar; the bell
+      carries the unread count.</p>
 
-      <h3>Read / Unread Tracking</h3>
-      <p>Each notification is marked read or unread. Unread count appears on the notification bell icon. Mark notifications as read individually or in bulk.</p>
+      <h3>Read / Unread</h3>
+      <p>Every entry is read or unread, individually or all at once. Read state
+      survives a restart.</p>
 
-      <h3>Filtering & Categories</h3>
-      <p>Filter notifications by type: Messages, Tasks, Calendar, Alerts, System, Bots. Search notifications by keyword or date range.</p>
+      <h3>Tabs</h3>
+      <p>Four tabs: <strong>All</strong>, <strong>Updates</strong> (product
+      announcements), <strong>Bug Replies</strong> (answers to reports you
+      filed) and <strong>Info</strong>. There is no keyword search and no date
+      filter.</p>
 
-      <h3>Admin Broadcasts</h3>
-      <p>System administrators can broadcast important messages to all users. Broadcasts appear in the Notification Center with a special Admin Badge and persistent flag.</p>
+      <h3>What may reach you</h3>
+      <p>The gear icon opens the controls, and this is where most "too many
+      notifications" questions are answered:</p>
+      <ul>
+        <li><strong>Mute live notifications</strong> — one switch, and it is
+        hard: nothing pings on any channel, at any priority. Everything is
+        still recorded on this page, and important items held back are counted
+        so muting never swallows anything. <strong>It also stops Friend Mode
+        check-ins</strong>, which is the one consequence worth remembering
+        before you leave it on.</li>
+        <li><strong>Notification types</strong> — seventeen kinds in five
+        groups (Tasks &amp; Planner, Calendar, Messages &amp; Email, Companion,
+        Discover Feed). An unchecked type is delivered nowhere, not even to
+        this page. Discover is opt-in, so a fresh install is silent there.</li>
+        <li><strong>Frequency per group</strong> — Instant, Often, 12h or Once.
+        This throttles live delivery only; the page still records everything.
+        High-priority items and a message from one of your contacts are never
+        throttled.</li>
+        <li><strong>Tasks in chat</strong> — results of scheduled and recurring
+        tasks arrive as a readable chat message, so you get the report without
+        an external messenger.</li>
+      </ul>
+      <p>Quiet hours come from Friend Mode and apply here too: outside high
+      priority, nothing is delivered live during the night window, and it is
+      all waiting on this page afterwards.</p>
 
-      <h3>Archive & History</h3>
-      <p>Notifications are archived after 30 days but remain searchable in the history. Keep important notifications by starring them — starred notifications never auto-archive.</p>
+      <h3>Retention</h3>
+      <p>The page keeps the most recent 50 entries; older ones age out. There
+      is no time-based archive and no starring.</p>
     </section>
 
     <section id="dashboard">
@@ -3815,6 +3934,8 @@
       <h2><span class="icon">💌</span> Feedback & Reports</h2>
       <p>Found a bug or have a suggestion? Use the <strong>Feedback</strong> button in the sidebar or visit <strong>Settings → Feedback</strong>.</p>
       <p>Your reports are saved locally under <strong>Your Reports</strong> so you can track their status. Anonymous telemetry (feature usage, not content) can be disabled in Settings → Privacy.</p>
+      <p>A report can be up to <strong>4,000 characters</strong>, and once you are near that a line under the field counts down how many you have left. <strong>Nothing is cut off in silence</strong>: the field simply stops taking more, so a long report is never sent as half a report without your knowing.</p>
+      <p>Skales also asks, once, whether you would like to leave a note about how it is going — and on the phone, once, whether you would rate it in the store. Both take no for an answer permanently, neither makes a sound or sends a notification, and <strong>they never arrive in the same sitting as one another</strong>.</p>
       <p>Community and support: <a href="https://skales.app" style="color:var(--accent)">skales.app</a></p>
     </section>
 

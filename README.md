@@ -8,7 +8,7 @@ The private AI that lives on your computer and does real work, not just chat.
   <img width="960" height="580" alt="Dashboard" src="https://github.com/user-attachments/assets/bba3411e-85eb-44e8-ab58-be2a5a88a650" />
 </p>
  <p>
-    <a href="https://github.com/skalesapp/skales/releases/latest"><img src="https://img.shields.io/badge/version-12.8.1-10b981?style=flat-square" alt="Version 12.8.1" /></a>
+    <a href="https://github.com/skalesapp/skales/releases/latest"><img src="https://img.shields.io/badge/version-12.8.2-10b981?style=flat-square" alt="Version 12.8.2" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/license-BSL_1.1-10b981?style=flat-square" alt="License" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/Windows_+_macOS_+_Linux_+_Android_+_iOS-10b981?style=flat-square&logo=windows&logoColor=white" alt="Platform" /></a>
     <a href="https://github.com/skalesapp/skales/stargazers"><img src="https://img.shields.io/github/stars/skalesapp/skales?style=flat-square&color=10b981" alt="Stars" /></a>
@@ -146,9 +146,11 @@ The front door. Ask a question, or hand over a task and let it run.
 
 - **`/goal` turns a request into ongoing work.** It plans the steps and runs them on its own, in the background, with the app closed. It does not ask you to continue: it stops when the task is done, when it genuinely needs a decision, or before a consequential action like sending an email, where it asks once with a one-tap always-allow. Reopen the app and it picks up where it left off. A goal is only finished when its own success criteria are met, and what it learned folds back into Memory. Run several at once, or put one on a repeating schedule.
 - **`/code` binds a folder to this conversation,** without leaving it. Four modes under the composer: **Plan** investigates and proposes, **Code** asks before each edit, **Edits** approves file edits as it goes but still asks before a shell command or a push, **Auto** runs the whole task after a one-time consent. Inline git diffs with an added/removed count, a repo map so it heads straight to the right file in a large codebase, `@` to point at a file by name, and one-click Undo per file or for a whole turn. It commits and pushes with **your own git identity**, no added attribution.
+- **`/spin` writes a text again in a plainer voice.** `/spin <text>` rewrites what you hand it, `/spin` on its own rewrites the last answer, and the same action sits in the message menu next to Copy. Select part of a reply and right click the selection to rewrite just that passage, with copy, quote, read aloud and save-to-document beside it. It runs on a model you pick for the job, and a local one keeps the text on your machine.
 - **`/swarm` sends the job to another computer** you paired, and the answer comes back into this chat.
 - **The sidebar becomes the chat's own navigation** while you are in a conversation: New chat, Agents, Cockpit, and a More group with History, Projects, Teams, Group Chat, Organization, and Add-Ons and Skills.
-- **HTML the model writes renders live** in a sandboxed frame right in the conversation, with Show Code, Download, Save as Image, and a mute that silences every preview in every chat at once.
+- **HTML the model writes renders live** in a sandboxed frame right in the conversation, with Show Code, Download, Save as Image, and a mute that silences every preview in every chat at once. A block tagged `html`, `htm`, `svg`, `xhtml` or `html5`, or one that simply opens with a document, all count; `text` and `xml` never do, so markup you asked for as source stays source.
+- **Diagrams, formulas and coloured code.** A ```` ```mermaid ```` block is drawn as a diagram (flowchart, sequence, state, ER, gantt, pie, xychart) in your accent and your theme, and downloads as SVG. Maths in `$$` is typeset. Every code block is syntax-coloured with a copy button. Skales knows it can do all of this, in every mode, so asking for a diagram gets you one instead of a paragraph describing it.
 - **Voice works both ways.** A speaker icon on every reply, or "read responses aloud" for continuous flow: device voices (free), OpenAI Speech, ElevenLabs, Azure, or any OpenAI-compatible endpoint, and on the phone the voices installed on your paired Mac. Speech in via Groq or OpenAI Whisper. 55 languages.
 
 ### 💻 Code
@@ -244,7 +246,7 @@ These do not have a page in the sidebar. They are things Skales does when you as
 ### AIPointer ⦿
 
 <p align="left">
-<img width="800" height="450" alt="AIPointer screenshot" src="https://raw.githubusercontent.com/gonemedia/aipointer/main/assets/screenshot.gif" />
+<img width="800" height="450" alt="AIPointer screenshot" src="https://github.com/user-attachments/assets/3d174dda-b961-4ce8-8474-e05e07e27009" />
 
 <p align="left"><a href="https://youtu.be/NRIlG32hvLg">AIPointer ⦿ Demo Video</a></p>
 
@@ -276,6 +278,7 @@ The buddy also wears animated pixel pets in the open [Petdex](https://petdex.dev
 
 - **Privacy Mode.** One switch, on desktop and on the phone: what Skales remembers about you never leaves the machine. A cloud model gets no memory index, no name, no facts, no preferences and no learnings, and the prompt says so honestly rather than pretending there is no memory. Local models are unaffected. Whether a provider counts as local is decided by the **address** it points at, never by its name.
 - **Memory modes.** Always Remember, Compact, or Minimal. Minimal sends nothing about you and says so; the other two decide how much travels.
+- **Watermark.** Off by default, in Settings under Chat & Code. Models leave marks in their own output: characters nobody can see (zero-width spaces, text-direction controls, odd spaces) and a typography that reads as machine-written. Switch it on and they come off before you read the answer - the invisible characters as one switch, the typography as a second, straight quotes as a third. Code blocks and inline code are never touched, in any of them. What it does **not** claim to do is remove a statistical sampling watermark: that lives in the choice of words, and only a rewrite gets near it.
 - **BYOK.** API requests go straight to the provider. No middleman.
 - **Local-first.** All data in `~/.skales-data`. Configurable file-operation boundaries. Fully offline with Ollama, LM Studio or Skales Local.
 - **Signed.** macOS Apple Developer ID. Windows signing coming.

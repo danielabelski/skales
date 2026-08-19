@@ -6,6 +6,379 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.8.2 - Mood
+
+### Added
+
+- **Your Obsidian vault is a folder Skales lives in, not a copy it took.** The
+  old import read your notes once and kept a snapshot, so everything you wrote
+  afterwards was invisible while Skales still answered as if it knew. Settings,
+  Integrations, Obsidian Vaults is where you point at the folder itself, give it
+  a name ("Personal", "Work") and add as many as you keep. Every question reads
+  the files on disk, so what Obsidian shows you is what Skales sees, and you can
+  say "look in my Work vault" and be understood. The Memory page shows the note
+  graph of whichever vault you pick, and offers to remove the old copy. The
+  integration ships as a beta, and connecting the first vault asks one honest
+  question first: what Skales reads goes to your selected model uncompressed,
+  which costs tokens on long notes, and backups stay your job.
+- **Skales can write into the vault, and never over it.** It can start a new
+  note and add to an existing one, at the end or under a heading you name. It
+  cannot replace a note: a create that would land on a note that already exists
+  refuses and points at appending instead, so ten years of notes cannot be
+  overwritten by a misunderstanding.
+- **Where new notes land is a setting, not a request.** Target folder, filename
+  pattern, note template and a tag on everything Skales files are yours to set
+  under the vault list, with {title}, {date}, {time}, {content} and {tag} as
+  placeholders. Leave them empty and a note lands in the vault root under its
+  own title.
+- **Your notes answer with what is in them.** Frontmatter and #tags are read
+  along with the body, "tag:project" narrows a search to notes carrying that
+  tag, and a note comes back with the notes that link to it and the ones it
+  links out to.
+- **Conscious: the mood it carries is in front of you while you work.** The
+  companion's state was real and kept, but it was only ever readable on the
+  Memory page, which is not where anybody is when the work is happening. There
+  is a row of its own now, pinned above the bottom of the navigation and in view
+  the whole time you are in a conversation. The colour is the mood, warm when
+  the work is going well and cool when it is not, and how full it stands and how
+  fast it moves is the energy. It changes while you are talking, not on the next
+  restart. Hovering it opens a panel that says what the colour means, what moved
+  it today with the times, and what is missing, where missing only ever means
+  something that is in the record: a long silence, or a day with nothing
+  finished yet. If interest tracking is on it lists what it keeps coming back
+  to. It is a child of the companion switch in Settings, Memory, it draws and
+  nothing else, and it never notifies, sounds or starts a conversation.
+- **The mood keeps its day, and the things that move it can happen.** The state
+  kept only the current value and threw every event away, so "what happened
+  today" had no answer; there is a rolling log of the last two days now. Four of
+  the seven things that can move the mood had no source in the code at all: a
+  finished goal, a goal that did not get there, a run stuck on the same error, a
+  long silence and a long stretch of work all register now. Resetting the mood
+  on the Memory page clears the day's list with it.
+
+- **Telegram answers in one message, and it writes as it thinks.** A question
+  put to the bot produced a "Thinking..." line and then, some time later, a
+  second and separate message with the answer in it, so a conversation with
+  Skales on the phone read as twice as many messages as it had. The answer now
+  grows inside the message that says it is working, the way it does in the chat
+  window, and there is no second message at all.
+- **A file Skales makes arrives as a file.** A spreadsheet, a PDF or a written
+  document used to come back as a path in a sentence: unreachable from a phone,
+  meaningless in a chat window on another machine, and a string to copy by hand
+  here. The answer now carries a card with the name, the type and the size, a
+  Download button and a way to open the folder. On Telegram the file itself is
+  sent into the room the question came from, and a file the bot cannot send,
+  because it is over the 50 MB the Telegram API takes, says so with its name and
+  where it is instead of vanishing.
+- **Saving a character with the companion switched off asks whether to turn it
+  on.** The character shapes how Skales talks whether the switch is on or not,
+  but everything it LEARNS - the mood, the topics, the working history - needs
+  the switch. Saving a character while it is off now asks once, in a dialog,
+  and takes no for an answer permanently. Nothing is turned on without the
+  answer being yes.
+
+### Fixed
+
+- **Telegram answers once.** Every reply arrived twice, and the notice that a
+  message is waiting arrived twice with it, while the send-a-message tool posted
+  exactly once. Nothing was sending twice: two bot processes were reading the
+  same chat. The lock meant to allow only one of them checked whether it existed
+  and then wrote it, and two bots started in the same moment both read "no lock"
+  and both went on to poll. Telegram hands the same message to both, and the
+  repeat check that would have caught it lives in each process separately, so
+  neither could see the other. The lock is now taken in one indivisible step,
+  the loser stops instead of polling, and it only ever clears its own. Restarting
+  never helped before because the start itself was the race: opening the app asks
+  three places at once to make sure the bot is running, and each one started its
+  own. They share one attempt now. There was a second double hiding under the
+  first: an answer that had grown inside the Thinking message was posted once
+  more as its own message, because the note saying it was already delivered was
+  dropped on the way back to the bot. That note now travels with the answer.
+- **A line typed while Skales is thinking goes into the queue.** During the
+  thinking phase, before any text appears, pressing Enter left the sentence
+  sitting in the box: not queued, not sent. The queue was real, the decision to
+  use it just came too late, behind other work that could take the send first. A
+  turn is running from the moment it starts, not from its first word, and from
+  that moment every typed line is taken, the box clears, and what was typed is
+  answered together with the rest. A stop command still goes straight through to
+  the run it is meant to halt.
+- **Opening Skales no longer arrives as a wave of pop-ups.** Everything that
+  catches up when the app comes up, the briefing, the messages a channel held
+  while it was away, the check-ins armed while it was closed, reached the
+  screen at once in the first
+  seconds, before there was any chance to read one. For the first minute after a
+  start they are recorded and left on the Notifications page instead of firing.
+  Nothing is lost and nothing is dropped, and anything urgent still comes
+  straight through.
+
+- **The button that adds your own endpoint opens something.** Under Settings,
+  AI Providers, the "+ Custom endpoint" tile marked itself open, took the page
+  to the bottom of itself and showed nothing at all, so there was no way left to
+  add or edit an endpoint. The block it opens was classed as an Advanced-view
+  section while the tile stood in both views, and a search that found the tile
+  could miss the block the same way. The tile and what it opens are one thing
+  now, in either view and under any search.
+- **A model list that cannot be fetched says why.** Pressing Fetch Available
+  Models on an endpoint that was not running answered "no models returned", an
+  endpoint answering 404 or 401 was reported as a server that had never started,
+  and an address whose name does not resolve said "fetch failed". Each of the
+  five reasons now says what it is: nothing is listening, the name did not
+  resolve, it took too long, the address answers but serves no model list, or it
+  wants a key. An address typed without http:// is completed rather than
+  refused, on every one of these paths.
+- **The models an endpoint answers with are offered on it.** Fetch wrote the
+  catalogue away and the endpoint kept a bare text box, so the button reported
+  success and nothing on screen changed. The endpoint's own models are a picker
+  now, with free text still there for a model the server does not list.
+- **An endpoint you remove stays removed.** Removing the last extra endpoint and
+  saving looked right until the next start, when it was back with the same
+  identity, because an empty list was never written. As a consequence a
+  perfectly ordinary Custom endpoint also grew a duplicate of itself in the
+  endpoint list on every start. Both are gone, and removing an endpoint now
+  clears the copy of it the app keeps for routing instead of leaving it behind
+  for good.
+- **An extra endpoint can be named wherever a provider is named.** It could be
+  made active and handed to an agent, but the fallback chain, the advisor and
+  executor, the per-mode overrides and the Code model offered only the built-in
+  providers, so an endpoint could not stand in for the provider it was replacing.
+  All five offer it now, and the "Custom model..." entry in four of those lists
+  is translated instead of English-only.
+
+- **Skales Local can see.** A model downloaded together with its vision file
+  answered "I cannot look at images". The engine was being handed the models one
+  by one with no way to know which vision file belonged to which, so every model
+  loaded as text-only. They are paired now, and the card's size is the total of
+  both. A vision model you brought yourself is paired as well, whatever the
+  publisher happened to call its vision file.
+- **A model you download is usable straight away.** The engine read the library
+  once, at startup, so anything downloaded, imported or deleted while Skales was
+  open was invisible to it until the app was restarted.
+- **The local server stops when you stop using it.** It came up when you chose
+  it and then stayed up for the rest of the session, holding gigabytes of memory
+  for a provider you had since switched away from. Switching away now takes it
+  down, switching back brings it up, and a server you started by hand is left
+  alone.
+- **Start and Stop are on the Skales Local tab.** The banner said the server was
+  not running and offered nothing to press, while pointing at the desktop
+  application you were already looking at. A start that fails now shows the
+  engine's own last lines with it.
+- **Deleting a local model unbinds it everywhere.** The file went, the routing
+  went, and the copy of that choice on the provider card stayed - so a deleted
+  model went on being the one a new chat loaded.
+- **The reasoning control works on a local model.** It was inert. Its lowest
+  rung now switches the thinking block off for that turn, which on a machine
+  producing a few tokens a second is the difference between an answer and a
+  budget spent entirely on reasoning nobody reads. On the phone, session titles,
+  greetings and memory lines never think at all.
+
+
+- **`/spin` runs when you pick it.** Typing `/spin` and pressing Enter chose the
+  command out of the suggestion list and put it back in the composer, and
+  nothing else happened - the rewrite only started on a second Enter. Picking a
+  command that needs no words after it now sends it, which also brings back
+  `/projects`.
+- **Rewrite selection is reachable.** Selecting an answer with a triple-click
+  and right-clicking it showed the whole-message menu: the selection technically
+  ended below the bubble, so it counted as belonging to no bubble. A selection
+  that starts in a bubble and picks up no text from outside it is that bubble's
+  selection again.
+- **The model you set as Main in Skales Local is the one that answers.** The
+  chat read the provider card ahead of the Chat row of the matrix, so the row
+  only ever took effect while the card was empty. The row also says, under it,
+  which model the next turn will load.
+- **Extra endpoints behave like providers.** "Fetch Available Models" stayed
+  disabled with "Enter an endpoint URL first" on every endpoint after the first,
+  because the check looked for the address in the wrong place. Agents can be
+  pointed at a specific endpoint too: each one is its own entry in the agent
+  editor, stored under its own name, and it is still there when the agent is
+  reopened.
+- **All four doors under the Flow composer.** 3D and the Video Editor were
+  missing from Studio inside the app; they were never drawn there rather than
+  cut off.
+- **Typing in a long chat.** A keystroke in a three-hundred-message conversation
+  took 150 ms and re-rendered every bubble to change nothing. It no longer does.
+- **Text size is about the conversation.** The setting scaled code blocks, HTML
+  previews and the reasoning panel with it, which is not what it says it does.
+- **The line under an answer is filled in.** How long a turn took, how many
+  memories it recalled and how many agents worked on it were shown for turns the
+  window ran and never for the ones the server ran, and disappeared on reload.
+- **A goal stops saying it is done when it is not.** A run could declare a goal
+  finished while criteria nothing had ever confirmed were still open: only the
+  ones naming a file or a command were checked, and everything else counted as
+  agreed. An unconfirmed criterion now blocks completion, and when the run and
+  the check disagree the goal comes to you with both views and an "Accept as
+  done" button, instead of either closing quietly or being nudged in circles.
+- **A finished goal names its evidence.** The closing line said "5 of 5 done";
+  it now lists each criterion with what settled it, and accepting a goal
+  yourself lists what the check could not confirm.
+- **Projects are reachable when the agent is told it has them.** The system
+  prompt named the four project tools outright while the request often did not
+  carry them, so the model reported it had no access to projects. They now ride
+  in the base set. CHECK CAPABILITIES also states which tools the current turn
+  is actually carrying, measured on the request, rather than only what the
+  registry has switched on.
+- **Vision over your own OpenAI-compatible endpoint.** Three separate faults on
+  one path: a model whose name ends in "-VL" (LFM2.5-VL and the whole naming
+  convention) counted as blind, so the picture was removed before sending; an
+  answer written as content parts rather than one string arrived as an empty
+  reply; and a pasted ".../v1/chat/completions" was turned into a doubled path.
+  A picture that cannot be sent now says which switch changes that, and
+  "Skales Local" works as a Vision Provider.
+- **A second skill of the same name opens its own page.** The menu entry was
+  built from the name while the skill was stored under a de-duplicated id, so it
+  pointed at the first skill.
+- **Skill pages are sealed like widget pages.** A skill that returns HTML runs
+  without access to the app around it and cannot load from outside sources; a
+  blocked resource says so on the page instead of failing silently.
+- **The Custom Widgets page speaks your language.** Its result and error
+  messages were English regardless of the language setting.
+- **Text with line breaks reaches the field it was meant for.** Typing put text
+  into a page one key at a time, and every modern editor - X, Instagram, Reddit,
+  a CMS - handles the Enter key itself, so paragraphs ran together into a single
+  line. A 220-character post with six line breaks arrived as 214 characters on
+  one line. There is now a step that places text in one go, line breaks and all,
+  and it is what the assistant is told to use for anything longer than a search
+  box.
+- **Nothing is typed into a field that does not have focus.** Text used to be
+  sent to whatever happened to be focused, and the check for where it landed
+  came afterwards. The target is verified first, and a page that steals focus
+  back gets a refusal that names what holds it instead of a write into nowhere.
+- **Every write is read back, and the readback is the truth.** After writing,
+  the field is read as it renders, line breaks included - the old check read a
+  form that has no line breaks at all, so a broken write and its confirmation
+  agreed with each other. The answer says whether the field matches exactly and,
+  when it does not, which line differs first. There is also a step to read a
+  field on its own, for when you want to confirm before submitting.
+- **A dialog is no longer dismissed behind your back.** A confirm, an alert or a
+  "discard this?" prompt was closed automatically and never mentioned, so the
+  assistant only saw the aftermath. Those are now named in the result, and an
+  in-page modal is named too, with the choices it offers.
+- **The screenshot shows the action, not the moment before it.** Screenshots
+  could be taken before the page had drawn the change, so the picture showed the
+  previous state.
+- **Browser and desktop control survive a tight tool budget.** Pressing a key
+  and scrolling sat outside every priority tier, and so did all desktop control,
+  which meant a small local model kept the tool that fills a field and lost the
+  one that submits it.
+- **Desktop control says when it is not allowed to run.** Without the macOS
+  accessibility permission every click and keystroke silently did nothing and
+  reported success; it now names the setting that fixes it. A click outside the
+  screen is refused with the real screen size instead of reported as done, the
+  pointer is checked afterwards, and typed text can be read back out of the
+  focused field. Multi-line text types line by line, and on Linux the text is
+  handed to the keyboard tool directly rather than through a shell that would
+  reinterpret it.
+
+- **The keyboard can see where it is in Studio.** Tabbing into the Flow composer
+  or the project search moved the cursor there and changed nothing on screen:
+  both fields switched the focus ring off and never put anything back, so a
+  keyboard user had no way to tell which field they were typing into. Both now
+  show the same ring every other field in Skales shows.
+
+- **Shutting the computer down is not a crash.** Logging off or restarting
+  Windows killed the Skales server mid-session, Skales immediately started a
+  replacement that the ending session could not let start either, and both
+  deaths were written down as crashes, with a "Server stopped" box on a machine
+  that was already going away. A session that is ending is recognised now:
+  nothing is restarted, no error box appears, and the entry is listed under
+  ordinary shutdowns. Exit codes in the report are spelled out in words,
+  including for reports written before this build.
+- **A question from Skales stays answerable.** The card that asks you something
+  was only live while it was the last thing in the conversation, so anything
+  landing behind it, a message you typed, a follow-up run, a tool line from the
+  same turn, killed its buttons for good and re-asking never helped. A question
+  is live now until you answer it, in the chat and in the Code window, which
+  read the same rule from one place. A turn that both draws an image and asks a
+  question now asks it instead of ending on the image, and the idle prompt steps
+  over an unanswered question instead of starting a second run under it.
+- **Finishing a Google connection says what happened when it fails.** The screen
+  answered "Failed to fetch", which is the browser's words for "Skales was not
+  there", and it could hang on "finishing" indefinitely. It now says that
+  nothing was connected and nothing was lost and where to start again, keeps the
+  raw line underneath for a report, and gives up after a minute with its own
+  sentence.
+- **Crash recording is on in release builds.** The diagnostics report said
+  "process crash recording is OFF in this build", and it was right in every
+  release build there has ever been: the handlers hung on a hook that the
+  pinned Next version does not run. They are installed from the heartbeat now,
+  which runs in every packaged build. It writes to a local file and sends
+  nothing.
+- **The bug report tab speaks your language.** Any status the server sent that
+  this build did not know fell back to hardcoded English, "resolved" was not
+  known at all, and a status written with more than one hyphen was never
+  matched. All of them are translated now, including the words the server uses
+  for the same state, and the status colours come from the theme instead of
+  fixed hex values.
+- **Five whole screens stop answering in English.** Hugging Face provider
+  settings, Spaces, Datasets, casting and the DeepSeek thinking controls were
+  never translated, so 32 buttons and labels in the provider settings alone
+  stood in English in all eleven other languages. 733 strings were translated,
+  and a check now catches a value that is identical in all twelve languages so
+  the next block cannot slip through the same way.
+- **The error page's retry button reloads instead of crashing.** Pressing it
+  mounted the router a second time in the same document, which is the one thing
+  it cannot survive, so the recovery from an error was a second error. The Iris
+  screen carried the same class of unguarded read and no longer does.
+
+- **New starts a new chat, from both buttons.** The plus in the header opened the
+  new-chat page while New in the conversation list emptied the conversation you
+  were in without leaving it, and an emptied conversation had nothing to show:
+  a screen-high blank that read as a crash. Reloading appeared to fix it, which
+  only hid it, because the reload brought the old conversation back. Both
+  buttons lead to the same place now, deleting the conversation you are in does
+  too, and a wait long enough to notice shows a loading state instead of an
+  empty screen.
+- **The feedback box stops cutting long notes in half.** Everything past 4.000
+  characters was silently thrown away as you typed, so a pasted paragraph
+  arrived halved and nothing said so. The box now declines the extra characters,
+  and once a note is long enough to be near the limit it says how many are left.
+- **The mood says one thing, not two.** The word above the companion's mood bar
+  and the highlighted line in its legend were computed from two different
+  thresholds, so the panel could say "low-key" over a legend marking "good".
+  There is one threshold now, and the sentence, the legend and what Skales
+  itself is told all read it. The words changed with it, from instrument
+  readings to how the work is going: rough, uphill, steady, good, flying.
+- **Settings points at a page that answers.** Under Settings, Memory, the line
+  offering to shape your companion's character led to the Memory page but not to
+  the section it meant, and with the switch off that section answered with an
+  empty card, so the trail ended in nothing. The section is a target now, it
+  says what is on it, and it keeps the character form whether the switch is on
+  or off.
+- **Making a spreadsheet works in the installed app.** The tool has never once
+  worked outside a development tree: the library it uses looks for its file
+  access at the moment it writes, and that does not survive being packaged, so
+  every attempt failed with a message about the folder not being writable. The
+  folder was fine. Reading spreadsheets had the same fault.
+- **A file asked for in a group arrives in that group.** `send_telegram_file`
+  always sent to the paired chat, so a table someone asked for in a group
+  landed in a private conversation instead. It goes to the room that asked.
+- **Two quick messages on WhatsApp are one conversation, not two.** Nothing
+  serialised them, so a second message while the first was being answered
+  started a second agent running on the same conversation at the same time.
+- **The queued-message banner hands back everything it is holding.** Pressing
+  Send on it put the first queued message in the box and quietly dropped the
+  banner with the rest still in it.
+- **A file card stops offering a file that is gone.** The card is drawn from
+  what the turn recorded, so a file deleted or moved since kept a full card and
+  a Download button that answered with an error. Every card checks again.
+
+### Changed
+
+- **The free end of the model list is on the desktop too.** The three smallest
+  models were listed for phones only and were therefore invisible on a computer,
+  which is where most people try Skales Local first. The entry point is now
+  530 MB instead of 2.5 GB, and it thinks, calls tools and reads images.
+- **One row per model.** The same model appeared twice in the library under two
+  names, once with its capabilities and once without.
+
+- **Messages you send while Skales is working are answered together.** Each one
+  used to become a turn of its own, so three impatient messages meant three
+  answers to three halves of a question, and the wait multiplied. They arrive
+  as one message now, in the order you typed them, separated by a blank line,
+  with nothing added and nothing numbered. The chat window, a run on the
+  server, Telegram, WhatsApp and the phone all do it the same way, and Telegram
+  no longer sends a "position in queue" card per message.
+
 ## v12.8.1 - Rewrite
 
 Two kinds of text get looked at in this release. The first is what a model
@@ -21,6 +394,32 @@ second factor, autonomous workers can be your own agents, the local server
 starts when you have chosen it, and the interface finished a long consolidation:
 the controls, the type scale, the colours and the window chrome now come from
 one place across the whole app.
+
+- **Check-ins arrive again when the only thing stopping them was the mute.**
+  Friend Mode read "on", named a channel and stayed silent, because muting live
+  notifications quietly stops every scheduled check-in and nothing on the Friend
+  Mode page said so. It says so there now, with the way to the switch. The Test
+  button deliberately ignores the mute, so it also says when it just did -
+  a green test over a blocked schedule sent people looking in the wrong place.
+- **One notification is one notification.** A recurring reminder such as the
+  morning greeting only started its own cooldown once a channel had actually
+  delivered it, so while anything held delivery back - the mute, quiet hours, a
+  frequency setting - it was recorded again on every heartbeat. A single
+  greeting could fill the entire Notifications page and push everything else
+  off it. The cooldown now starts when the notification is recorded.
+- **Quiet hours and the frequency setting reach the in-app toast.** Toasts and
+  their sound are a live channel, but they were rebuilt from the durable record
+  and only ever consulted the master mute. A category set to "Once" still
+  popped every time, and a notification during quiet hours still chimed at
+  night, which left the master mute as the only switch that really worked. They
+  follow the same settings every other channel does. The Notifications page
+  still lists all of it.
+- **Proactive notifications no longer double their emoji.** Seven of the eight
+  carried it twice ("☀️ ☀️ Good morning!"): it was part of the text and added
+  again on display.
+- **A setting changed in the notifications popup stays changed.** The popup
+  opens over the Settings page, so changing a Friend Mode option afterwards
+  wrote back the older copy of your preferences and silently undid it.
 
 ### Added
 
