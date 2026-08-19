@@ -196,7 +196,7 @@ Voice with a face. Press the Iris button and a living particle eye ignites in it
 
 ### 🧠 Memory
 
-Skales remembers you across every surface you talk to it on - the desktop chat, WhatsApp and the Desktop Buddy, not only one. Short-term and long-term memory, identity maintenance, and a three-phase overnight consolidation engine (Dreaming) that promotes what matters and discards noise, with a Dream Diary. Import an **Obsidian vault** to browse your notes as a backlink graph and let Skales read from them. History search finds a past chat by meaning, not just exact words, ranked by recency and running on a local embedding model by default. **Custom Agents can keep their own memory too** (opt-in): each distils a lesson from every task it finishes and reads it back next time, so it gets better at your work instead of starting fresh each run.
+Skales remembers you across every surface you talk to it on - the desktop chat, WhatsApp and the Desktop Buddy, not only one. Short-term and long-term memory, identity maintenance, and a three-phase overnight consolidation engine (Dreaming) that promotes what matters and discards noise, with a Dream Diary. Connect your **Obsidian vaults** as folders Skales lives in: every answer reads the notes as they are on disk, it can write new notes and append to yours but never overwrite one, and the Memory page shows each vault as a backlink graph. **Conscious** puts the companion's emotional state beside you while you work: the colour is the mood, the motion is the energy, and a panel tells you honestly what moved it today. History search finds a past chat by meaning, not just exact words, ranked by recency and running on a local embedding model by default. **Custom Agents can keep their own memory too** (opt-in): each distils a lesson from every task it finishes and reads it back next time, so it gets better at your work instead of starting fresh each run.
 
 ### 📱 Mobile
 
@@ -227,6 +227,8 @@ Pair via QR and the phone gets this desktop's full tool set (180+ tools: shell, 
 ### ⚙️ Settings and Add-Ons
 
 Providers, integrations, appearance, and an add-on list where every capability can be switched on or off. Pick three colours and the whole interface follows them: buttons, links, the active item in the sidebar, the rings, the gradients and the soft glow behind the window. Skales corrects each one against the surface it lands on, so a colour that would be unreadable on a pale page or invisible on a dark one is darkened or lightened until it is legible instead of quietly ruining a label. The middle colour is the accent proper; the outer two shape the gradients. Colour that carries a meaning stays put - a success tick stays green. Six themes, twelve languages, and one button that puts the shipped colours back.
+
+And many more features and tools beyond this list. Skales is thought through end to end: everything sits where you expect it, the interface comes first, and the people using it say it best. *"Wow! One of the best and most full-featured Agentic AI apps I've ever used! Fantastic agent harness and frontend in one."*
 
 ---
 
