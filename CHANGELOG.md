@@ -6,6 +6,97 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.8.3 - Intact
+
+### Fixed
+
+- **A finished answer is no longer followed by a second one nobody asked for.**
+  A line typed while Skales was still writing goes into the queue, as before.
+  Two things then went wrong with it. A queued message that could not be handed
+  over was put back, and putting it back is what woke the queue again, so the
+  same text was submitted over and over; and the composer unlocks by itself when
+  a turn stops responding, which the queue read as "the turn is over" while the
+  turn was still running on the machine. Now a message is tried once more at
+  most and then waits in plain sight with a Try again next to it, and nothing
+  goes out until the run is genuinely finished rather than merely unlocked.
+- **Long Telegram answers arrive whole.** Since 12.8.2 the answer is written
+  into the message you are already looking at, and that path never checked
+  Telegram's per-message limit: a long answer stopped mid-sentence at the last
+  piece that still fit. A message that had waited in the queue was worse - it
+  counted as delivered although Telegram had refused it, so it never arrived at
+  all. Answers are now split and sent in order, with code blocks closed and
+  reopened across the split, and nothing counts as delivered until Telegram
+  confirms it.
+- **Saving a mail account no longer destroys its password.** Changing any field
+  on an existing account wrote the row of dots back over the real password. If
+  an account is already in that state it now says so and asks for the password
+  again, instead of reporting a login failure from the provider.
+- **The mail Test button checks what is on screen.** It tested the saved values
+  while showing the verdict as a verdict on the ones just typed, so a corrected
+  port was reported as refused before it had been tried. Only the password still
+  comes from storage.
+- **Port and encryption belong together.** Switching encryption moves the port
+  the way the label always promised, and the four impossible combinations say so
+  at once instead of arriving later as a certificate error - which is also what
+  implicit TLS on a STARTTLS port used to be reported as.
+- **Skales answers correctly about its own integrations again.** A read-only
+  mail account, or a settings file written by an older version, made the
+  assistant deny Google, Drive, Docs and IMAP that were configured and working
+  the whole time. Nothing had been removed: its self-check read different files
+  than the tool catalogue and the settings screen. On local and small models
+  those tools could also be squeezed out of the tool budget first; they are now
+  protected once configured. A Google account missing one field now names the
+  field instead of vanishing.
+- **The context size you set for a local model reaches the engine.** It was
+  never passed on, so the server chose a window on its own - 4096 on some
+  machines - while the banner read your setting back to you rather than the
+  window in force. The banner now shows the window the server actually holds,
+  changing the setting restarts the local server, and a request that does not
+  fit ends the turn once with the real numbers instead of being retried until
+  the partial answer has been erased and restarted several times.
+- **A local model no longer advertises reading pictures when it cannot.** The
+  VISION badge is checked against the running engine, so a model whose projector
+  is not on disk says so. An engine that is running with nothing loaded is no
+  longer reported as not running, the role buttons say why they are disabled,
+  and a start skipped because autostart is off says that too.
+- **Raw `<textcall>` markup no longer appears in answers**, and - more
+  importantly - the call inside it is now carried out. Removing the markup
+  without running the call would have meant asking for something, and nothing
+  happening, with no error.
+- **Teams, Organization, Group Chat and Swarm are reachable again**, on every
+  theme. The pages and the runner were never touched; only the doors to them had
+  been taken out, and on the top-bar and icon-rail themes there was no way in at
+  all.
+- **One conversation can no longer lock the others.** Opening a chat kept the
+  previous one's run, which held the input and the history list; starting a new
+  chat was the only way out. A conversation that cannot be drawn now shows the
+  reason and leaves the rest of the app alone.
+- **Allowing something "for this session" holds across Chat, Code and Flow.**
+  The three surfaces kept three separate notes of it, and in Code the answer
+  could land in a copy the waiting run never saw, so the same question came back
+  after it had been answered. In Flow a card showed "running" even when the
+  answer could no longer be applied - after a restart, for instance; it now says
+  the runner was lost and asks you to send again.
+- **Rewrite (/spin) keeps what it produces.** The rewritten text was only put on
+  screen, so the next refresh of the conversation removed it again - the feature
+  ran and appeared to do nothing. It is written into the conversation now, and a
+  write that fails says so and leaves the text where it can still be copied.
+- **The Home/Chat switch shows the column that is on screen.** Opening a
+  conversation raised the chat column while the switch still lit Home. Your
+  stored preference is left alone.
+- **Portrait pictures in Discover are shown whole** instead of cropped to a
+  band.
+- **Browser Control can attach a file to a web page.** Upload fields that a page
+  hides are now listed and can be addressed directly, including through the
+  button in front of them, so no operating-system dialog is needed; the field is
+  read back afterwards and a mismatch refuses to submit.
+- **Custom endpoints are first-class in the agent editor.** Each server you set
+  up appears under its own name, the choice survives reopening and restarting,
+  and an endpoint that has been switched off is named rather than shown as
+  "Default".
+- Memory "Minimal" now says what it does: it shortens the memory context, and
+  the tool schemata have their own switch directly below it.
+
 ## v12.8.2 - Mood
 
 ### Added
