@@ -6,6 +6,59 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.8.4 - Aware
+
+### Fixed
+
+- **A restart says it is a restart.** When the system ended Skales' background
+  engine to free memory, the window went black with "Connection lost" and a Try
+  again button, and nothing said that Skales was already starting itself back
+  up. Every window now says what happened, which attempt it is on, and whether
+  the engine was stopped by the system or fell over on its own - and when it is
+  running again the surface comes back by itself, with nobody pressing Try
+  again. If three attempts are not enough, it says that too instead of leaving
+  you at the same button.
+- **Skales stops denying what it can do.** Asked whether it could work with
+  your WordPress site, it said no, although the connector has been there for
+  months and forty-seven tools sit behind it. The same hole swallowed Obsidian
+  and the ability to use your computer. All three are in its self-knowledge
+  now, each one honest about whether it is actually connected: WordPress
+  reports itself as ready once your site and token are stored, not before.
+- **A fact said twice is one fact.** Telling Skales your name in three
+  different conversations left three separate records saying the same thing.
+  Near-identical facts are now folded into the record that was there first,
+  which keeps the earliest date and counts how often it has been confirmed -
+  visible on the Memory page. Facts that only look alike stay apart: "port
+  8091" and "port 8093" are still two facts. What is already stored is tidied
+  once, without anything being thrown away.
+- **A document Skales writes is a document you can find.** Asking for a
+  spreadsheet could report success and leave no file behind at all, because the
+  packaged app cannot write the way the library wanted to. Fixed in the last
+  release, and now checked on every build by actually writing a workbook and
+  reading it back, so a tool that claims success and produces nothing cannot
+  get through again.
+- **A fresh install leads with what it can do.** Asked what it was capable of
+  before any key was entered, Skales read out the long list of everything not
+  set up yet. It now names what works right away first - Flow, Code Mode,
+  visuals, your local files, the weather - and puts what a key would add into a
+  single sentence with the place to enter it.
+- **It knows it can draw a 3D scene without a provider.** Flow has written real
+  three.js scenes for a while, but the ability was missing from Skales' own
+  list, so the answer to "can you do 3D?" came from the model-generating tool
+  that needs a provider and an account. It now says the true thing: the scene
+  is written and drawn in the app itself, no key involved, and the way in is
+  the 3D chip in Flow.
+- **The assistant stops opening every answer the same way.** When the same
+  short phrase has led three of the last few replies, it is asked to begin
+  differently. Tone, warmth, persona and language stay exactly as they were;
+  only the repetition goes.
+
+### Changed
+
+- **The shipped app is sealed.** Skales now ships in a hardened package.
+  Nothing changes for you - the app installs, starts and updates exactly as
+  before.
+
 ## v12.8.3 - Intact
 
 ### Fixed
