@@ -8,7 +8,7 @@ The private AI that lives on your computer and does real work, not just chat.
   <img width="960" height="580" alt="Dashboard" src="https://github.com/user-attachments/assets/bba3411e-85eb-44e8-ab58-be2a5a88a650" />
 </p>
  <p>
-    <a href="https://github.com/skalesapp/skales/releases/latest"><img src="https://img.shields.io/badge/version-12.8.4-10b981?style=flat-square" alt="Version 12.8.4" /></a>
+    <a href="https://github.com/skalesapp/skales/releases/latest"><img src="https://img.shields.io/badge/version-12.8.5-10b981?style=flat-square" alt="Version 12.8.5" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/license-BSL_1.1-10b981?style=flat-square" alt="License" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/Windows_+_macOS_+_Linux_+_Android_+_iOS-10b981?style=flat-square&logo=windows&logoColor=white" alt="Platform" /></a>
     <a href="https://github.com/skalesapp/skales/stargazers"><img src="https://img.shields.io/github/stars/skalesapp/skales?style=flat-square&color=10b981" alt="Stars" /></a>
@@ -27,9 +27,6 @@ The private AI that lives on your computer and does real work, not just chat.
   </p>
    <p>
     <sub>Switching from <b>OpenClaw</b>, <b>Hermes Agent</b>, or <b>ChatGPT</b>? Skales has a built-in migration importer. Settings > Import from Another Tool.</sub>
-  </p>
-  <p>
-    <sub><a href="#about-the-source-in-this-repository">Looking for the source code, or planning to fork?</a></sub>
   </p>
 <br><br>
 
@@ -394,9 +391,3 @@ Built with ❤️ in Vienna by [Mario Simic](https://mariosimic.at). 🦎
 <div align="left">
   <a href="https://skales.app">skales.app</a>
 </div>
-
----
-
-## About the source in this repository
-
-**This source snapshot is outdated.** The source in this repository is the v7 tree (`package.json` version 7.1.0), last current in March 2026; since then only a single security fix (July 2026) has landed, no feature updates. Skales continues as binary releases only: [Releases](https://github.com/skalesapp/skales/releases) and [skales.app](https://skales.app).

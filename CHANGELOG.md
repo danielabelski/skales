@@ -6,6 +6,267 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.8.5 - Mirror
+
+### Fixed
+
+- **A cancelled upload no longer takes the server down with it.** Releasing
+  the microphone, reloading the page mid-answer or letting a voice detector
+  restart could end the whole Skales server, and with it every agent, the
+  scheduler, the autopilot and any background work in progress. The cause sits
+  in the runtime's own machinery: it finishes reading an abandoned request body
+  by closing a stream twice, from a place no error handling can reach. That one
+  fault is now recognised and outlived - written down, with its stack, so it
+  stays visible - while every other kind of crash still ends the server the way
+  it always has.
+- **A released microphone stops costing money.** A transcription whose client
+  had already walked away ran to the end at Groq, OpenAI, OpenRouter, Azure or
+  Skales IQ, and when the disconnect looked like a refusal, the next provider
+  was tried after it. A cancelled recording now cancels the call it started, and
+  a cancellation is answered as one instead of as a failed transcription.
+- **Pressing the microphone twice sends once.** Every voice surface - chat
+  dictation, the chat microphone, Call mode, Iris and audio attachments - posted
+  without knowing about the others or about its own previous run, so a fast
+  second press or a restarting voice detector put two large uploads on the wire
+  at once. A newer recording now replaces the older one cleanly and the replaced
+  one leaves without an error message. Several audio files attached together
+  still transcribe side by side.
+- **The Telegram bot no longer disappears without a word.** An unexpected fault
+  ended the bot process leaving nothing written down anywhere, so a restart
+  looked like it had stopped for no reason. Every fault is now recorded with its
+  stack, and the one stream fault above is survived there too - the bot sends
+  media through the same machinery.
+- **A tool that runs into a missing WordPress route says which plugin to
+  update.** The message a user actually got was "the plugin is not active on
+  that site", and it was the wrong advice: on a site that connects fine, an
+  older connector simply does not carry the newer routes yet. That diagnosis
+  never even reached the screen, because it was tested against the words of
+  the message and WordPress does not put "404" in its sentence. Both halves
+  are fixed - the reason is read where WordPress actually writes it, and a
+  missing Skales route now names the plugin version to update to. It is only
+  shown after both address forms have been tried, so a site on plain
+  permalinks is never told this.
+- **A page is not a post when Skales asks whether it may write.** The check
+  that runs before every WordPress call asked for the post rights when the
+  tool was about to touch a page, and for edit rights when it was about to
+  delete. An account that may edit posts but no pages was waved through and
+  then refused by WordPress itself, as a bare 403 the model could not read.
+  Deleting and reading now also ask about the object they were actually given.
+- **Skales names itself to the connector plugin.** The handshake carried the
+  plugin's version but never the app's, so the plugin could not say whether
+  Skales was the outdated half of the pair. It now does, and when the plugin
+  says so, that sentence is shown next to the one about the plugin. Where the
+  plugin publishes its route level, that number decides the message instead of
+  the version string - so a site that already carries every route Skales calls
+  is no longer asked to update for nothing.
+- **Minimax pointed at two different countries at once.** The chat default
+  addressed the old `api.minimax.chat`, while the Refresh Models button on the
+  same card asked `api.minimaxi.com`, which is the mainland China deployment
+  and refuses an international key. Both halves now address the international
+  host. A base URL you entered yourself is untouched.
+- **Developer, Docs listed tools that do not exist.** Fifteen entries carried
+  invented names - among them `calendar_list_events` and `calendar_create_event`,
+  which are really `list_calendar_events` and `create_calendar_event` - and one
+  entry described a chat skill as a tool. Every name on the page is now the
+  name the model answers to, and the safety each one promises is the one that
+  is actually applied.
+- **A failed WordPress connection says why it failed.** Test Connection and the
+  WordPress screen both answered every failure with the same flat "Connection
+  failed", no matter whether the site had rejected the token, answered 404, run
+  into a timeout or handed back a firewall page. The real reason now reaches
+  the screen, in the same words the WordPress tools have always used.
+- **A site with plain permalinks connects.** WordPress only serves
+  `/wp-json/` when pretty permalinks are switched on; with the default setting
+  the identical route exists only under `?rest_route=`. Skales tried the first
+  form and gave up. It now tries the other one when the first answers 404, and
+  remembers which form that site speaks.
+- **An outdated connector plugin is named.** An old plugin answered the
+  handshake and then let every newer tool run into "not found". The version is
+  now checked at the handshake and named on both screens, including the case
+  where the plugin is too old to report a version at all. Nothing is blocked:
+  what the old plugin can do, it still does.
+- **Two new model profiles ship inside the app.** Muse Glimmer and DBRX were
+  added to the shared profile library, but only machines that can reach GitHub
+  received them - offline installs kept running both untuned, including Muse
+  Glimmer 30B, which Skales' own local catalogue recommends as its agentic
+  flagship. Both profiles are now built into the app itself.
+- **Local speech now works on Windows and on Apple Silicon.** The engine behind
+  dictation and read-aloud loads a native library chosen by platform, and every
+  release since it arrived carried only the one belonging to the machine that
+  built the package. A Windows install therefore held macOS libraries and no
+  Windows one, and reported that the module could not be found - which read
+  like a damaged download and was nothing a reinstall could ever repair. The
+  Apple Silicon disk image had the same hole with an Intel library in it. Each
+  package now carries the library its own machines can load, and no other, and
+  a build that gets this wrong stops before it is packaged.
+- **A speech engine that cannot load says why, and writes it down.** The old
+  message named neither the cause nor the platform and left no trace in the
+  system log at all. It now names the missing piece, says plainly that the gap
+  is in the download rather than on the machine, and records one line in the
+  log so a bug report has something to carry.
+- **Google Calendar and Discord can be set up again.** Both cards lost their
+  Configure button when the settings switches were unified, and the switch that
+  was left behind ran the disconnect: the only control on the card asked whether
+  you were sure and then deleted the connection, and nothing anywhere could
+  open the panel holding the API key, the calendar IDs or the bot token. Both
+  cards carry the full row again - a switch for the skill, Configure to unfold
+  the setup, and Disconnect as its own red action with a confirmation. Browser
+  Control lost the same button and had its switch wired to the panel instead of
+  the skill, so it could be neither turned on nor off from its card; that one is
+  fixed too. All fourteen collapsible setup panels in Settings are now checked
+  before every build, so a card cannot go unopenable again.
+- **Skales knew about YouTube uploads and never said so.** Publishing a video
+  is a different Google permission from searching for one, and the capability
+  report treated posting to YouTube and LinkedIn as always available whether
+  anything was connected or not. It now reports the real state, and when your
+  Google account was connected without the upload permission it says exactly
+  that, and sends you to reconnect it with YouTube (upload) ticked instead of
+  claiming Skales cannot upload at all.
+- **Skales can now describe its own memory, and the rest of YouTube.** The
+  long-term memory it keeps for you had no entry in the capability report at
+  all, so asked what it remembers between sessions it had nothing to say while
+  reading and writing that memory every turn. YouTube listed only search and
+  kept quiet about video details, channel information, trending and caption
+  tracks; browser automation left out attaching a file to a page. Every tool
+  family is now measured against the report before each build, so a whole
+  feature cannot go unmentioned again.
+- **The WordPress tools arrive together.** With on-demand tool loading the 47
+  WordPress tools were spread over four different groups and no group named
+  WordPress, so a model asked to work on your site fetched whichever group
+  sounded closest and got eleven of them, then reported the rest missing. They
+  are one group now, called wordpress, and it says what is in it.
+- **Generating a picture no longer ends the job it was part of.** An agent that
+  made an image halfway through a task dropped a bare "Image generated!" line
+  into the chat and stopped there, having never seen the result of its own tool
+  - so the task it was given was simply abandoned, and asking it to carry on
+  meant explaining the whole thing again. Making a picture is now a step like
+  any other: the preview card still appears, and the same turn keeps going with
+  the file it just produced. Video, speech and 3D generation already behaved
+  this way and are unchanged.
+- **A picture attached in a chat is a real file, and Skales says where it is.**
+  Attachments were described correctly and then existed nowhere any tool could
+  reach, so asking to post one, edit it or convert it failed on a file that
+  looked like it was right there. Every attached picture is kept in the
+  workspace and its location is now part of the conversation, so the tools that
+  need the actual file can open it. Pictures sent from a phone or the browser
+  interface were not being kept at all; they are now, in the same place and
+  under the same name as on the desktop. The location travels with the
+  conversation, so it still works after a restart.
+- **One history, whichever agent you were talking to.** Starting a conversation
+  with a custom agent replaced the sidebar with that agent's conversations only
+  and offered no way back to the full list, while the conversation itself never
+  appeared in the normal history afterwards. There is one list again, holding
+  everything, and a conversation held with a custom agent carries that agent's
+  emoji on its row. Opening such a row switches to that agent, so the reply
+  comes from whoever the conversation was with. Narrowing to a single agent is
+  still possible on the History screen, where it is a choice with a way back
+  rather than a place to get stuck.
+- **A shared visual keeps the shape it was designed in, and never lands
+  blank.** A visual shared from Studio arrived in the feed without any note of
+  the format it was built for, so a square, a widescreen and a portrait design
+  were all shown in the same fixed box. The chosen aspect now travels with the
+  visual and the feed lays it out accordingly - for visuals shared from a phone
+  as well. And a visual whose frame had not been measured yet was scaled to
+  nothing at all and read as an empty card; it now waits for a frame with a
+  size before it fits itself into it.
+- **A Playground space shared to Discover arrives with its text.** The
+  description and the category were sent in a place the feed never reads, so
+  the card appeared with an empty body under the wrong heading. Both now ride
+  where the feed looks for them.
+- **A voice preview no longer answers with a different voice.** Trying out a
+  text-to-speech provider in Settings read the sentence through the full
+  cascade, so a refused key, an empty balance or a dead endpoint all ended with
+  the system voice speaking flawlessly and the preview looking like a success.
+  The preview now stops at the provider that was picked and prints the reason it
+  gave - the HTTP status, the refusal, the missing key - instead of handing the
+  sentence on.
+
+### Added
+
+- **Settings > Voice > Fallbacks: every rule that swaps one engine for
+  another, written down in one place.** Which voice steps in for which, in what
+  order transcription is tried, what happens when the main chat provider fails,
+  who reads an image sent to a model that cannot see, where a local image
+  generator hands over, and what memory search does without embeddings. The
+  voice rule can also be switched off there: with it off a reply stays silent
+  and names the reason rather than being read by a voice nobody chose.
+- **A rendered video can go to Discover, from every place Studio makes one.**
+  Until now only pictures and Skales Visuals had a share: the cloud video, a
+  Scenes render, a Type export and a Flow composition all ended at Download.
+  Each of them now carries the same Share to Discover button the picture has,
+  and an authored Flow page - a 3D scene among them - shares as the visual it
+  is. A clip over 4 MB is refused before anything is posted and says so with
+  the limit; a shared post waits for review the same way a shared picture
+  does. Videos become visible in the feed once the feed server carries the
+  matching upload path.
+
+### Changed
+
+- **3D comes back as a scene, not as a web page with a scene in it.** Asked for
+  a 3D element, a language model writes a whole landing page around it: a
+  headline, two paragraphs, a footer, and a small canvas in the middle. Skales
+  now stages the canvas itself and hands the model the frame - a stage that
+  fills the view, a camera, a three-point light rig, ground that takes the
+  shadow, the resize handler and the loop - and says in as many words that a
+  page around it is the wrong deliverable. What the model writes is the part
+  that was ever the point: the object, the materials, the camera move and the
+  mood. Chat, Studio and Flow ask for it in the same words.
+- **Buttons that turn the thing still work.** "A cube with buttons that roll it
+  and light it from the sides" is exactly the kind of request the rule above
+  could have killed, so the frame has a place for it: controls float ON the
+  canvas and let the finger through everywhere else, instead of standing in a
+  document around it.
+
+### Fixed
+
+- **A turn that fails says what failed.** Whatever ended a chat turn - a model
+  that ran past its time budget, an endpoint that refused the connection, a
+  certificate this machine will not accept - the bubble said "Connection error.
+  Please try again." and kept the real sentence, the one naming the budget or
+  the address, out of sight in the session file. The reason now stands in the
+  bubble, in the language the app is set to, with the raw text kept underneath
+  it for the retry and the bug report.
+- **Dragging a sidebar entry no longer shows a web address.** A slow press on a
+  nav row and a small move started a browser link drag, and the ghost under the
+  cursor read "http://localhost:3000/..." - the app naming its own dev server at
+  the user. Nothing in the sidebar is something to drag, so nothing there drags.
+- **"Reasoning off" reaches Ollama.** The setting travelled to every backend
+  that has an off switch except the local daemon, where a thinking block is not
+  a second of latency but a minute of it. It now goes out as the daemon's own
+  parameter on both of its endpoints - the OpenAI-compatible one a text turn
+  uses and the native one an image turn uses - so a Qwen or a Gemma stops
+  thinking when it is told to. Older daemons that do not know the field answer
+  the request unchanged, so nothing regresses on an install that predates it.
+- **A connected MCP server's tools are reachable on a local model.** The list of
+  tool groups a model can load on demand was written from the tools that
+  survived the local model's tool budget instead of from the whole catalogue,
+  and on a local model almost nothing survives that is not in the base set. The
+  result: no groups were offered, none were registered, and asking for the MCP
+  server's group came back "unknown group" for a server that was connected and
+  enabled - so its tools were unusable until on-demand loading was switched off
+  entirely. The index now describes what CAN be fetched, which was always its
+  job, while the tool list still describes what this turn is carrying.
+- **Web search set to MCP is honoured before the model chooses, not after it
+  fails.** With the built-in search withheld, the model reached for it anyway,
+  was told the built-in is set to MCP, and only then went looking - one wasted
+  step, every time. Skales now names the connected search tool in the prompt,
+  and a call that still arrives at the built-in is carried through to that tool
+  instead of being refused. If no connected server actually exposes a web
+  search, it says exactly that and names the way out.
+- **Skales knows where its own tool-loading switch is.** Asked where to turn
+  on-demand tool loading off, it sent people to Settings > Advanced, where there
+  is no such control. It is under Settings > Memory, in the Memory Mode card,
+  and that is now what the app knows about itself.
+
+### Added
+
+- **A shared Visual opens full screen.** Every Skales Visual in Discover, from a
+  flat design to a turning three.js scene, has an expand button on its frame:
+  it fills the window, takes the mouse or the finger, and closes with the button
+  or with Escape. The card's own frame is put aside while it is open rather than
+  thrown away, so closing carries on where it was instead of starting the
+  animation over.
+
 ## v12.8.4 - Aware
 
 ### Fixed
