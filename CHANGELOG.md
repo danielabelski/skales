@@ -6,6 +6,186 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.9.0 - Fable
+
+### Added
+
+- **Skales tells you when it healed itself.** If the background engine dies,
+  every open window now shows what happened and why while it restarts, and
+  confirms when it is back - including windows that never noticed a thing.
+- **New installations start on Claude Sonnet 5.** Existing settings are
+  untouched - whatever model you chose stays chosen.
+- **The setup now ends with fifteen seconds of Skales, not an empty chat.**
+  Pressing the last button plays four full-bleed cards: what Studio makes and
+  that it can go into the Discover feed, an agent ticking a goal off by
+  itself, Iris listening and answering, and the Guide as the door to
+  everything else. One press skips it from any card, it is never shown unasked
+  a second time, and with reduced motion switched on the cards stand still and
+  you press Next. Guide has a "Watch the intro" line to play it again.
+
+- **Two cards that appear where they are an answer.** The first Skales Visual
+  you finish offers to put it in the Discover feed, and a run longer than two
+  minutes that finishes while you are somewhere else offers to tell you next
+  time - the second one only while notifications are actually off. Each is
+  offered once, both can be closed without being asked again, and both stay
+  quiet while notifications are muted or during quiet hours.
+
+- **A switch for staying awake in the background.** Settings > Desktop App
+  now carries "Stay Awake in the Background". On, which is the default and
+  what every release so far has done, Skales keeps the system from parking it
+  so reminders, scheduled tasks and autonomous work keep running while the
+  window is not in front. Off arms that only while a job is actually in
+  flight, which is the setting for a laptop on battery. The change takes
+  effect immediately, with no restart.
+
+- **Memory can be searched.** The Memory page opens with a search box over
+  everything stored - topic names and the text inside them, across the index,
+  the topic files and the saved short-term, long-term and episodic records -
+  with hits highlighted and a Meaning toggle that appears only when an
+  embedding provider is configured. Skales itself gained the same search as a
+  tool, so it can find a note it wrote months ago without guessing the topic
+  name, and asking for a topic that does not exist now answers with the
+  closest ones that do.
+
+- **The first run now asks who you are before it asks for keys.** A new
+  question near the top - newcomer or AI-head - reshapes the whole setup:
+  newcomers get plain-language explanations under every technical term and a
+  guided provider choice, experienced users get dense screens and can skip
+  whole blocks. The answer is remembered and keeps shaping recommendations
+  after setup.
+- **Setup covers the everyday now.** Theme with live previews, light/dark/
+  system, accent tone, your city, weather, notifications, a voice you can
+  hear before choosing, safety mode and telemetry are all settled during the
+  first run - writing the same settings the Settings page writes, so nothing
+  exists twice. Feature cards with small live animations introduce AIPointer,
+  the desktop buddy, Iris and Studio, and switch them on right there. A QR
+  card pairs your phone without leaving setup, including the allow/deny
+  confirmation, and the whole run works offline: every card degrades to a
+  named fallback and Continue always stays reachable. Progress survives a
+  restart and resumes exactly where you stopped.
+- **Docs became Guide.** One page with two entrances: "I want to..." paths
+  sorted by how much setup they need, and a catalogue of what is actually
+  possible - each line showing live whether your machine is ready, with a
+  real example prompt that lands editable in the composer. Settings open as
+  a popup on top of the page, and the bundled handbook stays available
+  offline. Setup ends on a card that shows how much of Skales is already
+  set up.
+- **Your experience level reaches a connected phone instantly.** Answering
+  the newcomer question on the desktop no longer waits for the next
+  reconnect - a paired phone learns it the moment you answer.
+- **Setup can be replayed without losing anything.** Guide and Settings >
+  General offer "run onboarding again": every answer arrives prefilled with
+  the current state, and finishing merges only what you changed - identity,
+  sessions and history stay untouched.
+
+### Changed
+
+- **An idle window is idle again.** Around sixty background timers kept
+  running at full rate on a window nobody was looking at - the dashboard's
+  own CPU readout polled twice a second, the Discover network graph redrew
+  its physics sixty times a second, Iris kept a WebGL scene painting behind
+  whatever was in front of it, and Studio, Flow, Playground, Playbooks,
+  Teams, Logs, the Code window and the Autopilot and Organization panels each
+  kept their own. Every one of them now pauses while the window is hidden
+  **or** unfocused (only checking "hidden" misses a covered window on Windows
+  entirely) and refreshes the instant it comes back, so nothing reads stale;
+  clocks read their start stamp rather than counting ticks, so they are right
+  on the first tick back rather than behind by however long you were away.
+  What genuinely has to run while you are away still does - completed runs,
+  renders, recordings, calls, the presentation clock, the buddy, OS
+  notifications - and pays with a backoff instead: the notification drain
+  went from every two seconds to every ten, stretching to thirty while there
+  is nothing to deliver. This cannot quietly grow back, and every case that
+  genuinely has to keep running while you are away still does.
+- **Flat got flatter.** The Flat sidebar is a menu now, not a row of buttons:
+  13px entries, tight rows, no pill on the active item - a soft tint and a
+  2px accent edge carry the position instead. Header, status card, switcher
+  and foot bar slimmed down to match. Skales X and Classic are untouched,
+  and a test walks every Flat rule to keep it that way.
+- **Templates is back in the sidebar.** The templates page never left - only
+  its door did. It now sits in the System group right under Custom Widgets,
+  and every card still lands its prompt editable in the composer.
+- **Three themes instead of six.** Obsidian, Snowfield and Neon are retired;
+  anyone using them lands on Classic once, with a short notice. Slate is now
+  Flat and means it: grey and white, lime as the only colour, a text-only
+  sidebar, tighter lines, emojis in greyscale - the logo and the buddy keep
+  their colours. Preset accent tones now also work on Flat.
+
+### Fixed
+
+- **The Autopilot cockpit is current the moment you come back.** Returning to
+  the window refreshes status, tasks, logs and goals immediately instead of
+  showing up to eight seconds of old state.
+- **A renamed chat carries its new name into a second window.** Renaming, and
+  the automatic title, now reach every surface instead of only the one you
+  were looking at.
+- **Background notification delivery cannot lose itself anymore.** A wake
+  during a running delivery pass no longer forks the schedule, and a single
+  failed server answer no longer silently ends it.
+- **The token wall now says that it is one.** Changing the remote-access
+  token also locks out the Skales window on a paired phone; that refusal was
+  indistinguishable from a working page. It now names itself in the reply,
+  and nothing changes for older devices.
+- **Studio gallery cards keep the shape their media was made in.** A 9:16
+  visual is tall in the gallery, the same way it is tall everywhere else -
+  instead of being cropped into a square.
+- **Reopened conversations show the team pill again.** A turn that fanned
+  out to sub-agents records how many worked on it, so the badge survives a
+  restart instead of appearing only while you watched.
+- **More of Skales' tools name the capability they belong to.** Skales can
+  now say what it has instead of only having it, and reports this completely.
+- **A slow image no longer dies at an invisible deadline.** The vision path
+  now honours the request-timeout setting and grants extra time by
+  attachment size, a transport failure ends the turn with a named card and
+  a Retry button instead of a raw exception leaking into the answer, and
+  the model is finally told that images arrive through vision - it will
+  not try to read a JPEG as text any more.
+- **A failed send no longer eats your message.** Attachments return to the
+  composer when a run is not accepted, and a run that dies before
+  answering says so with a Retry instead of silence.
+- **One picture, once.** An attached image rendered up to three times -
+  live and as a ghost after reload. One layer now wins, and old sessions
+  are repaired on display.
+- **Chat titles hold still.** No renaming mid-stream, and an automatic
+  title no longer reorders your history.
+- **Google Drive and Docs actually work.** Creating a document hit a
+  broken API path and always failed; downloading a Google Doc or Sheet
+  tried to fetch bytes that do not exist and answered 403. Documents
+  create properly now (with optional initial text), Workspace files export
+  to a readable format, real binaries arrive undamaged as files, and
+  errors name their true cause - including a missing permission.
+- **The local speech engine names the right gap.** A build missing its
+  platform package claimed "not a missing download" - the diagnosis now
+  names both possible build gaps honestly.
+- **The connection card no longer says "connected" in red.** Its colour was
+  chosen separately from its words, and a keyless runtime like Skales Local
+  did not count as connected at all. One tone now derives from the same
+  state as the label, using theme tokens instead of hard-coded colours.
+
+- **A shared 3D visual draws in the feed instead of showing a black box.** A
+  moving visual shared to Discover used to render on the phone and nowhere else
+  - the desktop feed and the moderation view showed an empty frame.
+  Both now draw the same visual the phone does, and a simpler design still looks
+  exactly as it did before.
+- **Sharing a visual no longer cuts it in half.** A large shared visual could be
+  silently trimmed, which broke it and left a black frame with nothing saying
+  why. A share now sends exactly what was made, and one that is genuinely too
+  large is refused clearly, up front, with the reason in the sentence.
+- **The setup keeps one face from start to finish.** From the feature cards
+  onward the wizard's header swapped the Skales mark for the buddy skin you had
+  just picked. The mark is now the same on every screen of the run, and the
+  buddy is shown where it is chosen.
+- **Setup screens are readable immediately.** The feature previews stopped
+  animating when they scrolled out of view, but they stopped on whichever frame
+  they were standing on - and several of those frames are deliberately faint,
+  which left cards permanently half-drawn. A stopped preview now simply rests.
+  The step text also fades in twice as fast and can no longer be caught between
+  two overlapping fades.
+- **Leaving the provider screen without choosing asks first.** Pressing
+  Continue with no card selected walked straight past the one question the
+  defaults cannot answer. It now asks, in your language, and says what the
+  machine will actually use if you go on. Going on still changes nothing.
+
 ## v12.8.5 - Mirror
 
 ### Fixed

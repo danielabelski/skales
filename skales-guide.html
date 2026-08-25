@@ -744,7 +744,7 @@
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.8.4</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.9.0</span> User Guide</div>
       </div>
     </a>
 
@@ -915,7 +915,7 @@
 
     <!-- Hero: the front page only -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.8.4</span></div>
+      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.0</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -1085,7 +1085,23 @@
 
     <section id="onboarding">
       <h2><span class="icon">🚀</span> First Launch</h2>
-      <p>The <strong>onboarding wizard</strong> guides you through setup on first launch:</p>
+      <p>The <strong>onboarding wizard</strong> guides you through setup on first
+      launch. It starts with one question that shapes everything after it -
+      whether you are new to AI or already at home with it. Newcomers get every
+      technical term explained in place and a guided provider choice;
+      experienced users get dense screens and can skip whole blocks.</p>
+      <p>The run then settles the everyday in small steps, each with a live
+      preview: theme (Skales X, Classic or Flat), light/dark/system, accent
+      tone, your city and weather, notifications, a voice you can listen to
+      before choosing, safety mode and telemetry. Feature cards introduce
+      AIPointer, the desktop buddy, Iris and Studio and switch them on right
+      there, and a QR card pairs your phone without leaving setup - the
+      allow/deny confirmation appears inside the wizard. The whole run works
+      offline, survives a restart exactly where you stopped, and ends on a
+      card that shows how much of Skales is already set up. You can replay it
+      any time from <strong>Guide</strong> or Settings &gt; General - answers
+      arrive prefilled, and finishing changes only what you actually edited.</p>
+      <p>The classic steps are still part of the run:</p>
       <ol style="margin: 1rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Language</strong> — Choose from 12 supported languages (EN, DE, ES, FR, RU, ZH, JA, KO, PT, VI, HR, TR)</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Provider</strong> — Select your AI provider (OpenRouter recommended)</li>
@@ -1093,7 +1109,26 @@
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Model</strong> — Pick a default model. You can switch anytime in Settings or via <code>/model</code> in chat.</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">What Skales should do for you</strong> — Five kinds of work: Generative AI, Audio AI, Coding AI, Business agent, Personal agent. Picking one switches on the add-ons that belong to it, and you can change any individual switch on the same screen. The sidebar and the Settings page are then built from that answer, so you see what you chose and not the rest.</li>
       </ol>
-      <p>After onboarding you land directly in <strong>Chat</strong> — ready to go.</p>
+      <h3>The intro, and the two moments</h3>
+      <p>Pressing the last button of the setup does not drop you straight into an
+      empty chat. Four short cards play first — what Studio makes and where it can
+      go, agents ticking a goal off by themselves, Iris listening and answering,
+      and the Guide as the door to everything else. It lasts about fifteen
+      seconds, one press skips it from any card, and it is never shown a second
+      time by itself. With <em>reduced motion</em> switched on in your system, the
+      cards stand still and you press <strong>Next</strong> instead. To watch it
+      again, open <strong>Guide</strong> and use <strong>Watch the intro</strong>.</p>
+      <p>Two more cards appear once each, and only at the moment they are an
+      answer rather than a tour: when your first Skales Visual is finished, Skales
+      offers to put it in the Discover feed; and when a run that took longer than
+      two minutes finishes while you are somewhere else, it offers to tell you
+      next time. Both can be closed without being asked again, both stay quiet
+      while notifications are muted or in your quiet hours, and the second one is
+      only offered while notifications are actually switched off.</p>
+      <p>After onboarding you land directly in <strong>Chat</strong> — ready to go.
+      The former <strong>Docs</strong> entry in the sidebar is now
+      <strong>Guide</strong>: the same handbook plus "I want to..." paths that
+      show live whether your machine is ready for each of them.</p>
       <p>Nothing in that last step is final, and nothing is lost by it. Chat, memory, the planner, tasks, schedule and Discover are always there and are not on the list, because they are not a choice. Everything else is one switch on the <strong>Add-Ons</strong> page, and the <strong>Advanced</strong> view of Settings always shows every setting there is. An existing installation is offered the same screen once, with everything it already had left switched on.</p>
 
       <h3>Permissions your system may ask for</h3>
@@ -1385,6 +1420,9 @@
 
       <p>Manage memories in <strong>Settings → Memory</strong>. You can view, edit, or delete individual entries. Up to 5 relevant memories are automatically recalled per conversation.</p>
 
+      <h3>Searching your memory</h3>
+      <p>The Memory page opens with a <strong>search box over everything stored</strong> — topic names and the text inside them, across the index, the topic files and the saved short-term, long-term and episodic records, with the matches highlighted. A <strong>Meaning</strong> toggle appears when you have an embedding provider configured, so you can search by what you meant rather than the exact words. Skales itself can search its memory the same way, so it can find a note it wrote months ago without you naming the topic, and asking for a topic that does not exist answers with the closest ones that do.</p>
+
       <h3>Adapts to how you work</h3>
       <p>Over time Skales builds a quiet sense of how you like to work and folds it into memory, and it distills the approaches that carried past goals to a finish into reusable plans. Now and then it surfaces one short question to understand you better, never while it is busy and never often, with a quiet notification and a dot next to Chat so it is not missed. You can set your agent's character outright when you join Discover, and clear everything Skales has picked up about you at any time, from Settings or right in the chat.</p>
 
@@ -1527,6 +1565,7 @@
       <h2><span class="icon">🤖</span> Agents</h2>
       <p>Create custom AI personas with their own name, personality, system prompt, and model selection. Agents appear in the chat persona picker and each maintain a separate conversation history.</p>
       <p>Built-in personas include: <strong>Default</strong>, <strong>Entrepreneur</strong>, <strong>Coder</strong>, <strong>Family</strong>, and <strong>Student</strong>.</p>
+      <p>Skales also ships with ready-made specialist agents you can put on a roster or hand a task to &mdash; a code assistant, a writer, a data analyst, a strategic planner, a researcher, a project manager, CEO and CTO seats, and <strong>Fable</strong>, the disciplined builder that takes stock before it builds, works in seams, and finishes what it starts rather than ending on a plan. Every one of them runs on whatever model and provider you have selected; none is tied to a particular vendor.</p>
 
       <h3>Asking several agents at once</h3>
       <p>The button beside the composer&rsquo;s mode strip says how many agents your next message goes to. One is off and means what it always meant: the agent picked for this chat answers, alone. Every click counts up to six and back to one.</p>
@@ -3202,6 +3241,7 @@
       <h3>The access token</h3>
       <p>Opening Skales from a browser on another device needs the token, and the URL on the Settings page already carries it: open it once on the other device and it is stored there and survives restarts. There is a QR of the same URL for scanning it onto a phone.</p>
       <p><strong>Regenerate</strong> issues a new token. Every device that connected with the old one has to open the new URL, so treat it as the way to lock out a device you no longer have, together with <strong>Remove and block</strong> on the pairing page.</p>
+      <div class="tip"><strong>Changing the token locks out a paired phone until it reconnects.</strong> When you regenerate the token, a phone that was open on the Skales window is locked out until it opens the new URL &mdash; and that refusal now says so on the phone, in plain words, instead of looking like a page that simply stopped working. Older devices are unaffected.</div>
 
       <div class="warn"><strong>The microphone will not work over a plain address.</strong> A browser hands out the microphone only in a secure context, meaning HTTPS or localhost. Over <code>http://100.x.x.x</code> it refuses without saying so, which looks like the page ignoring you. Voice surfaces still draw and still answer typed messages. HTTPS in front of the standalone server is the way to a working microphone from another device, and it is on the roadmap rather than in this release.</div>
 
@@ -3941,32 +3981,12 @@
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.8.4</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
+      <span>Skales v<span data-skales-version>12.9.0</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 
   </main>
 </div>
-  <script>
-  // Live version from skales.app/latest.json; the markup keeps the built-in
-  // value if the fetch fails, which is also what happens with no network.
-  (function() {
-    fetch('https://skales.app/latest.json', { cache: 'no-store' })
-      .then(function(r) { return r.ok ? r.json() : null; })
-      .then(function(data) {
-        if (!data || !data.version) return;
-        document.querySelectorAll('[data-skales-version]').forEach(function(el) {
-          el.textContent = data.version;
-        });
-        if (data.changelog) {
-          document.querySelectorAll('[data-skales-changelog]').forEach(function(el) {
-            el.textContent = data.changelog;
-          });
-        }
-      })
-      .catch(function() { /* silent, fallback stays */ });
-  })();
-  </script>
   <script>
   // Screenshot slots. A figure starts as "pending" and only loses that class
   // once its image has actually decoded, so a missing file degrades to a quiet
