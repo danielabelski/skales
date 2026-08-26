@@ -8,7 +8,7 @@ The private AI that lives on your computer and does real work, not just chat.
   <img width="960" height="580" alt="Dashboard" src="https://github.com/user-attachments/assets/bba3411e-85eb-44e8-ab58-be2a5a88a650" />
 </p>
  <p>
-    <a href="https://github.com/skalesapp/skales/releases/latest"><img src="https://img.shields.io/badge/version-12.9.0-10b981?style=flat-square" alt="Version 12.9.0" /></a>
+    <a href="https://github.com/skalesapp/skales/releases/latest"><img src="https://img.shields.io/badge/version-12.9.10-10b981?style=flat-square" alt="Version 12.9.10" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/license-BSL_1.1-10b981?style=flat-square" alt="License" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/Windows_+_macOS_+_Linux_+_Android_+_iOS-10b981?style=flat-square&logo=windows&logoColor=white" alt="Platform" /></a>
     <a href="https://github.com/skalesapp/skales/stargazers"><img src="https://img.shields.io/github/stars/skalesapp/skales?style=flat-square&color=10b981" alt="Stars" /></a>
@@ -58,7 +58,7 @@ An AI agent that runs on your own computer, with access to your files, browser, 
 
 - [Demo](#demo)
 - [⚡ Why Skales?](#-why-skales)
-- [🚪 The ten places Skales lives](#-the-ten-places-skales-lives)
+- [🚪 The eleven places Skales lives](#-the-eleven-places-skales-lives)
   - [💬 Chat](#-chat)
   - [💻 Code](#-code)
   - [🎨 Studio](#-studio)
@@ -133,7 +133,7 @@ Skales is an AI agent that lives on your desktop. Not in a browser tab, not behi
 
 ---
 
-## 🚪 The ten places Skales lives
+## 🚪 The eleven places Skales lives
 
 One sidebar, one list, and every entry is somewhere you actually work. Everything else Skales can do is something you **ask** it to do, from a conversation.
 
@@ -207,6 +207,12 @@ Skales remembers you across every surface you talk to it on - the desktop chat, 
 
 Pair via QR and the phone gets this desktop's full tool set (180+ tools: shell, files, browser control, email, calendar, Studio, everything) over an end-to-end encrypted relay, with keys that never leave the devices. Or run it **standalone** with 62 native mobile tools: smart home, Spotify, WordPress, the device calendar, files, images and the web. Models run on the phone itself, image generation included, a Flow motion piece renders to a real MP4 on the device with hardware encoders and no upload, and a reply started on the phone finishes with the screen off and announces itself. Same Discover feed, same Custom Agents, same Skills.
 
+### 🧩 Plugins
+
+The section you fill yourself. A plugin is a tool of its own inside Skales - bigger than a widget: its own entry in the sidebar, its own icon, its own page, its own storage, and for the working kinds an agent and a schedule behind it. Say *"build me a newsletter system"* or *"build me an agent that only watches stock levels"* in chat and Skales writes it, names it, and tells you what it will be allowed to do before it makes it - every plugin runs against an explicit tool list, locked to its own folder, and anything that leaves the machine still asks first.
+
+You do not have to build one at all. The top of the Plugins page is a gallery: two ship inside the app - **Daily Brief**, a short morning brief at 07:30 from your calendar, open tasks and reminders, and **Reading Stack**, a link list that needs no key, no provider and no connection - plus the community directory at [github.com/skalesapp/plugins](https://github.com/skalesapp/plugins), which anyone can publish into. Every card names whether it reaches the network, what it can see and how many tools it may call, before you install; one click opens the card, a second installs. And a plugin travels: one **.skplugin** file to carry, publish or sell - with everything it saved while you used it deliberately left behind.
+
 ### 🌍 Discover and Wrapped
 
 <p align="center">
@@ -240,6 +246,7 @@ These do not have a page in the sidebar. They are things Skales does when you as
 - **"Run this as a company."** Organization builds departments of specialized agents with team leaders, and the CEO agent routes work to the right one; export and import Company Packs to share a setup. Teams pairs a second desktop so two people and both their agents share an end-to-end encrypted conversation, and your agent can reply on your behalf with this machine's full tool set. Group Chat puts several agents in one room.
 - **"Work in my project."** Projects give a piece of work its own folder, files and notes, and both Chat and Code can read and write them.
 - **"Take a look at my screen."** Computer Use takes screenshots, clicks, types and scrolls, with approval on every action in Safety Mode, and the screenshots appear inline in chat.
+- **"Build me my own app."** Say *"build me a newsletter system"* and Skales writes a plugin - its own sidebar entry, page, storage, agent and schedule - and tells you what it will be allowed to do before it makes it. The whole surface, the gallery and the community directory live in [Plugins](#-plugins), the eleventh place.
 - **"Bring your own skills."** Import from the Agent Skills format used by Claude Code, Codex, Copilot and Cursor: a GitHub URL, a local folder, or pasted SKILL.md. Imported skills work across Chat, Code, Browser and Lio AI. Add MCP servers for anything else. [1000+ community skills](https://github.com/VoltAgent/awesome-agent-skills).
 
 ### AIPointer ⦿
