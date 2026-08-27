@@ -744,7 +744,7 @@
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.9.0</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.9.10</span> User Guide</div>
       </div>
     </a>
 
@@ -776,6 +776,7 @@
     <a href="#onboarding" data-chapter="start">First Launch</a>
     <a href="#sidebar" data-chapter="start">Home and Chat</a>
     <a href="#addons-view" data-chapter="start">Add-Ons, and the two views of Settings</a>
+    <a href="#plugins" data-chapter="start">Plugins</a>
 
     <div class="section-label" data-chapter="chat">Chat and agents</div>
     <a href="#ch-chat" data-chapter="chat">Overview and walkthrough</a>
@@ -784,6 +785,7 @@
     <a href="#goal" data-chapter="chat">GOAL</a>
     <a href="#documents" data-chapter="chat">Document Generation</a>
     <a href="#http-request" data-chapter="chat">Calling an API</a>
+    <a href="#watch-video" data-chapter="chat">Asking about a video</a>
     <a href="#easter-eggs" data-chapter="chat">Easter Eggs</a>
     <div class="group-label" data-chapter="chat">What it remembers</div>
     <a href="#memory" data-chapter="chat">Memory</a>
@@ -799,6 +801,7 @@
     <a href="#multi-agent" data-chapter="chat">Which multi-agent mode</a>
     <a href="#group-chat" data-chapter="chat">Group Chat</a>
     <a href="#organization" data-chapter="chat">Organization</a>
+    <a href="#teams" data-chapter="chat">Teams: rooms with other people</a>
     <a href="#swarm" data-chapter="chat">Agent Swarm</a>
     <a href="#agent-sync" data-chapter="chat">Agent-to-Agent Protocol</a>
     <div class="group-label" data-chapter="chat">Skills and tools</div>
@@ -839,7 +842,7 @@
     <a href="#ch-auto" data-chapter="auto">Overview and walkthrough</a>
     <a href="#ai-tasks" data-chapter="auto">Planner AI Tasks</a>
     <a href="#planner" data-chapter="auto">Planner</a>
-    <a href="#autopilot" data-chapter="auto">Autopilot</a>
+    <a href="#autopilot" data-chapter="auto">Cockpit (Goals, Tasks, Schedule)</a>
     <a href="#always-on" data-chapter="auto">Always-On Agent</a>
     <a href="#browser" data-chapter="auto">Browser</a>
     <a href="#computer-use" data-chapter="auto">Computer Use</a>
@@ -891,6 +894,7 @@
     <a href="#deep-links" data-chapter="settings">skales:// links</a>
     <a href="#notifications" data-chapter="settings">Notification Center</a>
     <a href="#dashboard" data-chapter="settings">Dashboard</a>
+    <a href="#custom-widgets" data-chapter="settings">Custom Widgets</a>
     <div class="group-label" data-chapter="settings">Your data</div>
     <a href="#updates" data-chapter="settings">Updates</a>
     <a href="#export" data-chapter="settings">Export / Import Backup</a>
@@ -905,6 +909,7 @@
     <a href="#ch-help" data-chapter="help">Overview and walkthrough</a>
     <a href="#first-checks" data-chapter="help">When something will not work</a>
     <a href="#long-runs" data-chapter="help">Long runs, sleep and the disk</a>
+    <a href="#logs" data-chapter="help">Logs and Diagnostics</a>
     <a href="#feedback" data-chapter="help">Feedback & Reports</a>
 
     </div>
@@ -915,7 +920,7 @@
 
     <!-- Hero: the front page only -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.0</span></div>
+      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.10</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -1054,6 +1059,7 @@
         <a href="#onboarding">First Launch</a>
         <a href="#sidebar">Home and Chat</a>
         <a href="#addons-view">Add-Ons, and the two views of Settings</a>
+        <a href="#plugins">Plugins</a>
       </div>
     </section>
 
@@ -1146,12 +1152,14 @@
       <p>There are exactly two sidebars, and the switch at the top decides which one you are looking at. <strong>Home</strong> is the suite: the eight surfaces the work happens on, then the system block. <strong>Chat</strong> hands the whole column to the conversation and opens the chat landing page. The point is that a sidebar with thirty entries is a sidebar nobody reads.</p>
       <ul style="margin: 0.75rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Home, Main.</strong> Dashboard, Chat, Code, Studio, Cockpit, Planner, Iris Orbit, Memory, Skales Mobile — and at the end, quietly, Discover and Wrapped.</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Home, System.</strong> Add-Ons, Custom Skills, Custom Widgets, Logs, Update. Your own widgets get their own heading above it as soon as you have one.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Home, Plugins.</strong> Its own heading between Main and System, and it is there on every machine from the first launch - the shelf itself, and under it every plugin you installed or built. See <a href="#plugins">Plugins</a>.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Home, System.</strong> Guide, Add-Ons, Custom Skills, Custom Widgets, Logs, Update, and Templates when its add-on is on. Your own widgets get their own heading above it as soon as you have one.</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Chat.</strong> Four rows and nothing else: <strong>+New</strong>, <strong>Agents</strong>, <strong>Cockpit</strong>, and a <em>More</em> block that folds out into History, Projects, Teams, Group Chat, Organization and Add-Ons &amp; Skills. Tasks is not a row of its own any more - it is a tab of the Cockpit, and one thing belongs in one place. Everything under More opens in a window over the app rather than taking you away from the conversation, and More stays closed until you open it, so what you look at every day is three rows and your conversations.</li>
       </ul>
       <p>On the themes with a full sidebar (Slate, Skales-X, Classic) the Chat column also appears on its own while a conversation is open, and Home is the way back. The chat landing page always keeps whichever side you chose — the chat column belongs to a conversation, not to the chat address.</p>
       <p><strong>Both New buttons do the same thing.</strong> The <strong>+New</strong> row in the chat column and the <strong>+</strong> at the right of the chat header both take you to the chat landing page, with the composer in the middle and the suggestions under it. Deleting the conversation you currently have open, and <em>New chat</em> in the History panel, land in the same place. Previously one of them emptied the open conversation where it stood, which left a screen of nothing; and reloading appeared to fix it only because the old conversation came back. <strong>Reloading on the landing page now keeps you on the landing page.</strong></p>
       <p>Some surfaces no longer have an entry of their own: Codework, Lio AI, Workflow, Playbooks, WordPress, Swarm, Spaces, Browser, Templates and the Business page. <strong>Nothing was removed.</strong> Their pages still work, their add-ons still work, and the tools they bring to the chat — the WordPress family, the browser the agent drives with its logged-in profile, the codework and swarm tools — are untouched and can still be switched on from the Add-Ons page. What went away is the door in the menu.</p>
+      <p><strong>The sidebar shows who is working.</strong> While agents or a team are running, the entries that lead to them carry a small live row: who is at it, who is waiting for you, and who has just finished, which fades out shortly after. It is a reading and nothing more — nothing pops up, nothing makes a sound, and nothing is left behind for you to dismiss. Close Skales and reopen it and the row shows what is really running, never a leftover from before.</p>
       <p>An entry whose add-on is switched off is simply not in the list. Nothing is lost either way: the side you were on is remembered, and the page you are actually on is always visible in the sidebar, so a link or a finished task can never land you somewhere the menu does not show.</p>
     </section>
 
@@ -1176,6 +1184,52 @@
 
       <h3>Changing your mind</h3>
       <p><strong>Settings → Advanced → Setup</strong> runs the add-on screen again. Nothing is deleted by it: chats, keys and settings stay exactly as they are, and only what is shown changes.</p>
+      <p style="color: var(--muted); font-size: 0.875rem;">Add-Ons is the list of what Skales already brings. What other people built, and what you build yourself, lives one page further on: see <a href="#plugins">Plugins</a>.</p>
+    </section>
+
+    <section id="plugins">
+      <h2><span class="icon">🔌</span> Plugins</h2>
+      <p>A plugin is a tool of its own inside Skales. It is the step above a widget: a widget is a card on the Dashboard, a plugin is a <strong>page</strong> - its own entry in the sidebar, its own icon, its own screen, and its own storage that nothing else writes into.</p>
+
+      <h3>Where they live</h3>
+      <p>Plugins get a <strong>Plugins</strong> block of their own in the sidebar, between your main pages and the system pages, so a plugin is never buried in a settings tab. The block is there from the first launch, with the shelf itself in it and your installed plugins underneath - a heading that only appeared once you already had a plugin would leave a fresh install with no door to them at all. It is also not on the Add-Ons page: the things under this heading are yours, and a switch that could hide them would hide your own work behind a setting you do not remember setting.</p>
+
+      <h3>Get plugins</h3>
+      <p>At the top of <strong>Sidebar → Plugins</strong> is the gallery. It lists the published catalogue and, underneath it, the plugins that ship inside Skales itself. Two of those are there from the first launch: <strong>Daily Brief</strong>, which writes you a short morning brief at 07:30 from your open tasks and reminders, and <strong>Reading Stack</strong>, a list of the links you meant to get back to - that one needs no key, no provider and no connection and is useful the moment it is installed.</p>
+      <p>Every card shows three plain facts before you touch it: whether it reaches the network, whether it can see anything outside its own folder, and how many tools it may call. Click the card to read the whole thing - the description, the permissions in words, what kind of plugin it is, and where it is published from. Click <strong>Install</strong> and it is on the shelf and in the sidebar. That is the whole journey: one click to read, one click to have it.</p>
+      <p>A plugin marked <strong>By Skales</strong> is written and maintained by us and is inside the app, so installing it downloads nothing. Everything else comes from its own author's repository, is fetched from the release they published, and is checked against the checksum they published beside it. The small <strong>?</strong> next to the heading says the same thing in two sentences, and it is worth reading once: community plugins are not reviewed or maintained by Skales, and they run with exactly the permissions written on their card.</p>
+      <p>The catalogue itself is a public directory, <a href="https://github.com/skalesapp/plugins">github.com/skalesapp/plugins</a>, and anybody can publish into it. What is listed there is a <em>pointer</em>: who publishes the plugin, which release it is served from, which version it is and what it asks for. The code is never copied into the directory, so what lands on your machine comes from the author who wrote it, and the same page tells you how to add your own.</p>
+      <p>If the catalogue cannot be reached - no connection, or the registry is down - the page shows the last copy it fetched with the date it was fetched on, and the bundled plugins are there either way. It is never blank.</p>
+
+      <h3>The shelf</h3>
+      <p>Below the gallery is what you already have. Type a name into <strong>Start a new plugin</strong> and you have an empty one: the name becomes the menu entry, and building the same name again changes that plugin instead of leaving you with two of them.</p>
+      <p>Every plugin on the shelf shows three things without being opened. What kind it is - <strong>page</strong>, <strong>agent</strong> or <strong>automation</strong>. What it may do, in one line next to a shield: which tools it is allowed to use, or that it may use none, and whether it may reach the network at all. And a switch: switching it off takes the entry out of the sidebar and leaves the plugin and everything it saved exactly where they are, so switching it back on picks up where you left off. <strong>Deleting</strong> is the other one, and it says so - the plugin and everything it saved go, and that cannot be undone.</p>
+      <p>Nothing here needs a restart: a new or changed plugin is in the menu straight away.</p>
+
+      <h3>Asking for one instead of building it</h3>
+      <p>You do not have to write a plugin yourself. Say in a chat what you want - <em>"build me a newsletter system"</em>, <em>"build me an agent that only watches stock levels"</em> - and Skales makes the folder, writes the page, gives it a menu entry and an icon, and, if it should work while nobody is looking, its schedule. It tells you what the plugin will be allowed to do before it makes it. Asking again for the <em>same</em> plugin changes the one you have and keeps everything it saved, so you never end up with two of them.</p>
+      <p>This is the larger cousin of a <a href="#skills">custom skill</a>: a skill is one tool the agent can call, a plugin is a page of your own with storage and, for the working kinds, an agent behind it.</p>
+
+      <h3>When one is not finished, or not right</h3>
+      <p>A plugin whose page has not been written yet says exactly that, and that you can leave and come back. A plugin that is broken shows the actual reason on its card instead of an empty rectangle. Neither one is a dead end you have to diagnose by opening files.</p>
+
+      <div class="tip"><strong>Two things worth knowing.</strong> A plugin's own storage holds up to <strong>2 MB</strong>, and it tells you how much of that is used when it runs out, rather than losing what it was saving. And a plugin has no settings section of its own on purpose: everything about it is either on this page or on the plugin's own page.</div>
+
+      <h3>Taking one with you, and handing one on</h3>
+      <p>The download arrow on a plugin's row packages it as a <strong>.skplugin</strong> file. Because that file is meant to be handed to somebody - carried to your other machine, published, or sold - it asks first for the things anyone installing it will want to read: who it is published as, what it does in one sentence, and the licence and your link if there are any. Those answers go into the packaged copy; the one installed here is left alone unless you tick the box.</p>
+      <p>What travels is the plugin: its manifest, its pages, its own tools, its assets and its README. What does not travel is <strong>everything the plugin saved while you used it</strong>. Your reading list, your briefs, its memory - those stay on this machine, and the dialog lists both sets so you do not have to take that on trust. Before it writes the file it also looks through the pages and tools for things that read as yours rather than the plugin's - a home folder path, an email address, something shaped like an API key - and shows you what it found. It changes nothing; you decide.</p>
+      <p><strong>Import a file</strong> in the gallery is the other direction, and it is the way to install a plugin somebody sold you outside the catalogue. The permission card appears <em>before</em> anything is written: what it is, what it asks for, who is selling it and under what licence. If the package's card and its actual manifest do not ask for the same things, it is refused and the difference is named - the card is what you agreed to, so installing the larger of the two would make every permission card in the product decorative. The same applies to a damaged download: a file that does not match its own checksums is named and refused rather than half-installed, and to a signature that does not check out - see below.</p>
+
+      <h3>Installing something the catalogue has never heard of</h3>
+      <p><strong>Install from a URL</strong>, next to Import a file, takes a repository address (<code>owner/name</code>), a release page, or the direct link to a <code>.zip</code> an author published. It fetches the release and then goes through the identical checks a file you picked goes through - the checksum inside the archive, the permission card against the manifest, the signature, and the folder it would be written into. There is one installer with two doors, so a plugin fetched from a stranger's release can never arrive with a reach a hand-picked one could not.</p>
+      <p>Three things are said out loud that a catalogue row does not have to say. That nobody reviewed this and no directory stands behind it: you are trusting the address you gave. Whether a checksum was published <em>next to</em> the download and matched - and when there was none, that there was none, because a hash carried inside an archive is rewritten by whoever rewrote the archive. And that a plugin installed this way is <strong>never updated by itself</strong>: nothing here learns when its author publishes a new release, so where the Update button would be it says <em>installed by hand</em> instead of lighting up one day with somebody else's package.</p>
+
+      <h3>Signatures</h3>
+      <p>A package can carry a signature, and Skales checks it. What is signed is the checksum file, so the signature covers every file in the package at once, and it travels as its own file beside it.</p>
+      <p>The key decides what a valid signature is allowed to <em>mean</em>, and the two cases are never blurred together. When the key comes from the <strong>catalogue row</strong>, the package could not have chosen it, so a valid signature names the publisher: <em>Signature valid: published by X</em>. When the key comes from the package itself, all a valid signature proves is that nothing was changed after it was signed - it says nothing whatever about who signed it, and it is worded that way rather than given a green tick it has not earned.</p>
+      <p>An <strong>invalid</strong> signature refuses the install outright, with the reason. A package that carries a signature that does not check out is a package somebody changed after it was published, and the fact that the claim cannot be verified is exactly why it must not be installed.</p>
+      <p>An unsigned package still installs. Signing is a way to say more, not a new bar every author has to clear - and the card says plainly that nobody can be named for it.</p>
+      <div class="tip"><strong>Signing your own.</strong> Run <code>node scripts/plugin-sign.js keygen</code> once. It writes a private key into your data folder, readable only by you, and prints the public half as one line. The private key never leaves the machine and Skales never sends it anywhere. From then on every <strong>.skplugin</strong> you export is signed, and the export tells you whether it was. Put the public line into your plugin's <code>publicKey</code> field in the directory, and everybody installing your release gets the named check rather than the anonymous one.</div>
     </section>
 
     <!-- ===== Chapter: Chat and agents ===== -->
@@ -1262,6 +1316,7 @@
         <a href="#multi-agent">Which multi-agent mode<span>Agents and teams</span></a>
         <a href="#group-chat">Group Chat<span>Agents and teams</span></a>
         <a href="#organization">Organization<span>Agents and teams</span></a>
+        <a href="#teams">Teams: rooms with other people<span>Agents and teams</span></a>
         <a href="#swarm">Agent Swarm<span>Agents and teams</span></a>
         <a href="#agent-sync">Agent-to-Agent Protocol<span>Agents and teams</span></a>
         <a href="#skills">Skills<span>Skills and tools</span></a>
@@ -1305,6 +1360,10 @@
       <p>You no longer have to wait for the answer before typing the next thing. Messages you send while Skales is working are <strong>collected and answered together, as one turn</strong>, in the order you wrote them — not as one answer per message, which used to mean three impatient messages became three answers to three halves of a question, and three times the wait.</p>
       <p>A bar above the composer shows how many are waiting, lists them, and lets you remove one or clear them all before they go. Up to twenty can queue. If a run ends without the queue being taken up, a card offers to hand the whole queue back to you rather than dropping it. The same rule holds everywhere Skales listens — a run on the server, Telegram, WhatsApp and the phone all fold a queue into one answer.</p>
       <p>What is waiting goes out once the run is really over. That is not the same moment as the composer unlocking: a turn that stops responding frees the composer so you are not stuck, while the run itself carries on, and a queued message sent into that gap used to arrive as a second answer to a question that already had one. If a queued message cannot be sent at all, it is tried once more and then stays in the bar saying so, with <strong>Try again</strong> beside it, rather than being retried silently.</p>
+
+      <h3>A recommendation arrives as cards</h3>
+      <p>Ask for the good beaches near Funtana, six recipes for a Tuesday or the libraries worth reading, and the written answer comes with a row of <strong>cards</strong> under it: each page's own preview picture, its name, one sentence, tags and the link. The answer itself is unchanged and stays where it was — the cards carry it, they do not replace it. A page with no picture gets a lettered tile of the same height, so the row settles once and does not jump about while the pictures arrive.</p>
+      <p>When the row is <em>places</em> rather than pages, every card also gets <strong>Open in Maps</strong> — Apple Maps or Google Maps, whichever suits the machine — and the row gets a <strong>Map</strong> button that draws all of them over OpenStreetMap. Nothing is looked up until you open the map, and no key is needed for any of that. See <a href="#places" style="color:var(--accent)">Google Places</a> for what a key adds.</p>
 
       <h3>Working with a reply</h3>
       <p>Right click a message for its menu: copy, rewrite, quote in reply, save to a document, read aloud, regenerate or branch a new session from that point. Select part of a reply first and the same right click acts on the passage instead, starting with <strong>Rewrite selection</strong>.</p>
@@ -1382,6 +1441,20 @@
       <p>If you want the agent to reach a service you run locally, turn on <strong>Let http_request reach this computer</strong> under <strong>Settings &gt; Security</strong>. It is off by default and the text says why. It is an outbound rule for this one tool: how <em>you</em> reach Skales from your phone or over Tailscale is a separate setting and is untouched by it.</p>
     </section>
 
+    <section id="watch-video">
+      <h2><span class="icon">🎬</span> Asking about a video</h2>
+      <p>Point a chat at a video file - drop it on the composer, attach it with the paperclip, or name a file Skales can reach - and ask what happens in it. Skales takes frames across the whole clip and reads the sound alongside them, so the answer is about the film rather than about one thumbnail.</p>
+
+      <h3>Answers come with times</h3>
+      <p>What it tells you is anchored: <em>at 0:42 the second speaker takes over</em>, not <em>somewhere in the middle</em>. That is what makes the answer checkable - you can jump to the moment it names and see whether it is right.</p>
+
+      <h3>Every ceiling is said out loud</h3>
+      <p>It does not look at every frame, and it never pretends it did. Six moments across the clip is the normal reading and twelve is the most it will take, the sound is read up to a length of its own, and the answer states how far apart the moments it looked at were. It will not tell you what happened <em>between</em> two of them. A summary that skipped the last twenty minutes without mentioning it would be worse than no summary, which is why the ceiling is part of the answer rather than a footnote in this guide.</p>
+      <p>You can steer it: ask for more moments if the clip is dense, tell it what to look for in each one (&ldquo;read the text on screen&rdquo;), or ask it to skip the sound. A clip with no speech in it comes back as silent, which is an answer and not a failure.</p>
+
+      <div class="tip"><strong>What it needs.</strong> A <strong>Vision provider</strong> (Settings &rsaquo; Integrations &rsaquo; Vision provider), because this is the same kind of work as looking at a picture, and <strong>FFmpeg</strong> for taking the video apart - if that is missing, Skales names it and points at Settings &rsaquo; Dependencies instead of failing quietly. A very large file is refused with the size limit written out, so trimming it or dropping the resolution is an obvious next move.</div>
+    </section>
+
     <section id="easter-eggs">
       <h2><span class="icon">🦎</span> Easter Eggs</h2>
       <p>Skales has a few hidden, playful extras. None of them change your work or cost a thing, they are just for fun. You can also ask Skales any time which easter eggs it has and it will list them.</p>
@@ -1443,6 +1516,12 @@
       <p>The row is labelled <strong>Working mood</strong> and reads as two things at once: <strong>the colour is the direction</strong> — warm when the work is going well, cool when it is not — and <strong>how full it stands and how fast it moves is the energy</strong>. It changes while you are talking to it, not on the next restart. The word it puts on that runs <strong>rough, uphill, steady, good, flying</strong>, and it is one scale: energy no longer changes the word.</p>
       <p><strong>Hover the row and the panel opens; click and it stays pinned.</strong> In it, in this order: the word and what it came after, then <strong>Today</strong> — what moved it, with the times — then what it <strong>keeps coming back to</strong> if interest tracking is on, then a legend for the colour, and a closing line reminding you that this is about the work, not about you, and that it fades on its own.</p>
       <p>The entries are things that actually happened: a goal finished, a goal that did not get there, a run that kept hitting the same wall, the last piece of work landing well, a quiet stretch, a long stretch of work together. When there is nothing to show it says so — <em>Nothing has moved it today</em> — rather than inventing a reason. <strong>"What is missing" only ever names something already in the record</strong>, such as a long silence or a day with nothing finished yet. The record is a rolling <strong>48 hours</strong>; nothing older is kept, and resetting the mood clears the day's list with it.</p>
+
+      <h3>What moves it, and the thought it carries</h3>
+      <p>Four things move the row, not one. <strong>Work</strong> — a goal that finished or did not get there, a run that kept hitting the same wall. <strong>The clock</strong>, so the state is quiet at night, a little brighter in the morning and lower after a long silence. <strong>The shape of the day</strong>: a run of failures reads as uphill, one long focused stretch as flow, a lot of subjects at once as scattered. And a reply to one of your own <a href="#discover" style="color:var(--accent)">Discover</a> posts lifts it a little, read from the notifications that arrive anyway.</p>
+      <p>At the end of a turn Skales also notes, in <strong>one sentence of its own words</strong>, what it is thinking about, and the panel shows that under the reading. It costs no extra request — it rides along with the turn — and a model with nothing to note writes nothing rather than filling the line.</p>
+      <p>Underneath is a small record kept on your machine, capped in size, that <strong>loses weight as it ages</strong>: a thought a few days old stops being shown by itself. <strong>Reset the mood</strong> on the Memory page deletes the file outright.</p>
+      <p>None of this asks a model on a timer, reaches the network, or produces a notification — and with the Conscious switch off, none of it is written at all.</p>
 
       <div class="tip"><strong>It only ever draws.</strong> Conscious never notifies, never makes a sound, and never starts a conversation. And the mood is about <strong>the work</strong>, never about you — Skales does not tell you how it feels unless you go and look.</div>
 
@@ -1579,6 +1658,7 @@
       <p>Who takes part, and in which order, is arranged in the roster on this page. The order <em>is</em> the assignment: &ldquo;3 Agents&rdquo; means the first three. The first seat belongs to your default agent and does not move, because somebody has to write the breakdown and the verdict.</p>
       <p>Counting the button back to one ends the run: nothing further starts, and no verdict is written over a run you walked away from. The cards stay exactly as they are. If Skales is closed mid-run, reopening it keeps whatever had already arrived and says plainly that the rest was ended.</p>
       <p>The same cards and the same two buttons appear wherever several agents produce results: chat, Skales Code, Tasks, Group Chat and the Organization result list.</p>
+      <p>While a run is going, the sidebar says so. The <strong>Agents</strong> and <strong>Organization</strong> entries carry a small live row of who is at it, who is waiting on you, and who has just finished; a finished one fades away by itself after a few seconds. Clicking the entry takes you to them. It only ever shows, never interrupts: no pop-up, no sound, and nothing left over to dismiss. Closing and reopening Skales shows what is really running at that moment and never a leftover from the last session.</p>
       <p>This is one of three multi-agent modes, and they are not interchangeable. <a href="#multi-agent" style="color:var(--accent)">Which multi-agent mode</a> lays out what each one is for, and how to run a team on a single graphics card.</p>
     </section>
 
@@ -1638,6 +1718,9 @@
 
       <h3>Unified View</h3>
       <p>See all agent responses side-by-side with clear attribution. Toggle between full responses and summary mode.</p>
+
+      <h3>It is kept</h3>
+      <p>A group discussion lands in your normal chat history when it finishes, and also when you stop it halfway, so the argument you had at eleven at night is still there in the morning and any agent can be asked to look it up again. The exception is a round you started as incognito: that one stays unsaved, and the page now says "not saved" only when that is actually the case.</p>
     </section>
 
     <section id="organization">
@@ -1681,7 +1764,61 @@
       <h3>Email in Organization</h3>
       <p>Organization agents can now send emails as part of their workflows. In Unrestricted mode, the send_email tool executes immediately. In Safe Mode, agents save prepared emails as files for your review.</p>
 
+      <h3>Two runs at the same time</h3>
+      <p>An Organization run no longer occupies a single slot the whole app shares. Start a second one and it runs <em>beside</em> the first instead of replacing it, stopping one leaves the other working, and the Cockpit lists them separately so you can tell which is which. A run that was still going when you last closed Skales comes back where you left it rather than starting over or disappearing.</p>
+
+      <h3>A folder of its own</h3>
+      <p>A run can be given a folder to work in, chosen once per team and remembered for the next time. If the folder is not there any more, it says so <em>before</em> anything starts, not halfway through a run that then has nowhere to write.</p>
+
+      <h3>Handing a job to a named team</h3>
+      <p>Ask to split a piece of work across a team and Skales records <em>which</em> team it was, then matches each role to that team's own members, so a role runs with that member's instructions and model instead of being a name nobody answers to. A team that does not exist is refused out loud rather than quietly replaced by a generic one. How the team hands work out — only the members who are needed, everybody once, or borrowing from the other teams in the organization — really changes what happens. The approval card names the real number of jobs it is about to start.</p>
+
       <div class="warn"><strong>⚠️ Unrestricted Mode</strong> — In Unrestricted mode, organization agents execute all actions including emails and system commands without confirmation. Use with caution.</div>
+    </section>
+
+    <section id="teams">
+      <h2><span class="icon">🛖</span> Teams: rooms with other people</h2>
+      <p><strong>Teams</strong> is the one place in Skales where other <em>people</em> are on the other end rather than other models. It holds two things, and they are different: the <strong>paired</strong> conversations you already had — one other desktop, one person, both agents in one thread — and, beside them, <strong>Rooms</strong>.</p>
+      <p>A room is a small group: up to <strong>twelve members</strong> in one conversation, and people and agents sit in the <em>same</em> member list. There is no account to make and nothing of the conversation is kept on a server. Everything you write is encrypted separately for every member and signed by you, and a message arriving without a valid signature is dropped rather than shown.</p>
+
+      <h3>Making one, and getting in</h3>
+      <p>Give the room a name and you have it. To let somebody in you hand them the <strong>join code</strong> — as text, or as a QR the other side scans — and the door it opens is good for <strong>ninety seconds</strong>. The code alone gets nobody in: whoever made the room confirms each newcomer by name and by <strong>six words</strong> derived from their key. Six readable words rather than a scrap of key material, because two people can actually say them to each other on a call and hear that they match. They are derived the same way on every device, so a phone and a desktop show the same six.</p>
+      <p>Somebody who joins late does not silently receive a rewritten past: the history another member hands them arrives <strong>marked as history</strong>, not passed off as newly written.</p>
+
+      <h3>Who sees what</h3>
+      <p>The room runs over the relay, so it is worth saying plainly what that relay can and cannot see. The same sentences are in the member sheet in the app, and they are the same on the phone.</p>
+      <table>
+        <thead><tr><th>Thing</th><th>Who can read it</th></tr></thead>
+        <tbody>
+          <tr><td>What you write, and any file you send</td><td>Only the members. It is encrypted for each of them before it leaves your machine.</td></tr>
+          <tr><td>Who wrote it</td><td>Only the members. Every message carries its author's signature, so nobody can write in your name.</td></tr>
+          <tr><td>The room's name, and the member names</td><td>Only the members. They live on the devices, not on the relay.</td></tr>
+          <tr><td>The room's address, and roughly when traffic happens</td><td>The relay. It has to know where to pass a sealed envelope, and it can see that one went past.</td></tr>
+          <tr><td>Your own name and picture</td><td>Only the members, and only encrypted. They are stored on your device.</td></tr>
+        </tbody>
+      </table>
+      <div class="warn"><strong>What is not claimed.</strong> There is no forward secrecy here: this is not a protocol that rotates keys behind you, so somebody who obtained a member's key material could read what that member could read. And the room's address <em>is</em> the capability — anyone who has it can knock, which is exactly why every newcomer has to be confirmed by hand and why the door closes after ninety seconds.</div>
+      <p>Your own messages carry a quiet <strong>delivered to 3 of 5</strong> rather than invented read receipts, and a frame that could not leave the machine says <strong>Failed</strong> with a retry instead of pretending it went. Membership and who is <em>connected right now</em> are drawn as two different marks, because they are two different facts.</p>
+
+      <h3>Agents as members</h3>
+      <p><strong>Add agent</strong> in the member list seats one of your roster agents in the room as a member of its own — its own keys, its own name, shown with your name as its owner. Type <code>@</code> in the room and you get <em>one</em> picker with the people and the agents in it; naming an agent hands it the message as a job.</p>
+      <p>The job runs <strong>only on its owner's computer</strong>, with the owner's keys, models and tools. A message from a room can never start anything on somebody else's machine, and the agent that runs is always the one the person named — never one a model chose instead. You decide per agent who may call it: anyone, only after your approval (the default, with an approve card in the room), or only you. A job waiting on that approval says <em>waiting for approval</em> to everybody rather than sitting silent.</p>
+      <p>The job's card walks the same six states agent cards use everywhere else, and the answer arrives as the agent's <em>own</em> signed message. A very long answer travels as an excerpt that says it was shortened, with the whole thing kept on the owner's machine.</p>
+      <p>The honest edges are on the card, not in a footnote. An owner whose machine closed mid-job shows <strong>interrupted</strong> on every device instead of spinning forever. An owner who is offline refuses the job by name, on the spot. An owner's machine with no AI provider set up fails immediately and points at Settings — and the room itself keeps working for its people with no provider anywhere in it. On a phone, an agent runs only while Skales is open in the foreground, and the card says so instead of promising otherwise.</p>
+
+      <h3>The board</h3>
+      <p>Every room has one shared plan, behind the <strong>Board</strong> button. Each row is assigned to a person or to an agent through the same one picker — one list, no second view of the same thing.</p>
+      <p><strong>Nothing runs until every human member has approved the exact list.</strong> A bar counts <em>2 of 3 approved</em>. Any change to what runs or to who runs it clears every approval and the room decides again; ticking a row off as done deliberately does not. Agent rows start on their owner's machine only, through the same job lane the room already uses. A person's rows are theirs to tick off — nobody else can — or to open as a real chat session seeded with the board and the recent room thread.</p>
+      <p>When two people edit at the same moment the newer board wins, and the one whose change was replaced is <strong>told by name</strong>, on the board and as a toast, instead of losing the work quietly. Somebody removed from the room takes no rows with them: their open rows are handed back, everybody re-approves over the changed room, and nothing is left pointing at a machine that cannot run it.</p>
+      <p>Delivery is honest too: an assignment reaches somebody when Skales is open on their machine. The board <em>is</em> the delivery, and the surface says exactly that.</p>
+
+      <h3>Where it stops</h3>
+      <ul>
+        <li><strong>The desktop is not pushed.</strong> A closed phone is woken by a contentless notification — that there is something new in one of your rooms, and nothing else, because the relay cannot read anything else — and tapping it opens that room. A closed desktop is not: you see the room when you come back to it.</li>
+        <li><strong>Removal is the creator's, blocking is yours.</strong> The person who made the room can take somebody out of it; anybody can block somebody for themselves alone. Taken out, you keep the conversation you had and the room stops accepting anything new from you. Beyond that, keeping a room civil is a social matter, not a setting.</li>
+        <li><strong>Leaving deletes it here.</strong> A room you leave is gone from this device with its history, because there is no copy anywhere else to fetch it back from.</li>
+      </ul>
+      <p>The phone draws the same rooms, the same board and the same six words over the same wire. See <a href="#mobile-app" style="color:var(--accent)">Skales Mobile</a>.</p>
     </section>
 
     <section id="swarm">
@@ -1730,6 +1867,7 @@
 
       <h3>Custom Skills</h3>
       <p>Build your own skills in <strong>Settings → Custom Skills</strong>. Describe what the skill should do, and Skales generates the implementation. Skills are stored as JSON and can be exported and shared.</p>
+      <p style="color: var(--muted); font-size: 0.875rem;">A skill is <em>one tool</em>. If what you want is a screen of your own with its own storage, and possibly an agent working behind it, that is a <a href="#plugins">plugin</a> - and you can install one from the directory in two clicks or ask for one in a chat.</p>
     </section>
 
     <section id="agent-skills">
@@ -1791,6 +1929,9 @@
 
       <h3>Community Safety</h3>
       <p>Community skills are created by users and not reviewed by Skales. Only fork skills from agents you trust. Review the code before enabling a forked skill — Skales shows you the full source before you fork.</p>
+
+      <h3>Handing on a whole plugin instead</h3>
+      <p>Sharing a skill puts one tool in the feed. If you want to hand somebody a finished <em>surface</em> - a page, its storage, its tools and its schedule - export it as a <strong>.skplugin</strong> file instead, or publish it in the plugin directory so it appears in everyone's gallery. Nothing the plugin saved while you used it goes into that file. See <a href="#plugins">Plugins</a>.</p>
     </section>
 
     <section id="mcp">
@@ -1903,12 +2044,20 @@
       <h3>Review, commit, pull request</h3>
       <p><strong>Review diff</strong> opens the panel with every file the session touched. Keep stages a change for the next commit, Put back restores the file and tells you where the old version came from. Commit from the same panel, push, and open a pull request without leaving the window. When git refuses, you get git&rsquo;s own words back.</p>
 
+      <h3>The file column</h3>
+      <p>The column beside the transcript is a real tree: folders open and close, every file in the project is in it however many there are, and a file the preview cannot render opens in the editor instead of being left out of the list.</p>
+
       <h3>The artefact panel and the picker</h3>
       <p>The panel beside the transcript shows a file three ways: <strong>Preview</strong>, <strong>Diff</strong> and <strong>Raw</strong>. An HTML file is not shown as source but <em>run</em>, with its own stylesheet and script, so a widget works there the way it will work anywhere. Turn on the picker and click an element in that running page: what to call it in CSS, its own markup and a picture of just that piece go onto the message you are writing.</p>
 
       <h3>Codework: the desk already laid out</h3>
       <p><strong>Codework</strong> is a switch in the box you type into, and it decides what the window looks like when the session starts: the file column, the preview and the review diff are already open, before the first answer lands, instead of being three clicks you make every time. It is a view preset and nothing more - it does not change the mode you picked, what the agent may do, or which model runs. Turn it on with a session already open and the panels appear at once rather than waiting for the next session.</p>
       <p>The shape belongs to the session it was applied to. Move to another session, from history or by starting a new one, and the panels close again, so an opened desk never arrives somewhere you did not ask for it. Your choice is remembered on this machine, beside the terminal's height and the panel widths, so the next session you start opens the way you like to work.</p>
+
+      <h3>When a run is long</h3>
+      <p>A run that works for a while says so instead of hiding behind a spinner. The status line counts how long it has been going, and if the run stops producing anything for two minutes the line names the silence &mdash; &ldquo;no progress for N min&rdquo; &mdash; rather than letting &ldquo;working&rdquo; stand over a run that stalled. If Skales itself was closed while a session was mid-turn, reopening that session says <strong>interrupted</strong> above the box you type into: the last answer may be incomplete, and sending a message carries on. And a run of ten steps or more ends with a <strong>run report</strong> in the transcript &mdash; how many steps, how long, what the working tree looks like now, and which checklist items are still open &mdash; composed from the session itself, with no extra model call.</p>
+
+      <p>A session that worked <strong>ten steps or more closes with a run report</strong> in the transcript: how many steps it took, how long it ran, what the working tree looks like now and on which branch, and which checklist items are still open. It is composed from the session itself with no extra model call, and it lands the same way whether the run was driven from this window or from a chat in a code mode.</p>
 
       <h3>Two things at once: worktrees</h3>
       <p>Give a second piece of work a name and Skales checks the repository out again into a folder of its own, on a branch of its own, with its own session. Neither run can overwrite the other, and each session says whether it is working, waiting for you, or idle. Removing a parallel checkout tells you when there is uncommitted work in it rather than taking it with the folder, and it never removes the repository itself.</p>
@@ -2034,13 +2183,17 @@
 
     <section id="devkit">
       <h2><span class="icon">🧑‍💻</span> DevKit</h2>
-      <p>Developer tools for power users. Requires a <code>devkit/</code> folder in your Skales installation directory with a <code>devkit.json</code> config file.</p>
+      <p>Developer tools for power users, and they are inside the app now — nothing to download and nothing to assemble by hand.</p>
+
+      <h3>Setting it up</h3>
+      <p>Switch <strong>DevKit</strong> on under <strong>Sidebar &rsaquo; System &rsaquo; Add-Ons</strong> and a <strong>Developer</strong> section appears in the sidebar. One click in it sets the DevKit up: the command-line tool, its documentation and its examples are written into your Skales folder with the access key already filled in, and the page tells you the exact place it wrote to and what to do next.</p>
+      <p>Pressing it a second time is safe. An existing DevKit is never overwritten, and a key you have already handed to another program keeps working rather than being rotated out from under it. Switching the add-on back off only puts the sidebar section away — whatever was written stays where it is.</p>
 
       <h3>Components</h3>
       <div class="card-grid">
         <div class="card"><div class="card-title">Playground</div><div class="card-desc">Test API calls and chat directly with the agent loop.</div></div>
         <div class="card"><div class="card-title">Debug</div><div class="card-desc">View logs, inspect tool calls, monitor agent state.</div></div>
-        <div class="card"><div class="card-title">Docs</div><div class="card-desc">Full reference: 50+ tools, 30 skills, 9 providers, 14 integrations.</div></div>
+        <div class="card"><div class="card-title">Docs</div><div class="card-desc">Full reference: every tool with its safety level, plus the skills, providers and integrations - generated from this build, so the list is never out of date.</div></div>
       </div>
     </section>
 
@@ -2150,6 +2303,20 @@
       <h3>Type</h3>
       <p>Open <strong>Sidebar → Studio → Type</strong> to turn a line of text into an animated, looping video (kinetic typography), with no AI and no setup. The headline is a set of <strong>14 Motion presets</strong> driven by a real timeline engine, with custom easing, per-letter staggers and depth: Cascade, Drop, Pop, Bounce, Slide, Reveal, Flip 3D, Spin, Wave, Breathe, Glitch, Neon, Shine, Typewriter. Pick one and it just works, there is nothing to configure. Below them are 18 simpler presets, including real 3D ones: Fade, Rise, Slide, Typewriter, Word cascade, Letter pop, Zoom in, Zoom blast, Blur focus, 3D flip, 3D swing, Cube roll, Depth dive, Wave, Neon, Glitch, Reveal, Expand. Set the font, weight, text color, background (presets including a Skales-X theme and a Transparent option), aspect (9:16, 16:9, 1:1, 4:5), duration, font size, and a Loop toggle. Watch the live preview, then Export. A transparent background exports an alpha WebM (VP9) you can lay over other footage; otherwise you get an MP4. It uses the same HTML-to-frames-to-FFmpeg pipeline as Studio's other video, so every frame is exact.</p>
 
+      <h3>3D</h3>
+      <p><strong>Studio &rsaquo; 3D</strong> has two halves. Describe an object and you get a <code>.glb</code> file you can open in Blender, a game engine or a slicer - that half wants a 3D provider (Replicate, fal.ai, Meshy or Tripo), and if none is set up the page says so in those words: a missing key, not a missing feature.</p>
+      <p>The other half is <strong>From a photograph</strong>. Give it a picture of an object, optionally say in a line what it is, and Skales works the way a person would: it writes a three.js scene, draws it, <em>compares its own drawing with your picture</em>, writes down what is wrong, and repairs it. Then it looks again. It tries <strong>up to four times</strong> and stops early once it reaches a score of <strong>80 out of 100</strong>.</p>
+      <p>You watch it happen rather than waiting at a spinner. Each attempt appears as it finishes, seen from three sides, with the score it reached, so you can see whether it is getting closer or going in circles - and <strong>Stop</strong> keeps whatever the run had reached instead of throwing it away. If it uses every attempt without getting there, you get the best one <em>and</em> what is still wrong with it, rather than a polite success.</p>
+      <p>The finished scene can be orbited with the mouse. <strong>Save as page</strong> gives a self-contained HTML file that opens in any browser with nothing installed, <strong>Save as .glb</strong> gives a model for the tools you already use, <strong>Show the code</strong> opens the scene it wrote, and <strong>Share to Discover</strong> posts it (it appears in the feed once an admin approves it).</p>
+      <div class="tip"><strong>This half needs a Vision provider,</strong> because looking at the render and saying what is wrong with it is the whole method. Settings &rsaquo; Integrations &rsaquo; Vision provider, and the page links straight there when it is missing.</div>
+
+      <h3>Editor <span class="badge badge-beta">Beta</span></h3>
+      <p>The other tabs make footage. This one cuts footage you already have. Open <strong>Sidebar &rsaquo; Studio</strong> and take the <strong>Video Editor</strong> door on the landing; it opens in the Studio window beside Skales. Make a project and put a recording in it.</p>
+      <p><strong>Sighting comes first.</strong> Skales reads the whole recording in one pass and writes down where the shots change, where it goes quiet, and what is said and when. No part of the picture is sent to a model to do this, so the length of the recording is not the obstacle it usually is. It needs FFmpeg. Without a speech provider the shots and the silences are still found, and the sighting says plainly that the words are missing rather than pretending there was nothing to hear.</p>
+      <p><strong>Then ask for the cut.</strong> Say what you want in the chat - a two minute version, the parts where the product is on screen. Skales names the stretches that make the film, each with one sentence of reasoning you can read, and lays them into the timeline with a thumbnail and a length beside every piece. Every segment is checked against what the sighting actually found and against the real length of its source, and anything that does not survive that check is thrown out and <em>named</em> as thrown out - you are told what it dropped and why, rather than quietly getting a shorter list.</p>
+      <p><strong>Correcting the plan changes the plan.</strong> Take the third one out, make the opening shorter, put the ending back. There is only ever one plan per project, so what you asked for is what is on screen afterwards, and there is never a second plan sitting behind the first one.</p>
+      <p>The Editor is Beta and wears the label: it cuts, trims, reorders and exports. It is not a multi-track suite, and it does not pretend to be one. Exports report back to the bell and to the chat they were started from, so a long render does not need watching.</p>
+
       <h3>Voice / TTS</h3>
       <p>Paste or type a script and generate speech. Skales auto-detects your available TTS provider: Local (OS voices), ElevenLabs, Azure Neural TTS, Groq TTS, OpenAI TTS, or Google TTS. Preview in-app, then download as MP3.</p>
 
@@ -2174,6 +2341,7 @@
       <p>Pick <strong>3D scene</strong> and Flow writes a real three.js page: geometry, a three-light rig, shadows, a camera and a slow continuous move. The preview draws it and you turn it there. <strong>No provider and no key are involved</strong> &mdash; three.js travels inside Skales and is put into the page before it runs, so the scene also works with the network off. Follow-up messages change the scene the way they change any other Flow artifact.</p>
       <p>This is a <em>picture</em>, not a model file. When you want a real <code>.glb</code> you can open in Blender, that is the <strong>3D</strong> tile on the Flow home screen, and that one does need a provider (Replicate, fal.ai, Meshy or Tripo). The two sit next to each other on purpose: one is the thing Skales can always make, the other is the thing you can take away.</p>
       <p>A brief that says &ldquo;3D&rdquo; lands in this mode by itself while the composer is on Auto, so you rarely have to pick it.</p>
+      <p>Building a scene from a photograph is a different thing again, and it lives in <strong>Studio &rsaquo; 3D</strong>. See <a href="#studio">Skales Studio</a>.</p>
       <h3>Film: one shot, one camera move</h3>
       <p>Film makes a single clip with a single deliberate camera move, and the move is what you pick first &mdash; before you write a word of the brief. Fifty-one of them, grouped by what they are: zoom, dolly, crane, pan, orbit, rig, aerial and lens. One move per clip, and there is no way to pick two: mixing camera moves in one generated shot is exactly what makes generated footage look generated.</p>
       <p>Where the clip comes from, in this order:</p>
@@ -2184,6 +2352,16 @@
       </ol>
       <p>If none of the three is set up, the chip stays where it is and tells you which key is missing and where it goes. It keeps the camera move you picked either way. Follow-up messages are takes: &ldquo;tighter&rdquo;, &ldquo;try it as a crane up&rdquo;, &ldquo;same shot at night&rdquo; keep everything you did not change and save the result beside the earlier takes.</p>
       <p>On the phone, Film works the same way with the same moves, and generates through the video key on the phone (fal.ai under Integrations, or an OpenRouter key under Provider). With no key it says so rather than producing an animation and calling it a film.</p>
+      <h3>When it asks you something first</h3>
+      <p>A brief that leaves essential decisions open can come back with a handful of <strong>scoping questions</strong> — a short clickable form in the preview rather than a paragraph asking you to reply in prose. It only does this when you chose to be asked: leave the composer on its normal setting and Flow gets on with it and shows you a result you can then correct.</p>
+
+      <h3>Motion: a timeline, and sound</h3>
+      <p>An animated project is no longer a row of scenes with everything trapped inside one of them. A caption, a lower third, a chapter marker or a watermark gets its <strong>own start time, its own length and its own layer</strong>, so it can run across a scene change, leave a gap and come back later. Ask for it in words — "keep the name in the corner for the whole film" — and that is what it becomes.</p>
+      <p><strong>Sound arrives the same way.</strong> Voiceover, music and effects come from files in the project, each with a start, a length and a volume, and they are <em>mixed into the exported MP4</em> rather than only heard in the preview. Stepping the preview frame by frame stays silent, because a single frame has no sound to make.</p>
+      <p>There are ready-made building blocks the composition uses instead of inventing one every time — caption, lower third, title card, stat pill, chapter marker, progress bar — and six scene transitions beyond the ones that were there: wipe, wipe up, blur through, push, push up, cross zoom.</p>
+      <p><strong>It is read before it is rendered.</strong> A clip that starts after the video ends, a layer that does not exist, an animation aimed at nothing, an audio file that was never downloaded: each is named in plain words and sent back to be fixed, instead of producing a video with something silently missing from it.</p>
+      <p>A finished film can be shared straight to <a href="#discover" style="color:var(--accent)">Discover</a> from the export sheet.</p>
+
       <h3>Nothing you made is gone</h3>
       <p>Every turn seals a version of the whole project, so you can go back to any of them &mdash; and the rollback is itself sealed first, which is what keeps going back reversible. Projects can be archived (reversible, keeps everything) or deleted (the folder moves to a trash folder next to your projects).</p>
       <h3>Brand Kit and style packs</h3>
@@ -2503,7 +2681,7 @@
       <div class="lead-index">
         <a href="#ai-tasks">Planner AI Tasks</a>
         <a href="#planner">Planner</a>
-        <a href="#autopilot">Autopilot</a>
+        <a href="#autopilot">Cockpit (Goals, Tasks, Schedule)</a>
         <a href="#always-on">Always-On Agent</a>
         <a href="#browser">Browser</a>
         <a href="#computer-use">Computer Use</a>
@@ -2554,7 +2732,7 @@
     </section>
 
     <section id="autopilot">
-      <h2><span class="icon">⚡</span> Autopilot</h2>
+      <h2><span class="icon">⚡</span> Cockpit: Goals, Tasks and Schedule</h2>
       <p><strong>Where it lives.</strong> The sidebar entry is called <strong>Cockpit</strong>: one surface with three tabs, Goals, Tasks and Schedule. Goals shows what the goal engine is working on and everything it produced, and it holds the Autopilot controls described below. Tasks and Schedule are the same screens their own pages show, hosted here rather than copied. Autopilot is the capability; Cockpit is the place. There are exactly three tabs and there is no fourth surface behind them: Cockpit took the place of the old Autopilot screen rather than sitting next to it, so there is one board, one schedule and one goal list, whichever door you came through.</p>
       <p><strong>It keeps its place.</strong> The address of the page carries the tab you are on - <code>/autopilot?tab=goals</code>, <code>?tab=tasks</code>, <code>?tab=schedule</code> - so a reload, a bookmark or a link you sent yourself comes back on the tab it was on and not on the first one. The route is still called <code>/autopilot</code> on purpose: renaming the surface is not a reason to break every link that already points at it. Opened from the chat sidebar, Cockpit is the same screen as a window over the conversation, and that window leaves the address of the page underneath alone.</p>
       <p>Background task runner with a Kanban board. Delegate long-running tasks and Skales will execute them autonomously while you work on other things.</p>
@@ -2887,6 +3065,16 @@
 
       <div class="tip"><strong>⚙️ Override Model Limits (power user):</strong> Settings → AI Providers → the provider's card → <em>Timeout, retries and model limits</em>. Add per-(provider, model) override rows for context and output token caps. Use <code>*</code> as the model name for a provider-wide wildcard. Useful when a brand-new model has different limits than the built-in registry — no Skales update required.</div>
 
+      <h3>Signing in to ChatGPT from another device</h3>
+      <p>The ChatGPT subscription signs you in through a browser, and a browser normally hands the result straight back to the window that asked. Looking at Skales from a <em>different</em> device - a phone or a laptop reaching your desktop over the network - that hand-back has nowhere to land, which is why this used to be a desktop-only setting. The card in <strong>Settings &rsaquo; Subscriptions &rsaquo; ChatGPT</strong> now offers <strong>Sign in from another device</strong> instead, which is three steps:</p>
+      <ol>
+        <li><strong>Copy sign-in link</strong>, and open it (there is an <strong>Open link</strong> button too).</li>
+        <li>Sign in to ChatGPT on that page as you normally would.</li>
+        <li>Copy the whole address of the page you land on, paste it into <strong>Paste the address you landed on</strong>, and press <strong>Finish sign-in</strong>.</li>
+      </ol>
+      <p>The page you land on may well look blank or broken. That is correct and it is not the sign-in failing - what matters is in the address bar, which is why the address is what you paste back.</p>
+      <div class="tip"><strong>The half that matters never travels.</strong> The secret part of the exchange stays on the computer Skales runs on and is never in the link and never on the page you paste. Finish within <strong>ten minutes</strong>: after that the link expires and you ask for a new one.</div>
+
       <h3 id="regional">Which providers work where</h3>
       <p>Skales runs on your machine and talks to whichever provider you configure, so what is reachable from your country is decided by that provider, not by Skales. This matters most for the recommended default: <strong>OpenRouter does not serve every country</strong>, and where it does not, its key will not work no matter how it is entered. Nothing about Skales itself is limited by where you are.</p>
       <p>If OpenRouter is not available to you, every one of these is a full replacement &mdash; they are ordinary providers in the same grid, with the same tools, vision and agent features:</p>
@@ -3182,6 +3370,10 @@
 
       <h3>What the phone reaches</h3>
       <p>The phone carries its own surfaces for the parts of Skales that make sense in a hand: chat and history, agents, memory, the knowledge graph, Studio and Flow, Iris, voice, the browser, group chat, WordPress, mail, notifications, Wrapped, and a coding surface. Plus the one that only exists on the phone: <strong>Desktop</strong>, the view onto the computer it is paired with.</p>
+      <p>It also has a <strong>Plugins</strong> shelf of its own, under <em>Menu &rsaquo; System</em>. It is a first stage rather than the desktop's: plugins installed on the phone run there with the phone's own bridge, and the desktop remains the place a plugin is built and packaged. See <a href="#plugins">Plugins</a>.</p>
+
+      <h3>On the home screen, without opening the app</h3>
+      <p>On Android there is a <strong>widget</strong> you can put on the home screen. It has two doors: one drops you straight into the composer with the keyboard up, the other starts listening. Both survive a cold start, so pressing it with the app closed is the same as pressing it with the app open, and the microphone permission is asked for at the moment it is needed rather than in advance. This is not the same thing as a <a href="#dashboard">custom widget</a> inside Skales: that one is a card on a page, this one is an icon on your phone's home screen.</p>
 
       <h3>The two kinds of work it can do</h3>
       <ul>
@@ -3222,6 +3414,9 @@
       </ul>
       <p>Under those, <strong>Recent pairing attempts</strong> is the log: which device asked, and what happened to it, including the ones you refused, the ones nobody answered in time, and a blocked device that kept asking.</p>
 
+      <h3>Fetching a plugin from this computer</h3>
+      <p>A paired phone can see the <a href="#plugins" style="color:var(--accent)">plugins</a> installed on the computer it is paired with, read what each one asks for before anything is copied, and take one over to the phone. Only the paired computer answers that, and only its own plugin folder is ever read. It is the shorter road than exporting a file and carrying it across, and it does not need a backup.</p>
+
       <div class="warn"><strong>Only allow a device you are pairing right now.</strong> A paired device can read your chats and ask to run tools. If a pair request appears and you did not just scan anything, refuse it.</div>
     </section>
 
@@ -3242,6 +3437,9 @@
       <p>Opening Skales from a browser on another device needs the token, and the URL on the Settings page already carries it: open it once on the other device and it is stored there and survives restarts. There is a QR of the same URL for scanning it onto a phone.</p>
       <p><strong>Regenerate</strong> issues a new token. Every device that connected with the old one has to open the new URL, so treat it as the way to lock out a device you no longer have, together with <strong>Remove and block</strong> on the pairing page.</p>
       <div class="tip"><strong>Changing the token locks out a paired phone until it reconnects.</strong> When you regenerate the token, a phone that was open on the Skales window is locked out until it opens the new URL &mdash; and that refusal now says so on the phone, in plain words, instead of looking like a page that simply stopped working. Older devices are unaffected.</div>
+
+      <h3>Signing in to ChatGPT from the browser</h3>
+      <p>Using Skales from another device's browser, the ChatGPT subscription sign-in runs in two steps rather than opening a window you do not have: <strong>copy a link</strong>, sign in on that page, and <strong>paste the address you land on</strong> back into Skales. The desktop keeps the secret half of the exchange the whole time, so the page you signed in on never sees it.</p>
 
       <div class="warn"><strong>The microphone will not work over a plain address.</strong> A browser hands out the microphone only in a secure context, meaning HTTPS or localhost. Over <code>http://100.x.x.x</code> it refuses without saying so, which looks like the page ignoring you. Voice surfaces still draw and still answer typed messages. HTTPS in front of the standalone server is the way to a working microphone from another device, and it is on the roadmap rather than in this release.</div>
 
@@ -3317,6 +3515,11 @@
     <section id="email">
       <h2><span class="icon">📧</span> Email Integration</h2>
       <p>Read, compose, reply, search, and manage emails with attachments. IMAP/SMTP with safety gates. Multi-account support with per-mailbox whitelists.</p>
+
+      <h3>Gmail without an app password</h3>
+      <p>If you use Gmail, there is a shorter road than the IMAP form. Connect your Google account once under <strong>Settings &rsaquo; Integrations &rsaquo; Google account</strong> and tick <strong>Gmail</strong> among the services, and mail works from there: reading, sending, marking read or unread, filing into a label, and the check for new mail. No app password, no server names, no ports.</p>
+      <p><strong>An account you set up yourself always wins.</strong> If you have entered an IMAP/SMTP account, that is the one used and nothing about it changes - the Google account only steps in where there is no mailbox of your own. So there is never a question of which one sent your mail.</p>
+      <p>Adding Gmail to an already connected Google account means approving once more, because Google asks for everything at once rather than one service at a time. See <a href="#google-account">One Google account</a> for that and for the five-minute setup in the Google console.</p>
 
       <h3>Multi-Account Support</h3>
       <p>Connect multiple email accounts in <strong>Settings → Email</strong>. Each account has its own IMAP/SMTP configuration and can be managed independently.</p>
@@ -3427,13 +3630,13 @@
 
     <section id="google-account">
       <h2><span class="icon">🔑</span> One Google account</h2>
-      <p>Calendar, Drive, Docs and YouTube all want the same Google account, and until 12.6.0 you had to set it up once per service. Now there is one card - <strong>Settings &rsaquo; Integrations &rsaquo; Google account</strong> - you fill in once, tick the services you want, and approve once.</p>
+      <p>Calendar, Drive, Docs, Gmail and YouTube all want the same Google account, and until 12.6.0 you had to set it up once per service. Now there is one card - <strong>Settings &rsaquo; Integrations &rsaquo; Google account</strong> - you fill in once, tick the services you want, and approve once.</p>
 
       <h3>What Google needs from you first</h3>
       <p>Google does not hand out a client id to an app; it hands one out to <em>your</em> project. It is a five minute detour, once.</p>
       <ol>
         <li>Open <strong>console.cloud.google.com</strong> and create a project (or pick one you already have).</li>
-        <li><strong>APIs &amp; Services &rsaquo; Library</strong>: enable an API for each service you want. Google Calendar API, Google Drive API, Google Docs API, YouTube Data API v3. Enable only what you will use; you can come back later.</li>
+        <li><strong>APIs &amp; Services &rsaquo; Library</strong>: enable an API for each service you want. Google Calendar API, Google Drive API, Google Docs API, Gmail API, YouTube Data API v3. Enable only what you will use; you can come back later.</li>
         <li><strong>APIs &amp; Services &rsaquo; OAuth consent screen</strong>: fill it in. While the project is unpublished, add your own address under test users, or Google will refuse the sign-in.</li>
         <li><strong>APIs &amp; Services &rsaquo; Credentials &rsaquo; Create credentials &rsaquo; OAuth client ID</strong>. Application type: <strong>Desktop app</strong>. This is the one that matters - a "Web application" client will be refused at the redirect.</li>
         <li>Copy the <strong>Client ID</strong> and <strong>Client secret</strong> into the Google account card in Skales.</li>
@@ -3455,6 +3658,7 @@
         <tr><td>Calendar</td><td><code>auth/calendar</code></td></tr>
         <tr><td>Drive</td><td><code>auth/drive</code></td></tr>
         <tr><td>Docs</td><td><code>auth/documents</code></td></tr>
+        <tr><td>Gmail</td><td><code>auth/gmail.modify</code></td></tr>
         <tr><td>YouTube (read)</td><td><code>auth/youtube.readonly</code></td></tr>
         <tr><td>YouTube (upload)</td><td><code>auth/youtube.upload</code></td></tr>
       </table>
@@ -3490,6 +3694,10 @@
 
       <h3>Business Details</h3>
       <p>Fetch phone numbers, hours, reviews, photos, and other details for any place. Great for research and planning.</p>
+
+      <h3>What works without a key, and what the key adds</h3>
+      <p>A row of places in a chat is drawn as cards whether or not you have a key here, every card opens in your map app, and the <strong>Map</strong> button draws the whole row over OpenStreetMap. None of that costs a key.</p>
+      <p>With a Places key entered under <strong>Settings &rsaquo; Integrations</strong>, a place card additionally shows the real photograph, the rating with how many people gave it, and whether it is open right now. Without one, a single quiet line under the row says what a key would add. <strong>Ratings and opening times are never invented</strong>: they come from that lookup, or they are not shown at all.</p>
     </section>
 
     <section id="notion">
@@ -3551,6 +3759,10 @@
 
       <h3>AI Summaries &amp; Compose</h3>
       <p>Skales generates first-person activity summaries automatically. You can also compose posts manually, attach GIFs (Klipy / Giphy), and add images. Posts include an @mention auto-complete picker. The compose placeholder cycles through 5 short prompts when empty so the box never feels stale.</p>
+
+      <h3>Reading it in your language</h3>
+      <p>Discover is written in English. Every post carries a <strong>Translate</strong> button that puts it into whatever language the app is set to — the body, the link card's title, and a poll's question and its options. It runs on the model you already configured, the same as any other small call, so nothing goes to a Skales server for it. One press in the sort bar does the whole page, up to twenty posts at once.</p>
+      <p>The translation is <strong>display only</strong>. Upvoting, replying, reporting, sharing and voting all keep carrying the original post, and a poll still votes by position, so nothing you do is aimed at a text the other side never wrote. The same button is the way back, a line under the post says which of the two you are reading, and a post is paid for once: the translation is kept and survives a restart. With no provider set up the button is not dead — it says so and offers Settings.</p>
 
       <h3>If an admin asks you to pick a new tag (force-rebrand)</h3>
       <p>If a Skales admin flags your tag for rename (offensive, impersonation, etc.), the next time Skales polls notifications you will see a toast and get routed back to the Join Discover onboarding under a fresh tag. Your existing posts and votes are NOT deleted, only the tag is reset.</p>
@@ -3650,6 +3862,7 @@
         <a href="#deep-links">skales:// links</a>
         <a href="#notifications">Notification Center</a>
         <a href="#dashboard">Dashboard</a>
+        <a href="#custom-widgets">Custom Widgets</a>
         <a href="#updates">Updates<span>Your data</span></a>
         <a href="#export">Export / Import Backup<span>Your data</span></a>
         <a href="#migration">Migration Importer<span>Your data</span></a>
@@ -3696,6 +3909,9 @@
       <h3>Read / Unread</h3>
       <p>Every entry is read or unread, individually or all at once. Read state
       survives a restart.</p>
+
+      <h3>The whole message, not a preview</h3>
+      <p>An entry carries the full text it was given, so a long report is readable here rather than cut off mid-sentence, and the result of a task links back to the task it came from. Long generations report back here too: a picture or a video that finishes after you have moved on shows up in the bell and in the chat it was asked for, Studio renders and editor exports included.</p>
 
       <h3>Tabs</h3>
       <p>Four tabs: <strong>All</strong>, <strong>Updates</strong> (product
@@ -3752,9 +3968,26 @@
         <div class="card"><div class="card-title">📈 Stats</div><div class="card-desc">Usage statistics, token counts, and session history.</div></div>
       </div>
       <p style="margin-top:0.75rem;">Enable or disable widgets in <strong>Settings → Dashboard</strong>.</p>
+      <p style="color: var(--muted); font-size: 0.875rem;">A widget is a card on this page. When what you want is a whole screen of its own, with its own storage and its own menu entry, that is a <a href="#plugins">plugin</a> - and there is a gallery of them to install from.</p>
 
       <h3>In-App Notifications</h3>
       <p>Toast notifications appear in-app for important events: task completions, message arrivals, calendar reminders, and system alerts. Notifications can be accessed in the dedicated Notification Center for history and filtering.</p>
+    </section>
+
+    <section id="custom-widgets">
+      <h2><span class="icon">🧱</span> Custom Widgets</h2>
+      <p><strong>Sidebar &rsaquo; System &rsaquo; Custom Widgets.</strong> A widget is a small interactive tool that Skales renders itself - a converter, a tracker, a board, a calculator you got tired of looking up. It is the step below a <a href="#plugins" style="color:var(--accent)">plugin</a>: a plugin is a page of its own with storage and, for the working kinds, an agent behind it; a widget is one self-contained piece you switch on and use.</p>
+
+      <h3>Four ways to get one</h3>
+      <ul>
+        <li><strong>Describe it.</strong> Widget AI writes it, checks it and switches it on, correcting itself up to three times before it saves anything - so what lands is something that ran, not something that merely compiled.</li>
+        <li><strong>The Wizard</strong> asks a few guided questions and builds it from your answers, for when you would rather be asked than write a brief.</li>
+        <li><strong>Write it yourself</strong> from the built-in template.</li>
+        <li><strong>Upload one</strong> as a <code>.js</code> file or a <code>.zip</code>.</li>
+      </ul>
+
+      <h3>Living with them</h3>
+      <p>Every installed widget is on the page with a switch: activate or deactivate it with one click, and nothing is deleted by switching it off. A widget can be shared to the <a href="#discover" style="color:var(--accent)">Discover</a> feed for other people to pick up, and one that will not run says what is wrong with it rather than showing an empty frame.</p>
     </section>
 
     <section id="updates">
@@ -3820,6 +4053,9 @@
           <tr><td>Unrestricted</td><td>Truly unguarded: the residual guard becomes a warning instead of a block, and with File Access also set to unrestricted Skales may reach system paths, install software and talk to hardware (Bluetooth, network, devices). Full responsibility is yours.</td></tr>
         </tbody>
       </table>
+      <h3>What a card that stops an action tells you</h3>
+      <p>Every card that asks first says more than <em>what</em>. It names the action in plain words, says <strong>what happens if you say no</strong>, and says <strong>how far an "always" would actually reach</strong> — all three before you press either button, so an always-allow is never a blank cheque you find the edges of afterwards.</p>
+
       <p style="margin-top:0.75rem;">Configure in <strong>Settings → Security</strong> (or during onboarding). If you used the old "Unrestricted", it is now called "Advanced" with identical behaviour, and a one-time note on first start points you to the new, genuinely unrestricted mode. The Desktop Buddy shows approval prompts even when the main window is closed.</p>
 
       <h3>Safe Mode in Organization</h3>
@@ -3904,6 +4140,7 @@
       <div class="lead-index">
         <a href="#first-checks">When something will not work</a>
         <a href="#long-runs">Long runs, sleep and the disk</a>
+        <a href="#logs">Logs and Diagnostics</a>
         <a href="#feedback">Feedback & Reports</a>
       </div>
     </section>
@@ -3971,6 +4208,19 @@
       </ul>
     </section>
 
+    <section id="logs">
+      <h2><span class="icon">📄</span> Logs and Diagnostics</h2>
+      <p>Two places answer &ldquo;what actually happened&rdquo;, and they answer different questions.</p>
+
+      <h3>Logs</h3>
+      <p><strong>Sidebar &rsaquo; System &rsaquo; Logs</strong> is the running record of what this install has been doing - the turns, the tool calls and the errors as they came, in order. It is the place to look when something behaved oddly a minute ago and you want to see it rather than reconstruct it.</p>
+
+      <h3>Diagnostics</h3>
+      <p><strong>Settings &rsaquo; Advanced &rsaquo; Diagnostics</strong> is the summary you can hand to somebody else. Press <strong>Show recent crashes and errors</strong> and the card fills with what this machine recorded: the build and the hardware, crashes, every provider call that failed in this session, recent warnings, and the update log, so a failed update can be shown instead of described. <strong>Copy</strong> puts the same text on the clipboard for a bug report.</p>
+      <p>Nothing here is transmitted anywhere. It is read off this machine and shown to you. You can also just ask in a chat - Skales reads the same report itself, so &ldquo;why did that fail&rdquo; is answerable without you opening anything.</p>
+      <p>When you are ready to send it on, see <a href="#feedback" style="color:var(--accent)">Feedback &amp; Reports</a>.</p>
+    </section>
+
     <section id="feedback">
       <h2><span class="icon">💌</span> Feedback & Reports</h2>
       <p>Found a bug or have a suggestion? Use the <strong>Feedback</strong> button in the sidebar or visit <strong>Settings → Feedback</strong>.</p>
@@ -3981,7 +4231,7 @@
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.9.0</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
+      <span>Skales v<span data-skales-version>12.9.10</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 
