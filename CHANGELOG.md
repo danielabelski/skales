@@ -6,6 +6,87 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.9.15
+
+### Fixed
+
+- **Reading one mail costs one mail.** Asking for a single message used to load
+  the entire mailbox into memory first and cut afterwards - on a full mailbox
+  that ended the server with an out-of-memory crash before any mail came back.
+  The list is now fetched by id, cut to what was asked for, and only then are
+  those messages read; replying fetches exactly the one message it answers.
+  The whole mail run also lives under one honest deadline now, instead of a
+  timeout that only guarded the login.
+
+- **Quitting tears everything down, updating included.** Updating out of the
+  Linux AppImage could leave the old Skales and its local model server running
+  invisibly - one of them for an hour of CPU. Every shutdown step now has a
+  deadline behind it, a stuck step is named and skipped instead of waited on
+  forever, and stray local model servers from earlier runs are found by their
+  own binary path and stopped - at startup and at quit.
+
+- **A local model's real context window is the one Skales uses.** A model
+  running with an 8k window was treated as 32k: the history ceiling, the
+  context meter and the settings all guessed. All of them now read the same
+  resolved number - your own override first, then what the running server
+  reports, then the catalogue - and a conversation that no longer fits names
+  its way out instead of failing with the server's raw sentence.
+
+- **Small local models are no longer taught a protocol they cannot follow.**
+  The results-channel instructions that power rich cards sent tiny on-device
+  models into repeating themselves until stopped by hand. A model too small
+  for the protocol simply does not receive it any more; capable models keep
+  rich cards exactly as before.
+
+- **The Google account card tells the truth under failure.** A token refresh
+  that Google refused used to look like the account had vanished; a status
+  read that failed drew a connected account as unconnected. Both now name
+  what actually happened - including Google's own reason - and point at the
+  card that fixes it.
+
+- **The model picker names the provider.** A model in favourites, recents or
+  search now says which provider it belongs to, so two models with the same
+  name are two different lines.
+
+- **The incoming webhook is documented.** It existed and was findable by
+  nobody: the guide, the capability list and the app's own self-knowledge now
+  name it, where it lives and that it listens on the server port.
+
+- **A dropped connection no longer restarts Skales.** A browser tab that goes
+  away, a network that blinks, a helper that hangs up mid-answer: any of these
+  could take the whole local server down and, with it, every answer being
+  written, every scheduled task and every background job - on one machine a
+  hundred times in a day. A connection ending is now treated as the ordinary
+  event it is. It is still written into the crash report so it stays visible,
+  and a real fault still stops the server the way it always did.
+
+- **Read-aloud follows the language of the text, not the language of the
+  interface.** A Spanish interface reading an English answer used to hand the
+  line to the Spanish voice. The language is now taken from what is actually
+  being read, and a voice you picked yourself always speaks - even when the
+  text is in another language, because that was your choice and not an
+  accident.
+- **The voice settings and the Skales Local matrix can no longer contradict
+  each other.** Picking a voice on one screen and then touching a switch on
+  the other used to bring the replaced voice back. Both screens now write
+  through the same wire.
+- **The licence links next to a model say where they go.** The link labelled
+  "model page" pointed at the licence text itself. There are now two links
+  with two labels, and where a voice has no model page of its own, there is no
+  link instead of a wrong one. Four voices were also listed under the wrong
+  licence in the download catalogue - among them two whose licence requires
+  attribution, which the card had dropped.
+- **The built-in documentation search no longer reports a find when a single
+  word of the question happens to appear somewhere in the manual.** A question
+  about the world now gets told that it does not belong in the documentation,
+  and Skales searches the web for it instead of looking up the same passage
+  over and over.
+
+### Added
+
+- **A female Spanish voice on the device.** Sharvard joins the on-device
+  voices, downloadable from the same list as the others.
+
 ## v12.9.10 - Circle
 
 ### Added
