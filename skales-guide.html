@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <!--
+summary: "The chaptered end-user guide rendered inside the app: what every feature is and how a user drives it."
+read_when:
+  - you shipped a user-visible feature and the guide must describe it
+  - you need the established wording for a feature as users see it, not as the code names it
+-->
+<!--
   THIS IS USER HELP. RELEASE NOTES BELONG IN CHANGELOG.md AND IN THE CHANGELOG
   VIEW, NEVER HERE.
 
@@ -744,7 +750,7 @@
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.9.10</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.9.21</span> User Guide</div>
       </div>
     </a>
 
@@ -842,11 +848,15 @@
     <a href="#ch-auto" data-chapter="auto">Overview and walkthrough</a>
     <a href="#ai-tasks" data-chapter="auto">Planner AI Tasks</a>
     <a href="#planner" data-chapter="auto">Planner</a>
-    <a href="#autopilot" data-chapter="auto">Cockpit (Goals, Tasks, Schedule)</a>
-    <a href="#always-on" data-chapter="auto">Always-On Agent</a>
+    <a href="#autopilot" data-chapter="auto">Cockpit</a>
+    <a href="#projects" data-chapter="auto">Projects</a>
+    <a href="#always-on" data-chapter="auto">Always-On Agent (Schedule)</a>
     <a href="#browser" data-chapter="auto">Browser</a>
+    <a href="#playbooks" data-chapter="auto">Playbooks</a>
+    <a href="#workflow" data-chapter="auto">Workflow</a>
     <a href="#computer-use" data-chapter="auto">Computer Use</a>
     <a href="#download-file" data-chapter="auto">Download File</a>
+    <a href="#webhooks" data-chapter="auto">Webhooks</a>
 
     <div class="section-label" data-chapter="providers">Providers and models</div>
     <a href="#ch-providers" data-chapter="providers">Overview and walkthrough</a>
@@ -920,7 +930,7 @@
 
     <!-- Hero: the front page only -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.10</span></div>
+      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.21</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -1777,7 +1787,7 @@
     </section>
 
     <section id="teams">
-      <h2><span class="icon">🛖</span> Teams: rooms with other people</h2>
+      <h2><span class="icon">🛖</span> Teams: rooms with other people <span class="badge badge-beta">Beta</span></h2>
       <p><strong>Teams</strong> is the one place in Skales where other <em>people</em> are on the other end rather than other models. It holds two things, and they are different: the <strong>paired</strong> conversations you already had — one other desktop, one person, both agents in one thread — and, beside them, <strong>Rooms</strong>.</p>
       <p>A room is a small group: up to <strong>twelve members</strong> in one conversation, and people and agents sit in the <em>same</em> member list. There is no account to make and nothing of the conversation is kept on a server. Everything you write is encrypted separately for every member and signed by you, and a message arriving without a valid signature is dropped rather than shown.</p>
 
@@ -1798,10 +1808,10 @@
         </tbody>
       </table>
       <div class="warn"><strong>What is not claimed.</strong> There is no forward secrecy here: this is not a protocol that rotates keys behind you, so somebody who obtained a member's key material could read what that member could read. And the room's address <em>is</em> the capability — anyone who has it can knock, which is exactly why every newcomer has to be confirmed by hand and why the door closes after ninety seconds.</div>
-      <p>Your own messages carry a quiet <strong>delivered to 3 of 5</strong> rather than invented read receipts, and a frame that could not leave the machine says <strong>Failed</strong> with a retry instead of pretending it went. Membership and who is <em>connected right now</em> are drawn as two different marks, because they are two different facts.</p>
+      <p>Your own messages carry a quiet <strong>delivered to 3 of 5</strong> rather than invented read receipts, and a frame that could not leave the machine says <strong>Failed</strong> with a retry instead of pretending it went. A file sent to a member whose device is off waits at the relay, sealed, and the line under it says so — <em>held at the relay, waiting for the other device</em> — instead of an endless <em>Sending</em>. Membership and who is <em>connected right now</em> are drawn as two different marks, because they are two different facts.</p>
 
       <h3>Agents as members</h3>
-      <p><strong>Add agent</strong> in the member list seats one of your roster agents in the room as a member of its own — its own keys, its own name, shown with your name as its owner. Type <code>@</code> in the room and you get <em>one</em> picker with the people and the agents in it; naming an agent hands it the message as a job.</p>
+      <p><strong>Add agent</strong> in the member list seats one of your roster agents in the room as a member of its own — its own keys, its own name, shown with your name as its owner. Type <code>@</code> in the room and you get <em>one</em> picker with the people and the agents in it; naming an agent hands it the message as a job — along with the recent room thread, so it answers the conversation it was called into rather than a single sentence out of context.</p>
       <p>The job runs <strong>only on its owner's computer</strong>, with the owner's keys, models and tools. A message from a room can never start anything on somebody else's machine, and the agent that runs is always the one the person named — never one a model chose instead. You decide per agent who may call it: anyone, only after your approval (the default, with an approve card in the room), or only you. A job waiting on that approval says <em>waiting for approval</em> to everybody rather than sitting silent.</p>
       <p>The job's card walks the same six states agent cards use everywhere else, and the answer arrives as the agent's <em>own</em> signed message. A very long answer travels as an excerpt that says it was shortened, with the whole thing kept on the owner's machine.</p>
       <p>The honest edges are on the card, not in a footnote. An owner whose machine closed mid-job shows <strong>interrupted</strong> on every device instead of spinning forever. An owner who is offline refuses the job by name, on the spot. An owner's machine with no AI provider set up fails immediately and points at Settings — and the room itself keeps working for its people with no provider anywhere in it. On a phone, an agent runs only while Skales is open in the foreground, and the card says so instead of promising otherwise.</p>
@@ -1814,7 +1824,7 @@
 
       <h3>Where it stops</h3>
       <ul>
-        <li><strong>The desktop is not pushed.</strong> A closed phone is woken by a contentless notification — that there is something new in one of your rooms, and nothing else, because the relay cannot read anything else — and tapping it opens that room. A closed desktop is not: you see the room when you come back to it.</li>
+        <li><strong>The desktop is not pushed.</strong> A closed phone is woken by a contentless notification — that there is something new in one of your rooms, and nothing else, because the relay cannot read anything else — and tapping it opens that room. A closed desktop is not: you see the room when you come back to it. This is about rooms: a note sent straight to your phone with &ldquo;send it to my phone&rdquo; is not a room message and lands in the phone&rsquo;s own conversation instead.</li>
         <li><strong>Removal is the creator's, blocking is yours.</strong> The person who made the room can take somebody out of it; anybody can block somebody for themselves alone. Taken out, you keep the conversation you had and the room stops accepting anything new from you. Beyond that, keeping a room civil is a social matter, not a setting.</li>
         <li><strong>Leaving deletes it here.</strong> A room you leave is gone from this device with its history, because there is no copy anywhere else to fetch it back from.</li>
       </ul>
@@ -1822,8 +1832,9 @@
     </section>
 
     <section id="swarm">
-      <h2><span class="icon">🐝</span> Agent Swarm <span class="badge badge-beta">Beta</span></h2>
+      <h2><span class="icon">🐝</span> Agent Swarm</h2>
       <p>Run multiple Skales instances on your network and have them work as one. Peers are discovered automatically via <strong>mDNS</strong>, or added manually by <strong>IP:port</strong> (perfect for Tailscale) &mdash; manual peers survive restarts and are health-checked every 30 seconds.</p>
+      <p>Swarm has no entry in the menu: <strong>Teams</strong> is the surface for two machines working together, and the delegation below is what Swarm still is. The <code>/swarm</code> page answers as before for anybody who goes to it.</p>
       <p>Delegate from any chat: <code>/swarm &lt;task&gt;</code> sends to the best free device, <code>/swarm @name &lt;task&gt;</code> targets a specific one, and an optional mode prefix sets how the task runs on the receiver &mdash; <code>code:</code> (coding agent), <code>plan:</code> (read-only plan), <code>auto:</code> (fully autonomous). The Swarm page offers the same as a form, plus the shared task history with live status. Results return to the chat you sent from and to Notifications.</p>
       <p><strong>Security:</strong> receiving devices must opt in (&ldquo;Accept delegated tasks&rdquo;) and both devices need the same <code>SKALES_AGENT_SECRET</code> environment variable. Delegated tasks appear on the receiver&rsquo;s Tasks page with a 🐝 badge naming the sender.</p>
     </section>
@@ -2187,6 +2198,7 @@
 
       <h3>Setting it up</h3>
       <p>Switch <strong>DevKit</strong> on under <strong>Sidebar &rsaquo; System &rsaquo; Add-Ons</strong> and a <strong>Developer</strong> section appears in the sidebar. One click in it sets the DevKit up: the command-line tool, its documentation and its examples are written into your Skales folder with the access key already filled in, and the page tells you the exact place it wrote to and what to do next.</p>
+      <p>The developer tool installs under the name <code>skales-dev</code>. The plain <code>skales</code> command is the app itself &mdash; the launcher that opens Skales, and <code>skales .</code> that opens a folder in it &mdash; so the two never fight over the same name on your PATH.</p>
       <p>Pressing it a second time is safe. An existing DevKit is never overwritten, and a key you have already handed to another program keeps working rather than being rotated out from under it. Switching the add-on back off only puts the sidebar section away — whatever was written stays where it is.</p>
 
       <h3>Components</h3>
@@ -2310,7 +2322,7 @@
       <p>The finished scene can be orbited with the mouse. <strong>Save as page</strong> gives a self-contained HTML file that opens in any browser with nothing installed, <strong>Save as .glb</strong> gives a model for the tools you already use, <strong>Show the code</strong> opens the scene it wrote, and <strong>Share to Discover</strong> posts it (it appears in the feed once an admin approves it).</p>
       <div class="tip"><strong>This half needs a Vision provider,</strong> because looking at the render and saying what is wrong with it is the whole method. Settings &rsaquo; Integrations &rsaquo; Vision provider, and the page links straight there when it is missing.</div>
 
-      <h3>Editor <span class="badge badge-beta">Beta</span></h3>
+      <h3>Editor</h3>
       <p>The other tabs make footage. This one cuts footage you already have. Open <strong>Sidebar &rsaquo; Studio</strong> and take the <strong>Video Editor</strong> door on the landing; it opens in the Studio window beside Skales. Make a project and put a recording in it.</p>
       <p><strong>Sighting comes first.</strong> Skales reads the whole recording in one pass and writes down where the shots change, where it goes quiet, and what is said and when. No part of the picture is sent to a model to do this, so the length of the recording is not the obstacle it usually is. It needs FFmpeg. Without a speech provider the shots and the silences are still found, and the sighting says plainly that the words are missing rather than pretending there was nothing to hear.</p>
       <p><strong>Then ask for the cut.</strong> Say what you want in the chat - a two minute version, the parts where the product is on screen. Skales names the stretches that make the film, each with one sentence of reasoning you can read, and lays them into the timeline with a thumbnail and a length beside every piece. Every segment is checked against what the sighting actually found and against the real length of its source, and anything that does not survive that check is thrown out and <em>named</em> as thrown out - you are told what it dropped and why, rather than quietly getting a shorter list.</p>
@@ -2497,7 +2509,7 @@
     </section>
 
     <section id="iris">
-      <h2><span class="icon">👁</span> Iris Orbit <span class="badge badge-beta">Beta v1.0</span></h2>
+      <h2><span class="icon">👁</span> Iris Orbit</h2>
       <p>A window with no toolbar, no composer and no message list: a particle eye, and one line of text under it. You talk, Skales answers out loud, and the particles do something that matches what just happened. It is the same Skales underneath - the same conversation file, the same model, the same tools, the same permissions. Only the way in is different.</p>
       <p><strong>It is a first version.</strong> It works and it is in the release, but not every test is through. If something behaves oddly here, it is worth reporting.</p>
       <p><strong>It is switched on when you install Skales</strong> (12.6.0). It was opt-in while it was being built, and a surface you have to find in Settings before it exists is a surface nobody finds. If you would rather not have it, the sidebar entry and the chat header button both go away again the moment you turn it off. With no provider key set up yet, the window says so and offers the way into Settings &rsaquo; Voice, like every other surface that needs one.</p>
@@ -2575,7 +2587,7 @@
     </section>
 
     <section id="voice">
-      <h2><span class="icon">🎤</span> Live Voice <span class="badge badge-beta">Beta</span></h2>
+      <h2><span class="icon">🎤</span> Live Voice</h2>
       <p>Full-duplex voice conversation. Speak naturally and Skales responds with synthesized speech.</p>
 
       <h3>STT (Speech-to-Text)</h3>
@@ -2681,9 +2693,12 @@
       <div class="lead-index">
         <a href="#ai-tasks">Planner AI Tasks</a>
         <a href="#planner">Planner</a>
-        <a href="#autopilot">Cockpit (Goals, Tasks, Schedule)</a>
-        <a href="#always-on">Always-On Agent</a>
+        <a href="#autopilot">Cockpit</a>
+        <a href="#projects">Projects</a>
+        <a href="#always-on">Always-On Agent (Schedule)</a>
         <a href="#browser">Browser</a>
+        <a href="#playbooks">Playbooks</a>
+        <a href="#workflow">Workflow</a>
         <a href="#computer-use">Computer Use</a>
         <a href="#download-file">Download File</a>
       </div>
@@ -2709,7 +2724,7 @@
     </section>
 
     <section id="planner">
-      <h2><span class="icon">📅</span> Planner <span class="badge badge-beta">Beta</span></h2>
+      <h2><span class="icon">📅</span> Planner</h2>
       <p>AI-powered daily planner that learns your work patterns. An 8-step wizard learns your preferences, generates time-blocked plans from calendar events, and pushes them back to your calendar. Chat integration with "plan my day" commands.</p>
 
       <h3>8-Step Wizard</h3>
@@ -2732,37 +2747,57 @@
     </section>
 
     <section id="autopilot">
-      <h2><span class="icon">⚡</span> Cockpit: Goals, Tasks and Schedule</h2>
-      <p><strong>Where it lives.</strong> The sidebar entry is called <strong>Cockpit</strong>: one surface with three tabs, Goals, Tasks and Schedule. Goals shows what the goal engine is working on and everything it produced, and it holds the Autopilot controls described below. Tasks and Schedule are the same screens their own pages show, hosted here rather than copied. Autopilot is the capability; Cockpit is the place. There are exactly three tabs and there is no fourth surface behind them: Cockpit took the place of the old Autopilot screen rather than sitting next to it, so there is one board, one schedule and one goal list, whichever door you came through.</p>
-      <p><strong>It keeps its place.</strong> The address of the page carries the tab you are on - <code>/autopilot?tab=goals</code>, <code>?tab=tasks</code>, <code>?tab=schedule</code> - so a reload, a bookmark or a link you sent yourself comes back on the tab it was on and not on the first one. The route is still called <code>/autopilot</code> on purpose: renaming the surface is not a reason to break every link that already points at it. Opened from the chat sidebar, Cockpit is the same screen as a window over the conversation, and that window leaves the address of the page underneath alone.</p>
-      <p>Background task runner with a Kanban board. Delegate long-running tasks and Skales will execute them autonomously while you work on other things.</p>
+      <h2><span class="icon">⚡</span> Cockpit</h2>
+      <p><strong>What it is.</strong> The Cockpit is the one screen that shows everything standing: goals, tasks and scheduled jobs together, on a single board. It is not three screens behind three tabs any more and there is no Autopilot panel behind it &mdash; one heading, one board, and the full surfaces folded away underneath.</p>
+      <p><strong>Where it lives.</strong> The sidebar entry is called <strong>Cockpit</strong> and opens as a window over the conversation; the same screen answers at <code>/autopilot</code>. The route keeps its old name on purpose: renaming a surface is not a reason to break every link that already points at it. There is no Autopilot page or sidebar entry any more.</p>
 
-      <h3>Task Board</h3>
-      <p>Tasks move through: <strong>Pending → In Progress → Done</strong>. You can review results, retry failed tasks, or cancel in-progress ones.</p>
+      <h3>The head: one action</h3>
+      <p>The heading carries exactly one action, <strong>Pause</strong> or <strong>Resume</strong> for the background runner. Anything beside it is a message, not a button: if a spend ceiling paused the runner, the head says so and the switch that lifts it sits in the Control section, where the rest of the limits live.</p>
 
-      <h3>Live Execution</h3>
-      <p>Watch Skales think through each step in real time. Tool calls, decisions, and results are shown as they happen.</p>
+      <h3>The board: four columns, three sorts</h3>
+      <p>The board has four columns &mdash; <strong>Pending</strong>, <strong>In Progress</strong>, <strong>Completed</strong> and <strong>Blocked</strong> &mdash; and every line of work takes the same card shape, with a label saying which sort it is.</p>
+      <ul>
+        <li><strong>Goals</strong> stand in the column their ledger puts them in. A goal waiting on an answer from you stands in Blocked, because it will not move until you move it. From the card you can stop it, carry it on, or open the conversation it lives in.</li>
+        <li><strong>Tasks</strong> come from both stores: the queue the autopilot works through, labelled Autopilot, and the records of the Tasks page, labelled Task. Each card acts on the store it came from, so approving here is the same approval as approving there. Approve, reject, retry, cancel and delete are on the card; an autopilot card can also be dragged to another column.</li>
+        <li><strong>Schedules</strong> stand by their switch: a job that is switched off sits in Blocked, because it will never come round again on its own. Switch it on or off, or run it now, from the card.</li>
+      </ul>
+      <p>Two moves on the board are refused rather than faked: you cannot drop a card into In Progress, because that is where Skales puts a task when it actually picks it up, and you cannot drag a running task out from under the runner &mdash; cancel it first. Filters by sort and a Kanban/list switch sit above the board and survive switching away and back.</p>
 
-      <h3>Cost Control</h3>
-      <p>Set a max API calls per hour in Settings → Autopilot to prevent runaway costs. Autopilot pauses automatically when the limit is reached.</p>
+      <h3>Live: one switch, not a second tab bar</h3>
+      <p>Next to the board sits a single <strong>Board / Live</strong> switch, and the address carries it (<code>/autopilot?tab=board</code>, <code>?tab=live</code>) so a reload, a bookmark or a link you sent yourself comes back where it was. Live is one view, not two: the execution trace of the task that is running, and the runner’s own log beneath it &mdash; what it thought, which tool it called, what came back.</p>
 
-      <div class="tip"><strong>💡 Tip:</strong> Autopilot must be enabled in Settings → Autopilot → Enable Autopilot for background task processing. Friend Mode and Buddy Intelligence work independently of this toggle.</div>
-    
+      <h3>The sections under the board</h3>
+      <p>Below the board, five collapsible sections open the full surfaces unchanged. One is open at a time, and the Cockpit deliberately does not remember which &mdash; it starts closed every time, so the board is what you see first.</p>
+      <ul>
+        <li><strong>Goals</strong> &mdash; each goal with its objective, its criteria and the evidence against them, the last steps, the artifacts it produced, the lessons it drew and what it spent.</li>
+        <li><strong>Schedule</strong> &mdash; the recurring jobs as a cron list. This is the list, not the calendar; the visual calendar is Planner.</li>
+        <li><strong>Tasks</strong> &mdash; the same screen the <code>/tasks</code> page shows, hosted here rather than copied.</li>
+        <li><strong>Identity &amp; Memory</strong> &mdash; the profile every unattended run reads before it starts, the strategic roadmap and the roadmaps that came before it, and clearing them.</li>
+        <li><strong>Control</strong> &mdash; when the runner may be awake (manually, at startup, or inside a time window), the spend ceiling and the pause-after-N-tasks cap, lifting a cost pause, the deep-dive interview and the plan it drafts, a line typed straight into the queue, the daily stand-up, and the scheduler reset for when it wedges.</li>
+      </ul>
+
       <h3>A plan you read before it exists</h3>
-      <p>The Deep-Dive interview ends in a Master Plan, and the plan is a <em>draft</em>: a list of tasks you read, untick and edit. Nothing is created until you press &ldquo;Create these&rdquo;. If the model got one task wrong, the rest survive and the ones that were left out are named with the reason.</p>
+      <p>The deep-dive interview in Control ends in a plan, and the plan is a <em>draft</em>: a list of tasks you read, untick and edit. Nothing is created until you press &ldquo;Create these&rdquo;. If the model got one task wrong, the rest survive, and the ones left out are named with the reason.</p>
 
       <h3>Quick Task</h3>
-      <p>Type one line and Skales works it up into a task an agent can actually run: instructions, the project it belongs to and the agent best suited to it. Each of the three is a suggestion with a tick beside it; untick whatever is wrong. If Autopilot is paused, the warning carries the switch itself, so the task you just made can start without going anywhere else.</p>
+      <p>Type one line in Control and Skales works it up into a task an agent can run: the instructions, the project it belongs to and the agent best suited to it. Each of the three is a suggestion with a tick beside it; untick whatever is wrong. If the runner is paused, the warning carries the switch itself, so the task you just made can start without going anywhere else.</p>
 
-      <h3>The board</h3>
-      <p>Drag a card to another column to move it. Two moves are refused rather than faked: you cannot drop a card into &ldquo;in progress&rdquo;, because that is where Skales puts a task when it actually picks it up, and you cannot drag a task that is running out from under the runner &mdash; cancel it first.</p>
+      <h3>On the phone</h3>
+      <p>Skales Mobile has the same Cockpit. Because a phone is tall and not wide, the four columns are drawn as four sections under each other in the same order, with the same cards, the same labels and the same actions; the Board/Live switch, the Pause/Resume in the head and the collapsible sections are all there. A card also says where it came from, this phone or your computer, so the two never blur.</p>
+      <p>The board reaches your computer over the same pairing everything else uses. If your desktop is older than 12.9.21, it does not know the board request yet: the phone notices, falls back to the lines it can honestly get, fills only the two columns those lines support, and says on screen why Completed and Blocked are empty &mdash; instead of showing you an empty board and letting you guess. With no pairing at all, the remote sections show the usual settings hint and the phone’s own lines still stand.</p>
 
-      <h3>Running goals</h3>
-      <p>The strip above the board shows the goals running across all your conversations. Each one opens where it lives, and can be carried on or stopped from here.</p>
-</section>
+      <div class="tip"><strong>💡 Tip:</strong> The background runner has to be enabled in Settings → Autopilot before queued tasks are worked through. Friend Mode and Buddy Intelligence work independently of that switch.</div>
+    </section>
+
+    <section id="projects">
+      <h2><span class="icon">💡</span> Projects</h2>
+      <p><strong>Projects</strong> is the tracker for work that runs longer than one conversation: an idea you captured, the milestones under it, the notes you kept, and the chats that belong to it. Everything is stored on this machine and nothing is sent anywhere.</p>
+      <p>A project holds a status and a priority, milestones you tick off, tags, attachments and a set of notes. From a project you open a chat that already carries those notes and the tools the work needs, so a session about it never starts from an empty page. Sessions you started that way stay linked to the project and are listed on it; a link can be undone without touching the conversation.</p>
+      <p>Open it from the Chat sidebar under <em>More</em>, from the nav bar on the top-bar and icon-rail themes, or at <code>/projects</code>. It follows the <strong>Projects</strong> add-on: switch that off and the entry goes, while the page and the data stay.</p>
+    </section>
 
     <section id="always-on">
-      <h2><span class="icon">⏰</span> Always-On Agent <span class="badge badge-beta">Beta</span></h2>
+      <h2><span class="icon">⏰</span> Always-On Agent (the Schedule page)</h2>
       <p>Schedule recurring tasks using cron expressions. Skales runs them automatically in the background, even when you're not actively chatting.</p>
 
       <h3>Built-in Jobs</h3>
@@ -2782,7 +2817,7 @@
     </section>
 
     <section id="browser">
-      <h2><span class="icon">🌐</span> Browser <span class="badge badge-beta">Beta</span></h2>
+      <h2><span class="icon">🌐</span> Browser</h2>
       <p>A built-in browser with AI co-pilot. Navigate the web and ask Skales to help you while browsing.</p>
 
       <h3>How it works</h3>
@@ -2805,6 +2840,20 @@
       <p>When a task needs you logged in (X, Reddit, a webshop), Skales opens a visible browser window so you can sign in by hand. Your login is saved to the Skales browser profile and reused by later browsing. Skales never sees your password. Open a login window any time from Settings → Browser Control ("Log in to a website"), or turn on "Show browser window" there to watch Skales work. When it reads a page, Skales now uses a compact text map of the page instead of a Vision screenshot for each step, which is faster and cheaper; screenshots are still used for image-heavy pages.</p>
     </section>
 
+    <section id="playbooks">
+      <h2><span class="icon">🚀</span> Playbooks</h2>
+      <p>A <strong>playbook</strong> is a browser run recorded once and replayed on demand. Press <em>Record</em>, do the task in the browser yourself — click, type, scroll, upload — and every step is written down as you go. The recording opens right where you are standing: from the Chat sidebar it swaps into the browser over your conversation, on <code>/playbooks</code> it opens the browser page.</p>
+      <p>Steps can be edited afterwards, and a step that holds something secret is marked as such so it is asked for rather than stored. A playbook can carry <strong>variables</strong> (<code>{{name}}</code>): running it then asks for the values first and fills them in. Runs can be put on a schedule, and a recorded playbook can be promoted into a <em>Workflow</em> so an agent can trigger it.</p>
+      <p>It follows the <strong>Playbooks</strong> add-on and is opened from the Chat sidebar under <em>More</em>, from the nav bar on the top-bar and icon-rail themes, or at <code>/playbooks</code>.</p>
+    </section>
+
+    <section id="workflow">
+      <h2><span class="icon">🔀</span> Workflow</h2>
+      <p>A <strong>workflow</strong> is a plan you draw by hand: the steps of a job, in order, with the tools each step may use, saved under a name the agent can be asked for. Where a playbook is a recording of a browser session, a workflow is the instruction for a piece of work — and a recorded playbook can become one, which is how the two halves of the automation chain meet.</p>
+      <p>Each workflow has a trigger (a <code>/goal-name</code> command, a schedule, or a call from the chat) and the steps under it. They live on this machine and run with the tools you already have switched on.</p>
+      <p>It follows the <strong>Workflow</strong> add-on and is opened from the Chat sidebar under <em>More</em>, from the nav bar on the top-bar and icon-rail themes, or at <code>/workflow</code>.</p>
+    </section>
+
     <section id="computer-use">
       <h2><span class="icon">🖥️</span> Computer Use</h2>
       <p>Skales can control your desktop. Screenshots, mouse clicks, keyboard input, and scrolling.</p>
@@ -2825,6 +2874,17 @@
       <p>The download_file tool lets you download files from any URL:</p>
       <div class="code-block">"Download the PDF from https://example.com/report.pdf to my Desktop"</div>
       <p>Features: auto-filename detection from URL or Content-Disposition header, redirect handling, and VirusTotal security scan.</p>
+    </section>
+
+    <section id="webhooks">
+      <h2><span class="icon">🌐</span> Webhooks</h2>
+      <p>Skales has an incoming webhook: an HTTP endpoint that Zapier, n8n, IFTTT, a cron job or a plain curl can POST a message to. The message runs through the chat brain exactly like a typed one, so anything Skales can do in chat can be triggered from outside.</p>
+      <p>Switch it on under Settings &gt; Integrations (the Webhooks card; the skill itself lives on the Skills page under Automation). The card shows the URL and generates the secret. The endpoint is <code>/api/webhook</code> on the port Skales itself runs on, 3000 on a default install, so there is no second server and no second port to open.</p>
+      <div class="code-block">curl -X POST http://localhost:3000/api/webhook \
+  -H "Content-Type: application/json" \
+  -H "X-Webhook-Secret: your-secret" \
+  -d '{"message":"Hello Skales!"}'</div>
+      <p>The secret goes into the <code>X-Webhook-Secret</code> header or as <code>"secret"</code> in the JSON body; the message text is read from <code>message</code>, <code>text</code> or <code>content</code>, and an optional <code>source</code> names the sender in chat. A GET on the same URL answers with the current status, and regenerating the secret on the card invalidates the old one immediately.</p>
     </section>
 
     <!-- ===== Chapter: Providers and models ===== -->
@@ -3389,6 +3449,9 @@
         <li><strong>Messages sent while it is working</strong> are answered together as one turn, with a bar showing how many are waiting and a button to send or clear them. The queue survives leaving the chat and coming back.</li>
       </ul>
       <p>One limit that belongs to the connection rather than to either app: a file fetched <em>from</em> the paired desktop has to fit through the bridge between them. A file too big for it is refused before it is sent, and the phone tells you the size and where the file is on the computer, instead of failing quietly.</p>
+
+      <h3>Sending something to the phone</h3>
+      <p>Ask at the desk for something to go to your phone &mdash; &ldquo;send that to my phone&rdquo; &mdash; and it goes to the Skales app itself, not through WhatsApp or Telegram. It arrives <strong>in the conversation the phone has open</strong>, as an incoming message headed <em>From your computer</em>, with any file attached to it; it is listed again on the phone&rsquo;s <strong>Notifications</strong> page, so it is still findable a day later. A closed phone is woken by a contentless push, and tapping it opens that conversation. If no phone is paired, nothing is sent and you are told so rather than being shown a delivery that went nowhere.</p>
 
       <h3>Approving from the phone</h3>
       <p>If you allow it, a tool call that needs permission can be answered from the phone instead of at the desk. This is a switch on the desktop and it is off unless you turn it on: <strong>Skales Mobile &rsaquo; Allow approvals via mobile</strong>. Screen sharing, which lets a paired phone see the desktop screen, is a second switch beside it, also off until you turn it on.</p>
@@ -4231,7 +4294,7 @@
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.9.10</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
+      <span>Skales v<span data-skales-version>12.9.21</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 

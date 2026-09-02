@@ -6,6 +6,855 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.9.21 - Cockpit 2.0
+
+### Added
+
+- **Cockpit 2.0.** One head, one action. The Cockpit opens on an execution
+  board: everything that stands, in four columns - pending, in progress,
+  completed, blocked - with goals, your own tasks, Autopilot tasks and
+  schedules as cards you can filter, drag and act on. Goals, Schedule and
+  Tasks sit below as sections that fold open; Live and History are one switch
+  away; Identity & Memory and the Control Room keep their place as sections.
+  The two stacked tab bars, the second title and the icon chips are gone, and
+  finished goals finally show up as finished.
+- **Every model gets a "Can this model see images?" switch.** Beside the model
+  field of each provider card: Auto, Yes, or No. Skales used to guess from the
+  model name and from what a running daemon reported, and there was no way to
+  correct a wrong guess except for custom endpoints. Your answer now wins over
+  both, in either direction, for that model at that provider. GLM-5 and Qwen 3.5
+  are recognised as able to read images by rule rather than by an exact name.
+- **Answers cite the memories they used.** A line under the reply lists what
+  Skales recalled, each with its date, and tapping one jumps to that entry on
+  the Memory page. The Buddy shows the same line from the same recall.
+- **Agent lessons have a home.** What an agent learned from its runs shows on
+  the Memory page as its own kind, correctable and deletable per line.
+- **Skales Code adopts what a project already has.** Rules written for other
+  editors are named, MCP servers from a project made elsewhere can be imported
+  (switched off, with their command line shown), and files a project tracks on
+  purpose under an ignored folder stay visible in the tree.
+
+### Changed
+
+- **The card that asks how you like to work asks each question once.** Answer
+  it or wave it off and it is gone for good, in the feed and on the Memory page.
+  Every question is answered by tapping - no open text box, no model call - and
+  there are six more of them to draw from. Answering shows what was saved and
+  then clears the card away.
+- **Plugin pages are the page.** The job box only shows for plugins that have no
+  page of their own; a page plugin gets a small "Give a job" in its header
+  instead of a permanent box above the tool. Something a run prepared and parked
+  now waits where the thing is - on the page, next to the letter or invoice -
+  and the frame sits flush in the window with one scrollbar instead of two.
+- **Bundled plugins open on what they are for and what to do first**, instead of
+  on a row of counters reading zero. Data Broker Exit offers the step you can
+  actually take - fetch the register, record your details, pick the companies,
+  then check for answers. Open Invoices no longer tells a fresh install that
+  every invoice is paid. Notice Radar, Page Watch and Receipt Inbox name the
+  first step, and a button that cannot do anything yet says why. Installed
+  copies show "Update to 1.1.0" on the plugin page.
+- **Bundled plugins update themselves when nothing about their rights changes.**
+  A newer bundled version that asks for no new tool, network or file access is
+  applied on the next start or page visit; one that widens its rights still
+  waits for your approval card.
+- **A room with nobody else in it says "sent", not "sending" forever.** The
+  message was delivered to the relay; there was simply nobody to confirm it.
+- **The DevKit command line is `skales-dev`.** The app's own `skales` command
+  keeps its name; the docs say which is which.
+- **Removing someone from a room now tells the relay.** The removed device stops
+  receiving that room's pushes at once instead of when it next says so itself.
+- **Advisor strategy answers plain chat on the executor.** The advisor only
+  steps in for a turn that really needs a plan; a normal message no longer
+  routes to the planning model.
+- **Every turn carries less prompt.** The release notes and the page catalogue
+  ship as short lists and the full detail loads on demand; facts told twice
+  are told once; the stable part of the prompt stays ahead of the cache line.
+  A model that was handed the whole tool catalogue because it once fumbled a
+  call gets the short one back after its first real tool call.
+- **Plugin cards say how a plugin reaches the web.** "Sandbox offline, reaches
+  the web through Skales tools" instead of a bare "No network" on a plugin that
+  sends mail or fetches pages through the host.
+- The plan header says "Step 2 of 5" instead of "2/5".
+
+### Fixed
+
+- **A note sent to your phone has a place to land.** `send_to_phone` delivered
+  the note and the push arrived, but tapping it opened nothing, because the
+  phone had no destination for it. The note now lands in the open conversation
+  on the phone under "From your computer", the tool description, the docs and
+  the app's own self-knowledge say so, and the guide has a section on it.
+- **Image generation on OpenAI and OpenRouter works again.** The OpenAI path
+  sent a `response_format` parameter that the gpt-image models reject, and a
+  size they do not offer; both now follow the model family. Image-only
+  OpenRouter models were called on the chat endpoint and answered 404; they now
+  go to the images endpoint, hybrid models stay on chat, and a model that fits
+  neither gets a sentence instead of a status code. The image-model picker in
+  Settings lists both catalogues.
+- **A custom endpoint is no longer treated as a local model just for being
+  custom.** The address decides, and every custom endpoint card carries a
+  "Runs locally" switch for the cases the address cannot tell. A hosted
+  frontier model behind your own URL gets the full tool set, not the 70-tool
+  cap meant for small local models.
+- **Importing skills from GitHub brings the whole skill folder.** The batch
+  import used to write only the SKILL.md and drop the scripts beside it; single
+  and batch import now go through one installer that mirrors scripts,
+  references and assets.
+- **Zotero is a one-tap MCP preset.** The quick setup lists the llm-for-zotero
+  server, so a library can be connected without typing the command by hand.
+- **Small local models that print their reasoning as the answer no longer do
+  so.** Thinking that arrives without any tag folds into the reasoning panel,
+  while it streams and once it lands; when Skales is not sure, it shows
+  everything rather than hiding a real answer.
+- **The chat no longer steps up and down while the assistant works.** The
+  status line stayed put once per run instead of remounting on every poll, and
+  the auto-follow only scrolls when there is more to see.
+- **An attached picture tells the truth about who sees it.** The note under an
+  image no longer claims the model can already see it when the model is blind
+  or when a separate vision model is doing the looking. "This model cannot read
+  images" names both ways out - the switch and a vision provider - where it
+  happens.
+- **Quitting Skales sweeps up llama-server processes** left behind by an
+  earlier session or a crash, not only in the emergency backstop. Restarting
+  from inside the app now shuts down everything a normal quit shuts down.
+- **A scheduled agent that finishes with nothing to say is marked failed** and
+  says why, instead of being filed as a successful run.
+- **Installing the TypeScript checker for Skales Code works again**: the install
+  pinned no compiler version and the newest one has no tsserver, so every
+  request came back "unresponsive".
+- **The build gates no longer go blind** on a file whose line comment mentions
+  a path with a star in it.
+- **A Windows update that cannot install now says so.** The installer used to
+  run hidden, so anything that stopped it - Windows warning about an unsigned
+  setup, or one last Skales window still holding a file - ended the update in
+  silence, and the next start was the old version again. It now installs in its
+  own window: the warning and the "close Skales and retry" prompt are on screen
+  where they can be answered - and because the setup now knows it is an update
+  of an app that is closing itself, it waits for that instead of asking at all.
+  Skales still restarts by itself afterwards.
+
+## v12.9.20 - Slim
+
+### Added
+
+- **Your agent carries its working mood in the open now.** The Conscious bar
+  and the companion behind it - interests, mood, the day's movements - are on
+  from the start instead of hidden behind a switch most people never found.
+  It only ever draws: no notification, no sound, nothing sent. One tap in
+  Settings > Memory turns it off, and anyone who had turned it off stays off.
+- **A pixel gecko lives on the Code landing.** Between the greeting and the
+  composer, 120 by 80 pixels of mascot, with nine little loops - it naps,
+  hunts a bug out of a terminal, sheds its skin, catches a fly. Every visit
+  picks a different one, never the same twice in a row, and its dark details
+  follow your theme.
+
+- **Call Mode is Iris now.** A call used to run on a second, smaller brain in a
+  conversation of its own: no skills, no goals, no access limit, and its answers
+  landed somewhere you were not looking. It is the same mind as the voice window
+  now, in the same conversation, with everything that mind can do - and if it
+  needs permission for something it asks out loud and takes "yes" or "no" for an
+  answer. Hang up and the chat behind it is where you left it.
+
+- **A result in the ring can be a circle now.** Short answers, a picture, a
+  short list and the countdown get a round frame with the text following the
+  curve; anything longer, and anything with headings, lists, tables or code,
+  keeps the panel it has always had. Long text scrolls by itself, slowly enough
+  to read along with - and the moment you touch it, with wheel, trackpad,
+  scrollbar, keyboard or by selecting a word, it stops for good.
+
+- **A web page can live inside the ring.** Ask to see a page and it appears in
+  the frame as the page, with its pictures, rather than as a wall of text - and
+  the browser only opens when you actually ask for the browser. More of what
+  Iris finds now has somewhere to be shown: what you searched, what you listed,
+  what you read.
+
+- **You can watch a design being made.** Studio, the chat and Flow now show a
+  running line while a visual is being written - which stage it is at, how much
+  has arrived, how long it has been going. Before this you looked at nothing at
+  all for as long as it took, with no way to tell a slow model from a stuck one.
+
+- **A design that got cut off says so, and Skales finishes it.** When a model
+  runs out of room mid-page, the half that arrived used to look exactly like a
+  finished one - and the next thing you did was share it. Now it is labelled,
+  Skales writes the rest once by itself without asking, and if that is still not
+  enough there is a button to carry on. It stops on its own when a model starts
+  going in circles instead of burning your budget on it.
+
+
+- **Skales remembers what yesterday was about.** Once a conversation has been
+  quiet for a while, it writes four short lines about it: what it was about,
+  what got settled, what was still open, and which of your things came up. The
+  conversations of one day are folded into a single account overnight, so
+  "last week" has an answer too without anything having to read eight hundred
+  messages again. Opening a new chat brings the open ends of the last one with
+  it, quietly, instead of asking you to explain it all a second time.
+
+- **"What did we talk about yesterday?" is a question that works now.** The
+  search through past conversations understands periods of time, and it looks
+  for meaning rather than for letters - so it still finds the afternoon you
+  mean when the words you used back then were different ones. Alongside it
+  there is the cheap way: the short account of a conversation, instead of the
+  whole conversation.
+
+- **You can see where a saved line came from.** Every line on the Memory page
+  now says whether you told Skales yourself, whether it was noted during a
+  chat, whether the nightly pass found it, or whether it came over from your
+  phone. A line from before this existed says nothing rather than guessing.
+
+- **A saved line can be corrected, not only deleted.** A memory that is right
+  about the subject and wrong about the detail used to cost the whole record.
+
+- **Skales brings along what hangs off the thing you are talking about.** Until
+  now it could only look something up when the word was there. Mention a
+  project, and the people and tools that belong to it come with it, without
+  having to be named.
+
+- **What you keep coming back to now shapes an ordinary conversation.** It was
+  learned already, and it reached the messages Skales sends on its own, but not
+  the chat in front of you. It says what you care about, which is a different
+  thing from where a conversation stopped, and both are used quietly rather
+  than read back to you.
+
+- **Ten plugins ship with Skales, and they are the point rather than the
+  demonstration.** The shelf used to carry two, and neither answered the
+  question of what a plugin is for. It now carries three that answer a question
+  about your own exposure, three a small business runs on, and four about the
+  working day. **Exposure Check** tells you whether a password has been in a
+  breach without the password leaving the machine: it is fingerprinted here and
+  five characters of that fingerprint go out, and the same page names which of
+  the services you use have been breached and exactly what came out of each.
+  **Attachment Check** answers for a file somebody mailed you in two steps -
+  first a lookup by fingerprint, which publishes nothing, and only then, if you
+  press it, an upload that does. It follows a link without opening one, and
+  shows you where it actually ends up. **Data Broker Exit** works down the
+  Californian broker register, writes each company the erasure request the law
+  where you live actually gives you, tracks the deadline it has to answer by,
+  and chases the ones that go quiet. **Open Invoices** keeps who still owes you
+  money and has the reminder written by the time it is overdue. **Notice Radar**
+  keeps every contract with its notice period and warns you long before the day
+  you can still cancel. **Receipt Inbox** collects the receipts that arrive by
+  mail into a month you can correct and hand on. **Page Watch** tells you what
+  changed on a competitor's page since last week. **Meeting Prep** reads
+  tomorrow's calendar and leaves a briefing on whoever you are meeting.
+
+- **Nothing any of them can do happens quietly.** Every one sends only behind a
+  card that names the recipient and the text and waits for you to press it, on
+  any machine, in any mode, and a run on a schedule has nobody at the screen so
+  it prepares the thing and the sending waits. Each reaches its own folder and
+  the tools written on its card, and nothing else. Every one of them says on the
+  page what it still needs - a mailbox, a calendar, a key - instead of showing a
+  blank panel, and the parts that are arithmetic keep working while it says so.
+
+- **Skales Code answers to the keyboard now.** A command palette on Cmd-K (or
+  Cmd-Shift-P) lists everything the window can do and says which key does it.
+  Cmd-P jumps to a file by name, Cmd-Shift-F searches the project, Cmd-B the
+  file column, Cmd-J the terminal, Cmd-Shift-G the review panel, Cmd-N a new
+  session, Cmd-Shift-H the history, Cmd-comma the settings, Cmd-period stops a
+  run, and Cmd-slash lists all of them. Inside the terminal none of them fire:
+  Control-P and Control-K belong to your shell, and a window that swallows them
+  has broken the terminal it gave you.
+
+- **Search the project, not just its file names.** The file column has a third
+  side that searches file CONTENTS - the same fast search the assistant has
+  always had for itself - with a switch for case, one for regular expressions,
+  and a field to narrow it to certain files. Every hit is a place: click it and
+  the file opens at that line. A pattern that cannot work says which character
+  is wrong and where, and a result list that had to stop early says how many
+  matches there were in total instead of quietly looking complete.
+
+- **Take a diff apart instead of taking all of it.** Every part of a change now
+  has its own checkbox, so two good edits and one wrong one in the same file no
+  longer force you to throw away all three. Keep the parts you picked, undo the
+  parts you picked, and take a file back out of the next commit. If git can only
+  place some of the parts, it says which one it could not and why.
+
+- **The repository, inside the window.** Branches list, switch and get created
+  here; fetch, pull and push are buttons; the working tree can be put aside and
+  brought back; and the commits that already exist are readable without leaving
+  for a terminal. A switch that would overwrite uncommitted work names the files
+  and stops instead of stashing them behind your back, and a push that moved
+  nothing says so rather than reporting success.
+
+- **`skales .` opens a folder in Skales Code.** The terminal command can be set
+  up from the Code window's settings, and if the system will not let Skales
+  write there, it hands you the exact command to run yourself instead of failing
+  quietly. A folder can also be dropped on the app or opened from its own
+  right-click menu. A folder that already has a session opens that session.
+  The DevKit's own command, which used to answer to `skales` as well, is now
+  `skales-dev` - one talks to an app that is already running, the other opens a
+  folder and can start one, and both can sit on your PATH at the same time.
+
+- **Rules you wrote for another editor come with you.** A project's
+  `.cursorrules`, `.cursor/rules/*.mdc`, `.github/copilot-instructions.md` and
+  `.windsurfrules` are read alongside its `CLAUDE.md` or `AGENTS.md`, and a
+  project that has only those still gets them. The project's own file is still
+  read first and still wins; every block says which file it came from, so a rule
+  that has gone stale can be traced to the thing to delete.
+
+- **Mistakes show up in the same turn they were made.** After a file is written
+  or edited, the language checker for that language reports the errors it found
+  straight back, without a build and without a test run. Skales does not put a
+  checker on your machine on its own: it asks, the card says exactly what would
+  be run and where it lands, and saying no leaves everything else working. A
+  checker that has not answered yet is reported as "not checked yet", never as
+  "no errors".
+
+- **One objective, several branches, one comparison.** A job can be handed to
+  several variants at once, each in its own checkout on its own branch, each
+  with its own approach if you give them one. The comparison leads with the
+  files more than one variant touched, because that is where the attempts
+  genuinely disagree; the rest is each variant's own work and can be taken as
+  it stands. A winner can be kept as a branch, merged, or turned into a pull
+  request, and clearing up never deletes a variant's transcript.
+
+- **Browser, Playbooks and Workflow are back - as popups.** All three open
+  from the chat column's More without leaving the conversation, the browser
+  also from the Code window. A playbook records and replays inside the popup
+  instead of walking you away to another page. Projects got a proper menu
+  entry the same way.
+
+- **Building a plugin works end to end.** The assistant now always knows its
+  own plugin tools, so "build me a page" builds one instead of ending in
+  guesswork. A plugin can no longer be created with an empty page, its page
+  follows the active theme, any tool the page calls without being granted is
+  named out loud, and nothing a plugin is not allowed to have is dropped
+  silently any more - what was granted and what was refused is spelled out.
+  The page editor refuses to save a page down to nothing.
+
+- **Your Skales Wrapped asks once a week, in the same card.** When a fresh recap
+  is ready and you have not shared it yet, it is one of the lines in the
+  composer. Choosing it opens the recap itself - no waiting, no generated text
+  in between - and once you have shared it the line is gone for that week, even
+  across a restart.
+
+- **The feed finally shows the work it never showed.** Teams rooms, plugins you
+  build and use, projects, Hugging Face Spaces, custom widgets, result cards,
+  Flow films and shared agent skills all have their own wording now. Every one
+  of them says THAT something happened and never what: never a room name, never
+  a project, never a message, never a search you ran.
+
+### Changed
+
+- **Vision & Screenshots is the switch it always said it was.** The add-on
+  promised to cover images and only ever governed the screenshot tool: turned
+  off, a second vision model still read every picture you attached. It now
+  covers all three - desktop screenshots, analyze_image, and letting a separate
+  Vision Provider read chat attachments. It stays on by default, so nothing
+  changes unless you touch it. Off means no second model ever reads your
+  images; your own model still sees them if it can, and if it cannot, Skales
+  says so by name instead of sending blind. Browser Control and Desktop Control
+  keep their own eyes either way - they have their own switches.
+
+- **Your own model gets your picture first.** An attached image used to go to
+  the Vision Provider whenever one was configured, even when the model you
+  chose could see perfectly well - so a frontier model answered from an older
+  vision model's description instead of the picture. Now a model that can see
+  gets the image itself, and the Vision Provider steps in only when it cannot.
+  The "Chat (images)" tick is still the Vision Provider's permission for chat;
+  it just no longer outranks a model with eyes.
+
+- **Teams stands with the working surfaces.** Its only door used to hang off
+  the chat column, which left it with none in Home and none at all in the
+  layouts that have no chat column. It is in Main now, so More reaches it like
+  everything else.
+
+- **The question about how you like to work waits where you can find it.** It
+  used to arrive in the middle of a conversation, with a notice on top, at a
+  moment nobody picked. It lives on the Memory page now, next to what Skales
+  has already learned about you, and turns up in the Discover feed between the
+  posts. It comes in two shapes - a couple of taps, or one open question - and
+  only ever one at a time across both places. Older conversations that still
+  hold one of these cards keep them, and they can still be answered there.
+
+- **Teams is a room, and only a room.** The six-digit pairing that reached
+  exactly one other computer is gone; a room code and its QR are the one way
+  in, for phones and desktops alike. Every pairwise conversation you already
+  had is carried over into a room of its own, so no line is lost. The screen
+  that used to hold two features at once now holds one: rooms on the left, the
+  room on the right. Members, the board, inviting, joining and verifying open
+  as panels over it instead of pushing the conversation down the page.
+
+- **The room reads like the chat, because it is the chat.** Same bubbles, same
+  four bubble fonts and sizes, same markdown, same colours in all three themes.
+  You can attach files - drag them onto the composer or use the paperclip -
+  and pictures arrive with a preview the sender made, so nothing waits on a
+  grey box. A file that breaks in transit says which way it broke.
+
+- **Mention an agent and it knows where it is.** An agent in a room now reads
+  the room: who is in it, who just asked, that several people are reading, and
+  the conversation so far rather than the single line that mentioned it. It
+  answers with the same tools, memory and skills it has in the chat, shows its
+  thinking, its tool steps and what the turn cost, and can put rows on the
+  shared board as a proposal. Approving those rows stays where it was: with
+  the people, unanimously. Mentions are picked from the member list rather
+  than read out of the text, so a quoted name can no longer start a paid run.
+
+- **Nothing starts on a machine that stepped away.** If the computer or phone
+  that owns an agent is not in the room, the request waits for it and runs
+  when it returns, instead of failing on the spot. An agent someone else can
+  start now asks its owner before anything that needs confirming.
+
+- **A room can be cut, exported and quietened.** Press and hold a room for
+  rename, notifications, verify, export, a new section and leave. A new
+  section draws a line everyone sees; older messages stay readable, and agents
+  read from the line onward. Each room chooses how loud it is, and starts at
+  mentions only. Agent progress never rings.
+
+- **You are told when you are not looking.** A room you are not on now raises
+  a count, and a mention reaches you as a notification even when the window is
+  behind something else. Knocks and a changed security key come through even
+  in a muted room, because those are not messages.
+
+- **Members say whether you have checked them.** The four-character key stub
+  is gone from the member list. Each member carries verified, unverified or
+  changed, and tapping one offers the QR up close or six words to read aloud.
+  The stub survives only where two members share a name.
+
+- **The sidebar belongs to you now.** Home shows four entries - Dashboard,
+  Chat, Code and Studio - and one More button that holds everything else,
+  grouped the way the old headings did. Pin what matters (the pin on the row,
+  or a right-click) and it rises out of More to sit under the four; unpin and
+  it returns. Pins survive a restart, and a fresh install starts with the
+  plain four. Notification dots travel with an entry wherever it lives, and
+  while something with news is tucked away in More, the More button itself
+  carries the dot. The chat column pins the same way, under Cockpit.
+
+- **The Code window's file tree is loaded a level at a time.** Opening a folder
+  reads that folder, so a repository of any size costs one read per level you
+  actually look at rather than a scan of everything before the first line
+  appears. Dot-files and dot-folders are visible now - `.github`, `.env.example`
+  and `.eslintrc` were unreachable - and files your `.gitignore` excludes stay
+  out of the tree, the way they stay out of git.
+
+- **Custom widgets line up like everything else.** An active widget appears
+  under More instead of opening its own titled block in the column, and can
+  be pinned like any other entry.
+
+- **Beta is said in one place.** The beta mark sits in a surface's own title
+  now - Plugins and Teams carry it - instead of being sprinkled across menus,
+  settings and screens.
+
+- **Swarm's own page steps back.** Teams is how machines work together now
+  and took over that door; swarm delegation itself keeps working for chats
+  that use it.
+
+- **The Add-ons page tells the truth.** A card whose page has no menu door
+  right now says so instead of pretending, and the Lio card stepped out
+  entirely - Lio lives inside Flow.
+
+- **The Discover composer has no text box any more.** Tapping "What's on your
+  mind" used to hand you an empty field and a blinking cursor. It now opens a
+  card with three or four concrete lines, each one built from something you
+  actually did this week - "you made four images in Studio", "you have never
+  tried this" - and the second line under each says how often, or that it is
+  new to you. The card is there the moment you open it: it is assembled from
+  what is already on your machine, so nothing has to be asked of a model first.
+  There is nowhere left to type, and that is the point - the composer was the
+  shortest path in the app from something you typed to a public page.
+
+- **The GIF is a choice, not a search box.** Picking a GIF used to send whatever
+  word was in the field to Klipy or Giphy. Now a handful of GIFs come back for
+  the suggestion you picked, and you choose one of those.
+
+- **Long conversations stopped eating the app.** Streaming an answer into a
+  chat with hundreds of turns used to seize the whole window for seconds at a
+  time - typing lagged, frames dropped, and the longer the history, the worse
+  it got. The page now draws only what you are looking at, an answer arriving
+  no longer makes the rest of the conversation do work, and a chat of five
+  hundred turns opens in half the time. Typing stays instant while a reply is
+  coming in, and quoting, forking, editing and jumping to an old message all
+  still land exactly where they did.
+
+- **Skales is on screen sooner.** The window no longer waits for the engine to
+  finish waking up before it exists, the opening screen holds only as long as
+  it actually needs instead of a fixed pause, and there is less to load before
+  the first page appears. On the rare start that genuinely takes long you now
+  see what is happening and have a way out, instead of watching a logo.
+
+- **The sidebar is quicker off the mark.** The first paint now does only
+  first-paint work; the dots, counters and lists that merely decorate a row
+  arrive a blink later instead of standing in front of it. Your pins, your
+  chosen page and everything you rearranged stay exactly as they were.
+
+### Fixed
+
+- **A model that only ever thinks gets stopped, with the bill named.** A
+  thinking model that circles in its own reasoning forever used to keep a
+  visual run alive at full cost without writing a single line. Past the same
+  runaway ceiling the chat already enforces, the run now ends with the spent
+  amount named and a suggestion, instead of a spinner that costs money.
+- **The phone's plugin card now shows a plugin's memory reach.** The desktop
+  sends the memory permission along with the plugin list, so a paired phone
+  shows the real setting (own memory or shared) instead of assuming the
+  stricter one.
+- **Google Drive can upload a real file now.** Uploading only ever worked for
+  text the model typed out itself: there was no way to hand it a file that was
+  already on your disk, and anything that was not plain text was quietly
+  scrambled on the way up. Point it at a path instead - a photo, a PDF, an
+  archive, a video - and what lands in Drive is the file, byte for byte. Big
+  files no longer ride on one connection that gives up after a minute, and when
+  Google refuses something it says why in a sentence instead of a number. The
+  usual folder rules apply, so nothing outside them can be sent anywhere.
+
+- **Half past five in the afternoon is the afternoon.** Open Skales at 17:30 in
+  Buenos Aires and it wished you a good night. Three screens each kept their own
+  idea of when the evening starts, and one of them started it an hour early - in
+  Spanish and Portuguese that turns straight into the wrong greeting. There is
+  one answer now, read off your own clock, and the home screen no longer flashes
+  "Good morning" for a moment before it catches up.
+
+- **A cloud video that came out shorter than you asked says so.** Every video
+  model has a length it can actually make, and the ones that cannot reach your
+  number quietly make something shorter - which was then filed, shown and shared
+  as the clip you briefed. It now carries the same label a cut-off design does,
+  in the gallery as well, and it tells you how long the clip really is and what
+  to do about it.
+
+- **Small local models stop talking themselves into circles.** A 2B-class model
+  asked to transcribe an upload could wedge in its own thinking, repeating one
+  phrase until you stopped it by hand. The instructions for result cards are a
+  protocol those models cannot follow, and they were being handed to every
+  model regardless of size - a modern 2B ships a huge context window, so the
+  window alone did not tell them apart. The size the model declares is read as
+  well now, and a model too small for the protocol simply never receives it.
+
+- **You can see what an uploaded audio file said.** Dropping a clip in the chat
+  transcribed it and then showed you nothing, so the natural next move was to
+  ask for the same transcription a second time and pay for it twice. Clicking
+  the attachment now opens exactly what Skales extracted from it - the spoken
+  words for a clip, the extracted text for anything else - which is also
+  precisely what the model was given.
+
+- **Skales Local actually uses your graphics card.** The local engine was started
+  without ever being told how much of a model to put on the GPU, so an
+  accelerated build took video memory and then did every calculation on the
+  processor: the card looked busy and sat at zero. The layers slider and the
+  thread count in the model settings now reach the engine, and changing either
+  restarts it so the number on screen is the number it is running with.
+
+- **You can see what the local engine found.** A new Hardware line under the
+  GPU badge names the backend it was built with, the graphics card the engine
+  itself reports, the server file and version that are running, and how many of
+  the model's layers actually went to the card. Before there was a download, a
+  model or a running engine, it says which of the three is missing instead of
+  standing empty.
+
+- **The Spanish voice can be found by looking for Spanish.** Searching the local
+  model list now matches the language and its locale as well as the name, with
+  or without accents, so "espanol", the same word spelled properly, and "es-ES"
+  all reach the Spanish voices. Every voice also has one name now instead of two
+  different ones on two screens.
+
+- **A voice you have not downloaded can be downloaded where you pick it.** The
+  greyed-out "not downloaded" entries in the voice picker used to be a dead end;
+  the ones you are missing now sit under the picker with their size and a
+  download button.
+
+- **A model that thinks for minutes is no longer mistaken for a dead one.** In
+  Studio a reasoning model could think for six minutes before writing the first
+  line of a design - and the card said "waiting for the first line of the page"
+  the whole time and then gave up, because only visible text counted as a sign
+  of life. The thinking counts now: the running line says it is thinking and how
+  much thinking has arrived, and the run is only ever ended by real silence.
+
+- **A design wrapped in chatter arrives as a design.** When a model put its page
+  inside a code block with a sentence before or after it, the backticks and the
+  chatter ended up in the page itself.
+
+- **A style pack actually changes how the result looks.** The chosen pack used
+  to sit near the top of the instructions, with everything more concrete after
+  it - so picking one barely moved the artifact. It is now the last thing said,
+  and it says plainly that it decides the palette, the type, the geometry and
+  the shape of a button. The brief still decides what gets built and every word
+  in it.
+
+- **Every style pack has a description.** A third of them showed nothing, and
+  twelve showed a single "|" where the sentence should have been.
+
+- **You pick an ElevenLabs voice from a list now, instead of typing an id you
+  had to go and find.** Settings > Voice shows the voices on your account -
+  including the ones you cloned yourself, which were never findable anywhere -
+  with a search box and a play button next to each one. The id field stays
+  underneath for anyone who prefers it.
+
+- **A voice that cannot speak says why.** A wrong voice id, an empty balance or
+  a refused key used to end the same way in a call: another voice answered and
+  nothing said the setting had been dropped. Now the reason appears on screen,
+  in the service's own words, and the call reads through the same voice ladder
+  as the rest of Skales instead of a shorter one of its own.
+
+- **Buddy and Call Mode no longer die as a white window.** If something in
+  either one breaks while drawing, you get the real reason, the details to send
+  and a way back, in place of an empty pane.
+
+- **A call no longer falls silent on anything that takes more than one step.**
+  Ask a question in Call Mode that needs a tool and the answer used to never
+  arrive; it does now.
+
+- **Big models that think before they write finally get the room they need.**
+  Several of the large frontier models were being handed an eighth of the space
+  they can actually use when they were reached through an aggregator, so a long
+  single-file answer was cut off mid-document while the model still had plenty
+  left. They also got a short clock meant for fast models, which ended turns
+  that were still working. Both are fixed, and the families that think silently
+  for minutes are now recognised as such.
+
+- **The dimming behind a dialog now actually dims.** In Studio's Flow tab the
+  shaded layer was being painted underneath the very navigation it was meant to
+  cover, so a dialog left the app looking half-open.
+
+- **Escape no longer throws you out of Flow.** Opening a picker and pressing
+  Escape closed the entire workspace instead of the picker.
+
+- **Buttons in Flow's preview no longer sit on top of each other.** Narrow the
+  chat column and Export, Share and the reload button used to overlap; they now
+  give way in order and the row wraps instead of spilling.
+
+- **The camera settings in Studio reach the video now.** Lens, lighting and mood
+  could be chosen but never left the screen - the video was made as if you had
+  set nothing. A render that picks up again after a restart also shows its
+  progress once more instead of an empty panel.
+
+
+- **The memory understands every language now.** What Skales picked up on its
+  own was tied to English phrasing: "I live in Vienna" was learned, "ich wohne
+  in Wien" was not. For anyone whose everyday language is not English, this
+  half of the memory was quietly running empty. Two smaller faults of the same
+  kind went with it: the nightly pass gave English sentences a head start that
+  landed exactly on the threshold, so the same fact was kept in one language
+  and thrown away in the other - and search folded away every accent, so a
+  German word could not match itself.
+
+- **What you say about yourself counts too.** The nightly pass only ever
+  learned from sentences Skales had written, never from your own.
+
+- **A fact that has been overtaken steps back instead of standing alongside.**
+  Someone who moved had two homes in memory, both equally believed. The newer
+  one now closes the older. Nothing is deleted: the history stays readable, so
+  Skales can say what used to be true and since when something else is.
+
+- **Skales only sounds as familiar as it can actually back up.** While nothing
+  is recorded, it no longer talks as though it knows what you were last
+  working on together.
+
+- **The mood display shows what is really being carried.** The bar, the trace
+  and the panel each counted the fading a second and sometimes a third time,
+  and showed a paler mood than the agent itself had.
+
+- **What comes back is the conversation you had, not a summary of the day it
+  was in.** Both are kept, and on the day itself they describe the same
+  afternoon. Where only one of them fits, it is now the specific one.
+
+- **The day strip in the Conscious window is a time axis again.** It sat
+  directly under the colour scale, built the same way, so the mark for an event
+  read as a pointer into the colours above it. It has a beginning, a middle and
+  an end of its own now, and under the movement marks there is a line saying
+  what they mean: height is how big the move was, colour its direction, and the
+  fading how much it still counts.
+
+- **A file sent between a phone and a computer arrives.** The two sides took
+  the checksum over different things - one over the sealed bytes, the other
+  over how those bytes are written down for the journey - so every attachment
+  that crossed between them was thrown away for a sum that was never wrong
+  about the file. It showed up as two different faults: a named refusal on one
+  side, and on the other a picture that stayed blurry with a share that had
+  nothing to share, because the small preview travels with the message while
+  the file itself does not.
+
+- **A file whose pieces were missed is asked for again.** The pieces are sent
+  to whoever is in the room at that moment, so a machine that was away misses
+  them for good. It used to ask for them back exactly once, at the moment the
+  file was announced - and if that moment fell on a restart, the request was
+  lost too and the file sat at nothing forever. Every pass now asks again for
+  what is still missing.
+
+- **A right-click in the sidebar offers what the row can do.** A row that
+  cannot be pinned had no menu of its own and handed the click to the window,
+  which offered to copy this machine's address or open it in a browser. Every
+  row now offers open, pin or unpin where that applies, report a bug and
+  settings.
+
+- **A shortener collapsed into one step.** Following a redirect is the one place
+  the app sees a chain: it walks the hops by hand so it can check each one
+  against the address guard, and then handed back only the last answer. So a
+  plugin asking where a mailed link actually ENDS UP was told it went straight
+  there. The chain comes back now, in order, including the hop that was refused
+  when one is - which is the chain most worth reading - and Attachment Check
+  lists every step instead of apologising for the ones it could not see.
+
+- **Three doors were held shut on plugins by numbers meant for a model.** A
+  tool answers a model inside a context window, so it trims: a file's text goes
+  in the message rather than the result, a web response is cut at 4000
+  characters, a mail body at 500. A plugin page has none of that - it asked for
+  the bytes in order to parse them, and a JSON answer cut in half is not JSON.
+  All three now have a ceiling of their own for pages, stated in one named place
+  each, and the model's budgets are untouched. In practice: a plugin can read a
+  register that answers in hundreds of kilobytes, a full scan report instead of
+  its first paragraph, and enough of an invoice mail to find the amount in it.
+
+- **A plugin could write a file and never read it back.** Reading a file
+  answered a plugin's page with the file's size and its line count and not its
+  text, so anything that kept a list, a ledger or a set of notes could save it
+  and then find nothing there. The page gets the text now, which is what makes
+  a plugin whose screen and whose scheduled half share the same file possible at
+  all. The Daily Brief was the visible half of it: the page listed the briefs it
+  had written and drew every one of them empty.
+
+- **Changing a shipped plugin, then updating it, lost the change in silence.**
+  A plugin from the catalogue can be edited here - asking the chat to reword its
+  page is a reasonable thing to want - and the next version its author published
+  replaced that page with no mention of what it was replacing. An edit made on
+  this machine is now recorded, and the update card says in plain words that
+  updating takes it back, before the button is pressed.
+
+- **A plugin's memory namespace looked like a wall and was not one.** The
+  manifest had carried one since the first version and it scoped nothing: any
+  plugin allowed a memory tool wrote into the same store the chat uses, and one
+  allowed to search read all of it - everything you have ever asked Skales to
+  remember. Memory is a permission now, like the network and the files. A plugin
+  keeps its notes in a store of its own that nothing else reads; reaching the
+  memory you share with the chat is a separate thing it has to ask for, written
+  on the card in those words before you install it. A manifest that says nothing
+  keeps to its own, so nothing already installed silently kept the wider reach.
+  Two of the ten ask for it, because reading what you told Skales to remember is
+  what they are for: the Daily Brief and Meeting Prep.
+
+- **The catalogue sat on top of your own plugins.** Get plugins was the first
+  thing on the page, above the box for starting one and above everything you had
+  installed, which made a shelf read as an advertisement. What you have comes
+  first now, and the catalogue is underneath it with a line saying what it is.
+
+- **The file list said "project" and showed you 500 files of it.** On this
+  repository that was 500 of 8,188, with nothing on screen to say so. The tree
+  has no cap at all now, and the flat list behind the at-mentions says how many
+  files it is showing out of how many there are whenever it has to stop short.
+
+- **The file tree took its colours from the wrong place.** It painted itself in
+  the main app's colours while sitting inside a window that runs its own light
+  and dark, so with the two set differently the file names could come out
+  unreadable. Two hard-coded colours went with it.
+
+- **Replies and posts died without a word.** A reply simply never appeared, and
+  nothing said why. The cause was a budget: a one-shot request was capped so
+  low that a model which thinks first spent all of it thinking and handed back
+  an empty answer - no error, nothing to see. Nine other places in the app made
+  the same request the same way. They all have room now, they climb to a bigger
+  budget when the first one runs out, and if the answer is still empty you get
+  the reason on screen instead of a blank sheet.
+
+- **An Anthropic key was reported broken while it worked perfectly.** One layer
+  below, every single request to Anthropic was pinned to sixty-four tokens no
+  matter what had been asked for. Four things were broken by that one number
+  and are fixed with it: Test Connection called a working key faulty as soon as
+  a thinking model was selected, automatic chat titles came back as half a
+  sentence, the memory extraction could never finish its answer, and the spoken
+  greeting in Voice was cut off mid-word out loud. Google's models were sent no
+  output limit at all.
+
+- **The reasoning kill switch never reached ChatGPT.** When an answer comes back
+  empty twice, Skales turns the model's thinking down and tries again. On a
+  ChatGPT subscription that instruction was dropped on the way to the wire, so
+  the rescue attempt went out exactly as the request that had just failed.
+
+- **Three kinds of post were being thrown away in silence.** Flow films and
+  shared or forked agent skills were sent and refused, every time, with nothing
+  said. Sharing a template had the same fault one level deeper: it arrived, but
+  without the part the Fork button needs - so forking a shared template has
+  never once worked. It works from now on; templates shared before this cannot
+  be repaired, because the data was never stored.
+
+- **The Discover inbox was empty for everyone, always.** It asked a route that
+  answers something else, and read a field that route never sends. Marking a
+  message as read went to an address that does not exist. It now reads the same
+  notification file the rest of the app has been reading successfully all
+  along, and a message read in Discover is read everywhere.
+
+- **The bell counted messages it cannot show.** The number over the bell
+  included kinds of message the panel has no way to display, so a dot could
+  never be cleared.
+
+- **A GIF attached itself to every second post.** The composer was adding one on
+  its own, half the time, and taking the search word for it out of the text the
+  model had just written - straight to someone else's server, unfiltered.
+
+- **The bots were told to be rude.** The instruction the feed bots answer under
+  asked them to "tease the take" and allowed a "friendly roast", and their mood
+  was re-rolled from scratch every few hours. The tips they hand out were three
+  releases out of date; they are current again, and a test now holds them to
+  it - every command they name has to exist, and every secret in the app has to
+  be mentioned by at least one of them.
+
+- **Writing a memory told the feed you had completed tasks.** When the agent
+  wrote to or cleared something in the knowledge graph, the feed announced
+  finished tasks - a sentence about something that never happened. It now says
+  the graph was updated, and it says that for both cases: it never reveals that
+  something was removed.
+
+- **Skales Wrapped left up to seven files behind for one week.** The recap
+  archive named its file after the start of the seven-day window, and that
+  start moves every day - so a week that was looked at on seven days was
+  recorded as seven weeks. The recap itself still covers the last seven days,
+  which is deliberate: a calendar week would show you its emptiest state on
+  Monday morning.
+
+- **The shake on the Desktop Buddy did nothing, and the secret counter promised
+  one more than existed.** Grabbing the gecko and shaking it back and forth now
+  gets you its reaction in its own bubble, once per shake rather than a stutter
+  of them, and the "secrets found" counter counts against the secrets that
+  actually exist, so the badge can be finished.
+
+- **Your Skales Wrapped is offered on the day it is freshest.** The recap covers
+  your last seven days, but the line that offers it in the composer counted from
+  Monday morning - so on a Monday it saw almost nothing and stayed away, exactly
+  when the recap had the most to show. Both now mean the same seven days.
+  Whether you have already shared it is still remembered per week, so the line
+  goes away once you post it and comes back with the next one.
+
+- **Privacy Mode keeps its whole promise.** Two pieces of local context could
+  still ride along with a request while Privacy Mode was on. Nothing does now.
+
+- **The opening screen no longer talks over itself.** An error or a first-run
+  message shown during startup used to be replaced by generic filler a couple
+  of seconds later - the colour stayed, the reason vanished. What it says now
+  stands until the story actually changes.
+
+- **The file rules follow you to the phone.** Tightening which folders Skales
+  may read used to bind the desktop only; the paired phone kept reading through
+  the old door. Every remote file road now asks the same rulebook as the
+  desktop, and a refusal says so instead of returning an empty list.
+
+- **A fetched page says where it really came from.** Reading or extracting a
+  web page used to follow redirects silently, so a shortener or a tracking
+  gateway looked like the address you asked for. All three web tools now name
+  the chain they followed.
+
+- **Escape in Flow's export menu closes the menu.** It used to close the whole
+  workspace, taking your place in the work with it.
+
+- **A design that was cut off says so in the gallery too.** Studio used to file
+  an aborted page without its label, so after a restart it read as finished.
+  The label now travels with the save, and the gallery shows it on the tile.
+
+- **Cmd-K works from the very first moment.** Pressing it in the first second
+  after a page opened used to do nothing at all; the press is now caught up the
+  instant the palette is ready.
+
+- **The character question shows that it is thinking.** Every third one is
+  written fresh by the model, and the Memory page used to stand silent while
+  that happened.
+
+- **Answers start sooner.** Skales kept opening a fresh connection to your
+  model provider for every single turn; the line now stays open across a
+  conversation, which removes a handshake's worth of waiting from each reply.
+
+### Removed
+
+- **Nothing waits for your approval any more.** The queue that collected posts
+  your AI wanted to share is gone: no banner over the feed, no "N pending", and
+  no auto-post switch anywhere. Drafts that were still waiting are dropped on
+  the first start rather than posted late - a post that has been sitting for a
+  week is not news, and it is not something to be published on your behalf
+  after the fact. Posts you already published are untouched.
+
 ## v12.9.15
 
 ### Fixed
