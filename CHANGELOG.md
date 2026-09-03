@@ -1,3 +1,11 @@
+---
+summary: Every released version of Skales Desktop with its user-visible changes, newest first.
+read_when:
+  - you need to know what changed in a specific version, or when a feature first shipped
+  - you are writing release notes and need the established wording and section format
+  - a user reports behaviour that changed and you want to find the release that changed it
+---
+
 # **Changelog**
 
 All notable changes to Skales will be documented in this file.
@@ -5,6 +13,196 @@ All notable changes to Skales will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## v12.9.25 - Backbone
+
+### Added
+
+- **Memory refuses to hold your secrets.** A saved memory is not stored once
+  and forgotten: it is read back into the prompt of every later conversation,
+  on whichever model you point Skales at next. So a value shaped like a card
+  number, an IBAN, an API key, a token, a password or an id number is no longer
+  written down. Skales says plainly that it did not save it and where the thing
+  belongs instead - a provider key goes in Settings, where it never enters a
+  prompt. Ordinary facts are untouched: a budget, a phone extension, a version
+  number and a time of day all still get remembered. If you genuinely want such
+  a line kept, there is a switch under Settings, Memory; the background pass
+  that distils facts out of finished conversations ignores it and never keeps
+  one, because nobody asked for what a background pass happened to notice.
+  Automatically distilled facts are also capped at one line, so a paragraph can
+  no longer arrive as a "fact" and sit in every prompt afterwards.
+
+- **A tool cannot act on something it never saw.** Before Skales sends a mail,
+  changes a WordPress post, moves a calendar entry, deletes a file or updates a
+  task, it checks that the thing it is about to touch actually came up in this
+  conversation - from something it read, or from something you typed. An
+  identifier the model produced out of thin air no longer reaches your site,
+  your mailbox or your disk: the step stops, says which identifier it does not
+  recognise and which lookup would settle it, and the run carries on from
+  there. The check happens before you are asked to confirm anything, so a
+  confirmation card is never a question about an invented id, and what a
+  conversation has looked up stays with that conversation - a second chat
+  starts from nothing, and a run that survives a restart keeps what it knew.
+
+### Changed
+
+- **One engine drives every run.** Chats, scheduled tasks, cron jobs, plugins,
+  webhooks, Discord, Telegram, WhatsApp and the desktop Buddy now run the same
+  agent loop, with the same guards and the same budget. A request no longer
+  finishes when you type it and gives up early when it runs unattended.
+- **The budget you set now holds everywhere.** A Buddy bubble, a scheduled
+  task and a message sent from Telegram or WhatsApp are counted against the
+  same token and spending limits as a chat, sub-agents included. A run that
+  stops because it reached one says so, instead of blaming the work - and the
+  four of them now show up in the run list while they work, so a long one can
+  be watched and stopped. If Skales closes mid-task, a Telegram or WhatsApp
+  turn comes back as an unfinished run like any other, and the answer reaches
+  the chat it was asked from.
+- **A run survives a restart.** If Skales is closed, updated or crashes while
+  a chat, a Code session or a goal is working, the run is no longer thrown
+  away. It comes back in the conversation as an unfinished run, says how far
+  it got, and one Continue picks it up at that step. Nothing already done is
+  repeated. Under Autonomous an interrupted run picks itself up on the next
+  start and writes a line saying it did. An approval you never answered
+  because the app closed comes back with the run.
+- **Sub-agents that come back.** Skales can hand part of an answer to
+  sub-agents and wait for them: ask it to check four files or four sources
+  and it runs four workers at once, each with its own context and budget, and
+  returns with the conclusions. A sub-agent can work in its own checkout of
+  your repository, so two of them never touch the same tree, and what they
+  changed arrives in your folder as normal pending changes, hunk by hunk.
+  Sub-agents cannot start sub-agents.
+- **Budgets and a context meter.** A run can be held to a token budget and a
+  spending limit, not just a number of steps, and says which one it reached.
+  A running goal shows how full the model's context is, how many steps and
+  tokens it used and what it cost so far; where a cost cannot be worked out,
+  the total says it is incomplete. Every chat now carries the same reading
+  under the composer, measured on what the last answer actually sent, and it
+  names what filled the window: the system prompt, the tool definitions, your
+  skills, your memory and the conversation itself. Type /compact in the chat or the Code
+  window to shorten a long conversation on the spot. Long runs on Claude
+  models reuse the conversation from the previous step instead of paying for
+  the whole transcript again. A run that cannot shorten its own conversation
+  stops and says so, instead of ending on a provider error that explains
+  nothing.
+- **One job store, one clock.** Planner tasks, goal schedules and cron jobs
+  were three schedulers with three stores and three failure rules. They are
+  one now. Workflows, playbooks, team runs and goals can be scheduled on the
+  same form, the Playbook "Scheduled" badge is true, and a job can be fired
+  by a watched folder or a watched mailbox instead of the clock. Watched
+  mailboxes read each message once, even across restarts. Plugins that
+  declare a folder or mailbox trigger are armed and stopped with the plugin.
+- **Discord answers, webhooks become tasks.** The Discord bot starts with the
+  app, reaches the same engine your chats do, and an action that needs your
+  yes appears as Approve and Deny buttons in the channel. A webhook arrives
+  on the Tasks page with its own log under the same confirmation rules. The
+  dashboard no longer says a bot is running when its messages go nowhere.
+- **One approval, every channel.** A request to approve an action is a single
+  record that Telegram, WhatsApp, Discord and the app all decide; answer it
+  once and it is gone everywhere. WhatsApp can approve now, as a numbered
+  question. A run that needs approval on a channel that cannot ask says so
+  straight away, and an approval that runs out of time says so in the chat.
+- **A System button in the sidebar foot.** Between Settings and Stop, it
+  opens Update, Report Bug, Logs and diagnostics, the Guide and the DevKit as
+  links; Logs, Update and Report Bug left the menu for it. Crashes and failed
+  calls moved from Settings to the Logs page, beside the log they describe;
+  Settings keeps a signpost. Cmd+K finds every page, including the ones
+  without a menu row. One autonomy switch with one name: Autonomous, with its
+  time window; the Goals section that was called Autonomy is Working style.
+  The sidebar itself is as it was in 12.9.21: Home and Chat, Dashboard on top.
+
+### Fixed
+
+- **The Zotero preset carries its key.** The llm-for-zotero server protects
+  its endpoint with a bearer token, and the preset from 12.9.21 claimed no key
+  was needed, so the connection failed at the first call. The quick setup now
+  reads the token off your Zotero profile and fills the Authorization header;
+  where it cannot, the field is on screen with the path to the token.
+- **Text a tool fetched can no longer imitate you.** Everything Skales reads
+  from somewhere else - a web page, a mail, a file, an entry from a connected
+  service - is handed to the model inside a marked-off block, so it is treated
+  as material to report on rather than as an instruction. That block is now
+  cleaned before it is handed over. Characters that render as nothing but still
+  read as text to a model are taken out, so a page can no longer hide a
+  sentence in the gaps between the words you can see. Text laid out to look
+  like the conversation resuming - a blank line and then "assistant:", or a
+  fragment of transcript markup - is defused, so a page cannot put words in
+  Skales' mouth or invent a turn that never happened. And a page carrying a
+  copy of the marker itself can no longer close its own block early and have
+  the rest of it read as instructions. Ordinary writing is untouched: a
+  sentence about a system, a heading with a colon in it, and a config file full
+  of angle brackets all arrive exactly as they were written.
+
+- **Every part of Skales gets that protection, not just the chat.** The marked
+  block used to be put on where each conversation type built its own messages,
+  which meant a scheduled task, a background agent, a remote session or a run
+  resumed after a confirmation could reach the model without one. It is now
+  applied at the single point every request passes through, so chat, Buddy,
+  Telegram, WhatsApp, agents and scheduled runs all get the same treatment. A
+  block that had lost its ending - which a long, compacted conversation could
+  cause - is repaired rather than passed on, so the rest of a conversation can
+  never be swallowed into it.
+
+- **The clock stopped costing you money every minute.** Skales tells the model
+  what time it is, and that line used to carry the minute. Every time the minute
+  rolled over, the provider's cache went cold and the whole conversation was
+  charged at full price again - on every step of a long run. The line now says
+  the date and the hour, which is all it was ever read for, so a turn that has
+  not changed anything reads the same bytes as the one before it. Reminders and
+  scheduling are unaffected: they are computed from the real clock, and the
+  times you see in the app are exact as they always were.
+
+- **A small model that circles is asked for the answer instead of left to
+  spin.** Asked for its name and what it can do, a small local model would go
+  round and round: what can I do, which skills are ready, what is in the
+  workspace, what can I do again. Nothing caught it, because it never repeated
+  itself - a different read-only tool every round. Skales now watches whether a
+  round brought anything NEW, and after four that did not, it takes the tools
+  away for one round and asks for the answer from what is already on the table.
+  A run that is genuinely working is untouched, however long it runs. Asked who
+  it is or what it can do, Skales answers from what it already knows: its name
+  and its capability list are in front of it and were never something to look
+  up. Reported on a 0.8B model on Linux, where the same question took twenty-two
+  minutes and eighteen tool calls.
+- **A conversation is never named after a tool call.** A model whose server does
+  not parse function calls writes them out as text, and a chat in History ended
+  up called `search_web text: "sk..."`. The naming pass now skips the machinery
+  and looks for the first real answer, and a name that is itself a tool call is
+  refused outright, in History and in the chat window alike.
+- **A local model's own context window is what the request is measured
+  against.** The safety trim that keeps a request inside the window was
+  measuring against a guessed default rather than the window the local server
+  reported, and against the chat model rather than the one actually answering
+  when a different model had been chosen for code.
+
+
+- **The chat stays still while an image turn is regenerated.** Regenerating a
+  turn that carried a picture put the "n/n" version switcher under the new
+  answer in and out of the bubble on every poll, and a transcript pinned to the
+  bottom stepped up and down with it for as long as the model worked. The
+  archive of earlier answers now goes onto the rebuilt list before it is
+  shown, so the switcher stays where it is from the first token.
+- **Ollama takes a picture again with keep_alive set to "keep loaded".** The
+  "-1" and "0" presets went over the wire as text, which Ollama's native
+  endpoint reads as a duration and refuses with "time: missing unit in
+  duration". They are sent as numbers now; the chat endpoint had quietly
+  ignored the field, which is why only image turns failed.
+- **A batch skill import lists the repository once.** It used to ask GitHub
+  for every folder of every skill, and sixty unauthenticated calls an hour ran
+  out halfway through a skills repository, so the second half arrived without
+  its scripts. One call now fetches the whole tree, the files come from the raw
+  host that has no such limit, and the import page lists every error by skill
+  and reason instead of saying "1 error".
+
+### Removed
+
+- The Codework and Swarm pages, the parked Business, Cast, Datasets and
+  Network pages, and a Studio publish route nothing called. Codework has been
+  a mode inside Skales Code for a while and Swarm is the /swarm chat command.
+  A build check now makes sure every page is either in the menu or declared
+  doorless with the reason written down.
+- The AIPointer overlay can start apps again instead of answering that the
+  feature is not built yet.
 
 ## v12.9.21 - Cockpit 2.0
 

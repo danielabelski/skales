@@ -750,7 +750,7 @@ read_when:
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.9.21</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.9.25</span> User Guide</div>
       </div>
     </a>
 
@@ -822,7 +822,6 @@ read_when:
     <a href="#code" data-chapter="code">Skales Code</a>
     <a href="#chat-code-settings" data-chapter="code">Settings: Chat &amp; Code</a>
     <a href="#assist" data-chapter="code">Settings: Assist</a>
-    <a href="#codework" data-chapter="code">Skales Codework</a>
     <a href="#playground" data-chapter="code">Playground</a>
     <a href="#devkit" data-chapter="code">DevKit</a>
     <a href="#github-int" data-chapter="code">GitHub</a>
@@ -850,8 +849,8 @@ read_when:
     <a href="#planner" data-chapter="auto">Planner</a>
     <a href="#autopilot" data-chapter="auto">Cockpit</a>
     <a href="#projects" data-chapter="auto">Projects</a>
-    <a href="#always-on" data-chapter="auto">Always-On Agent (Schedule)</a>
-    <a href="#browser" data-chapter="auto">Browser</a>
+    <a href="#schedule" data-chapter="auto">Schedule (Cockpit)</a>
+    <a href="#browser" data-chapter="auto">The browser the agent drives</a>
     <a href="#playbooks" data-chapter="auto">Playbooks</a>
     <a href="#workflow" data-chapter="auto">Workflow</a>
     <a href="#computer-use" data-chapter="auto">Computer Use</a>
@@ -930,7 +929,7 @@ read_when:
 
     <!-- Hero: the front page only -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.21</span></div>
+      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.25</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -1161,14 +1160,16 @@ read_when:
       <h2><span class="icon">🗂️</span> Home and Chat</h2>
       <p>There are exactly two sidebars, and the switch at the top decides which one you are looking at. <strong>Home</strong> is the suite: the eight surfaces the work happens on, then the system block. <strong>Chat</strong> hands the whole column to the conversation and opens the chat landing page. The point is that a sidebar with thirty entries is a sidebar nobody reads.</p>
       <ul style="margin: 0.75rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Home, Main.</strong> Dashboard, Chat, Code, Studio, Cockpit, Planner, Iris Orbit, Memory, Skales Mobile — and at the end, quietly, Discover and Wrapped.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Home, Main.</strong> Dashboard, Chat, Code, Studio, Teams, Planner, Iris Orbit, Memory, Skales Mobile — and at the end, quietly, Discover and Wrapped. Cockpit is not in this list: it belongs to the conversation that produced the work, so it opens from the Chat column instead. The <code>/autopilot</code> address answers exactly as before.</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Home, Plugins.</strong> Its own heading between Main and System, and it is there on every machine from the first launch - the shelf itself, and under it every plugin you installed or built. See <a href="#plugins">Plugins</a>.</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Home, System.</strong> Guide, Add-Ons, Custom Skills, Custom Widgets, Logs, Update, and Templates when its add-on is on. Your own widgets get their own heading above it as soon as you have one.</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Chat.</strong> Four rows and nothing else: <strong>+New</strong>, <strong>Agents</strong>, <strong>Cockpit</strong>, and a <em>More</em> block that folds out into History, Projects, Teams, Group Chat, Organization and Add-Ons &amp; Skills. Tasks is not a row of its own any more - it is a tab of the Cockpit, and one thing belongs in one place. Everything under More opens in a window over the app rather than taking you away from the conversation, and More stays closed until you open it, so what you look at every day is three rows and your conversations.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Home, System.</strong> Guide, Add-Ons, Custom Skills, Custom Widgets, and Templates when its add-on is on. Your own widgets get their own heading above it as soon as you have one.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Chat.</strong> Four rows and nothing else: <strong>+New</strong>, <strong>Agents</strong>, <strong>Cockpit</strong>, and a <em>More</em> block that folds out into History, Group Chat and Add-Ons &amp; Skills. Tasks is not a row of its own any more - it is a tab of the Cockpit, and one thing belongs in one place. Everything under More opens in a window over the app rather than taking you away from the conversation, and More stays closed until you open it, so what you look at every day is three rows and your conversations.</li>
       </ul>
+      <p><strong>The system row sits in the foot, not in the list.</strong> Under the navigation is a small toolbar - notifications, dark/light, Settings, <strong>System</strong>, and the red stop for the server. System opens as a popup rather than a page, because reading a log is a glance and a glance must not throw away what you were working on: in it are <em>Update</em>, <em>Report a bug</em>, <em>Diagnose</em> (the logs), the <em>Guide</em>, and DevKit while DevKit is running.</p>
+      <p><strong>Collapsed, the column is one button.</strong> The arrow that closes the sidebar stands where the logo stood, so the press that closed it and the press that opens it are the same spot - and that is all there is: no icon rail, no half-legible strip of pictures, no rows. A narrow second navigation nobody chose is exactly the width that collapsing was meant to give back.</p>
       <p>On the themes with a full sidebar (Slate, Skales-X, Classic) the Chat column also appears on its own while a conversation is open, and Home is the way back. The chat landing page always keeps whichever side you chose — the chat column belongs to a conversation, not to the chat address.</p>
       <p><strong>Both New buttons do the same thing.</strong> The <strong>+New</strong> row in the chat column and the <strong>+</strong> at the right of the chat header both take you to the chat landing page, with the composer in the middle and the suggestions under it. Deleting the conversation you currently have open, and <em>New chat</em> in the History panel, land in the same place. Previously one of them emptied the open conversation where it stood, which left a screen of nothing; and reloading appeared to fix it only because the old conversation came back. <strong>Reloading on the landing page now keeps you on the landing page.</strong></p>
-      <p>Some surfaces no longer have an entry of their own: Codework, Lio AI, Workflow, Playbooks, WordPress, Swarm, Spaces, Browser, Templates and the Business page. <strong>Nothing was removed.</strong> Their pages still work, their add-ons still work, and the tools they bring to the chat — the WordPress family, the browser the agent drives with its logged-in profile, the codework and swarm tools — are untouched and can still be switched on from the Add-Ons page. What went away is the door in the menu.</p>
+      <p>Some surfaces no longer have an entry of their own: <strong>Organization, Projects, Browser, Playbooks and Workflow</strong>, and before them Lio AI, WordPress, Spaces and Templates. <strong>No capability was removed.</strong> Their add-ons still work, their pages still answer at their own addresses, and the tools they bring to the chat — the WordPress family, the browser the agent drives with its logged-in profile, the project tools, the recorded runs an agent can replay, the delegation to a named team — are untouched and can still be switched on from the Add-Ons page. What went away is the door in the menu, and the Add-Ons page says so on each of those cards rather than promising a place you will not find. A few surfaces went further and are gone as screens altogether: Codework is a preset inside <a href="#code">Skales Code</a> now rather than a page of its own, <a href="#swarm">Swarm</a> is the <code>/swarm</code> command and nothing else, and the network scanner, Cast, the Business page and Datasets have no screen at all any more.</p>
       <p><strong>The sidebar shows who is working.</strong> While agents or a team are running, the entries that lead to them carry a small live row: who is at it, who is waiting for you, and who has just finished, which fades out shortly after. It is a reading and nothing more — nothing pops up, nothing makes a sound, and nothing is left behind for you to dismiss. Close Skales and reopen it and the row shows what is really running, never a leftover from before.</p>
       <p>An entry whose add-on is switched off is simply not in the list. Nothing is lost either way: the side you were on is remembered, and the page you are actually on is always visible in the sidebar, so a link or a finished task can never land you somewhere the menu does not show.</p>
     </section>
@@ -1180,7 +1181,7 @@ read_when:
       <h3>The Add-Ons page</h3>
       <p><strong>Sidebar → System → Add-Ons.</strong> One card per add-on, one switch each. An add-on that has a page of its own puts that page in the sidebar while it is on and takes it away again when it is off; an add-on that needs an account says which key it needs and where to put it.</p>
       <p>Nine things are not on the list because they are not a choice: weather, summarizing, documents, web search, the system monitor, local file chat, screenshots and vision, VirusTotal and Wrapped. Switching those off would make Skales worse at being Skales, and nobody came to a setup screen to decide them.</p>
-      <p>A few cards are no longer offered to somebody setting up — Spaces, Templates, Lio AI, Organization, Workflow, Playbooks. They still work for anybody who has one switched on, and every add-on that also gives the agent tools stays on the list, because the menu is what was trimmed and never a capability.</p>
+      <p>A few cards are no longer offered to somebody setting up — Spaces, Templates, Lio AI, Organization, Projects, Workflow, Playbooks. They still work for anybody who has one switched on, and every add-on that also gives the agent tools stays on the list, because the menu is what was trimmed and never a capability. A card whose surface has no menu entry says so on itself: a <strong>Parked</strong> mark and one line naming what the switch still gates and where the page answers, rather than a promise of an entry you would then go hunting for.</p>
       <p>The five categories in the setup screen are a shortcut into the same switches, not a mode. Picking <em>Coding AI</em> preselects that bundle; what gets stored is the add-ons, not the category.</p>
 
       <h3>Standard and Advanced</h3>
@@ -1510,19 +1511,18 @@ read_when:
       <p>Over time Skales builds a quiet sense of how you like to work and folds it into memory, and it distills the approaches that carried past goals to a finish into reusable plans. Now and then it surfaces one short question to understand you better, never while it is busy and never often, with a quiet notification and a dot next to Chat so it is not missed. You can set your agent's character outright when you join Discover, and clear everything Skales has picked up about you at any time, from Settings or right in the chat.</p>
 
       <h3>Shared Organization Memory</h3>
-      <p>Organization teams have their own shared memory pool. Team members read and write shared context — project decisions, research findings, meeting notes — that persists across execution runs. Shared memory is separate from your personal memory and managed in the Organization settings.</p>
+      <p>Organization teams have their own shared memory pool. Team members read and write shared context — project decisions, research findings, meeting notes — that persists across execution runs. Shared memory is separate from your personal memory; the <a href="#organization" style="color:var(--accent)">Organization</a> section says how the teams themselves are reached in this build.</p>
     </section>
 
     <section id="companion">
       <h2><span class="icon">🫀</span> The companion, and Conscious</h2>
-      <p>Skales can carry two things from one session to the next: the topics you keep coming back to, and a working mood. That is <strong>Settings &rsaquo; Memory &rsaquo; Companion &rsaquo; Interests and mood</strong>, and it is <strong>off by default</strong>. Everything on this page happens on your machine and nowhere else.</p>
+      <p>Skales carries two things from one session to the next: the topics you keep coming back to, and a working mood. <strong>There is no switch for either.</strong> They are properties of Skales rather than options — they only ever draw and remember, they never send, sound or notify — so they ship on, and what stands under <strong>Settings &rsaquo; Memory &rsaquo; Companion</strong> is not a toggle but the controls that shape what has been collected and erase it. Everything here happens on your machine and nowhere else.</p>
 
-      <h3>The character, and why it does not need the switch</h3>
-      <p>Who the companion is — a name, one of six starting points, and seven dials such as businesslike to warm, or answers only to asks back — is shaped on the <strong>Memory page</strong>, not in Settings; Settings links across to it. The distinction is worth holding on to: <strong>the character shapes how Skales writes to you whether or not the switch is on.</strong> What the switch decides is only what gets <em>learned</em> — your recurring topics, the mood, the history of work you have done together.</p>
-      <p>Because those are two different things, saving a character while the switch is off no longer looks like a setting that did nothing. Skales asks once, in a dialog headed <strong>Turn on interests and mood?</strong>, explaining that the character you just saved shapes how it writes either way, and that turning this on additionally carries your topics and a working mood between sessions, learned on this machine. Say yes and the switch goes on. Say no and nothing changes: the character stays saved and keeps working. <strong>Nothing is ever switched on without your answer</strong>, and the question is asked once rather than every time you save.</p>
+      <h3>The character</h3>
+      <p>Who the companion is — a name, one of six starting points, and seven dials such as businesslike to warm, or answers only to asks back — is shaped on the <strong>Memory page</strong>, not in Settings; Settings links across to it. That is also where the identity Skales keeps about you lives, so the two halves of "who is talking to whom" are on one page. The character shapes how Skales writes to you; saving one takes effect at once and asks you nothing, because there is no longer a second switch for it to be out of step with.</p>
 
       <h3>Conscious</h3>
-      <p>The mood was always real and always kept; the trouble was that the only place to read it was the Memory page, which is not where you are while you work. <strong>Conscious</strong> gives it a row of its own, pinned above the bottom of the navigation and in view the whole time you are in a conversation. It is a child of the switch above — it appears once <em>Interests and mood</em> is on, and it can be switched off on its own under <strong>Settings &rsaquo; Memory &rsaquo; Companion</strong> without giving up the rest.</p>
+      <p>The mood was always real and always kept; the trouble was that the only place to read it was the Memory page, which is not where you are while you work. <strong>Conscious</strong> gives it a row of its own, pinned above the bottom of the navigation and in view the whole time you are in a conversation. It is on for the same reason the companion is: a mood nobody can find was the complaint that built it.</p>
       <p>The row is labelled <strong>Working mood</strong> and reads as two things at once: <strong>the colour is the direction</strong> — warm when the work is going well, cool when it is not — and <strong>how full it stands and how fast it moves is the energy</strong>. It changes while you are talking to it, not on the next restart. The word it puts on that runs <strong>rough, uphill, steady, good, flying</strong>, and it is one scale: energy no longer changes the word.</p>
       <p><strong>Hover the row and the panel opens; click and it stays pinned.</strong> In it, in this order: the word and what it came after, then <strong>Today</strong> — what moved it, with the times — then what it <strong>keeps coming back to</strong> if interest tracking is on, then a legend for the colour, and a closing line reminding you that this is about the work, not about you, and that it fades on its own.</p>
       <p>The entries are things that actually happened: a goal finished, a goal that did not get there, a run that kept hitting the same wall, the last piece of work landing well, a quiet stretch, a long stretch of work together. When there is nothing to show it says so — <em>Nothing has moved it today</em> — rather than inventing a reason. <strong>"What is missing" only ever names something already in the record</strong>, such as a long silence or a day with nothing finished yet. The record is a rolling <strong>48 hours</strong>; nothing older is kept, and resetting the mood clears the day's list with it.</p>
@@ -1531,13 +1531,13 @@ read_when:
       <p>Four things move the row, not one. <strong>Work</strong> — a goal that finished or did not get there, a run that kept hitting the same wall. <strong>The clock</strong>, so the state is quiet at night, a little brighter in the morning and lower after a long silence. <strong>The shape of the day</strong>: a run of failures reads as uphill, one long focused stretch as flow, a lot of subjects at once as scattered. And a reply to one of your own <a href="#discover" style="color:var(--accent)">Discover</a> posts lifts it a little, read from the notifications that arrive anyway.</p>
       <p>At the end of a turn Skales also notes, in <strong>one sentence of its own words</strong>, what it is thinking about, and the panel shows that under the reading. It costs no extra request — it rides along with the turn — and a model with nothing to note writes nothing rather than filling the line.</p>
       <p>Underneath is a small record kept on your machine, capped in size, that <strong>loses weight as it ages</strong>: a thought a few days old stops being shown by itself. <strong>Reset the mood</strong> on the Memory page deletes the file outright.</p>
-      <p>None of this asks a model on a timer, reaches the network, or produces a notification — and with the Conscious switch off, none of it is written at all.</p>
+      <p>None of this asks a model on a timer, reaches the network, or produces a notification.</p>
 
       <div class="tip"><strong>It only ever draws.</strong> Conscious never notifies, never makes a sound, and never starts a conversation. And the mood is about <strong>the work</strong>, never about you — Skales does not tell you how it feels unless you go and look.</div>
 
       <h3>On the phone</h3>
       <p>The phone has the same feature, drawn with the phone's own toolkit and with the same words. The bar sits <strong>directly above the message box</strong>, so it is in view for the whole conversation, and it is in the menu above the bottom row as well, which is where the desktop keeps it. <strong>Tap it</strong> and the same panel slides up as a sheet.</p>
-      <p>One deliberate difference: the phone reads <strong>its own</strong> state. No pairing, no key and no network are needed, and it works in flight mode — it is your phone's companion, not a read-out of a machine somewhere else. Saving a character on the phone asks the same question, and the character form stays reachable with the switch off, exactly as on the desktop.</p>
+      <p>One deliberate difference: the phone reads <strong>its own</strong> state. No pairing, no key and no network are needed, and it works in flight mode — it is your phone's companion, not a read-out of a machine somewhere else. The character form is reached the same way there, and saving one takes effect at once, exactly as on the desktop.</p>
     </section>
 
     <section id="privacy-mode">
@@ -1667,8 +1667,8 @@ read_when:
       </ol>
       <p>Who takes part, and in which order, is arranged in the roster on this page. The order <em>is</em> the assignment: &ldquo;3 Agents&rdquo; means the first three. The first seat belongs to your default agent and does not move, because somebody has to write the breakdown and the verdict.</p>
       <p>Counting the button back to one ends the run: nothing further starts, and no verdict is written over a run you walked away from. The cards stay exactly as they are. If Skales is closed mid-run, reopening it keeps whatever had already arrived and says plainly that the rest was ended.</p>
-      <p>The same cards and the same two buttons appear wherever several agents produce results: chat, Skales Code, Tasks, Group Chat and the Organization result list.</p>
-      <p>While a run is going, the sidebar says so. The <strong>Agents</strong> and <strong>Organization</strong> entries carry a small live row of who is at it, who is waiting on you, and who has just finished; a finished one fades away by itself after a few seconds. Clicking the entry takes you to them. It only ever shows, never interrupts: no pop-up, no sound, and nothing left over to dismiss. Closing and reopening Skales shows what is really running at that moment and never a leftover from the last session.</p>
+      <p>The same cards and the same two buttons appear wherever several agents produce results: chat, Skales Code, Tasks, Group Chat and a team run.</p>
+      <p>While a run is going, the sidebar says so. The <strong>Agents</strong> entry carries a small live row of who is at it, who is waiting on you, and who has just finished; a finished one fades away by itself after a few seconds. Clicking the entry takes you to them. It only ever shows, never interrupts: no pop-up, no sound, and nothing left over to dismiss. Closing and reopening Skales shows what is really running at that moment and never a leftover from the last session.</p>
       <p>This is one of three multi-agent modes, and they are not interchangeable. <a href="#multi-agent" style="color:var(--accent)">Which multi-agent mode</a> lays out what each one is for, and how to run a team on a single graphics card.</p>
     </section>
 
@@ -1684,7 +1684,7 @@ read_when:
           <tr><td><strong>Agents see each other</strong></td><td>No &mdash; they answer independently</td><td>Yes &mdash; that is the point</td><td>Only through results passed down a dependency</td></tr>
           <tr><td><strong>Tools</strong></td><td>Yes, each agent&rsquo;s own scope</td><td><strong>No</strong> &mdash; discussion only</td><td>Yes, the run&rsquo;s scope</td></tr>
           <tr><td><strong>Who picks the agents</strong></td><td>Your roster order, top N</td><td>You, explicitly</td><td>The team you selected; the leader assigns the work</td></tr>
-          <tr><td><strong>Started from</strong></td><td>The Agents button beside the composer</td><td>The Group Chat surface</td><td>Organization &rarr; Execute</td></tr>
+          <tr><td><strong>Started from</strong></td><td>The Agents button beside the composer</td><td>The Group Chat surface</td><td>The chat: ask for the work to be split across a named team</td></tr>
         </tbody>
       </table>
 
@@ -1699,7 +1699,7 @@ read_when:
       <p>At the end a moderator summarises. If you nominated a decision maker, that agent writes the closing instead of a neutral summary, and it decides.</p>
 
       <h3>Organization &mdash; when you want the work done</h3>
-      <p>Reach for this when the job splits into parts that different agents should own: research this, draft that, check the numbers, then write it up. You describe the task and pick a team; the leader breaks it into subtasks, names which agent gets each one, and states which subtasks depend on which. Agents work with tools. The leader then synthesises everything into one answer.</p>
+      <p>Reach for this when the job splits into parts that different agents should own: research this, draft that, check the numbers, then write it up. You describe the task in the chat and name the team; the leader breaks it into subtasks, names which agent gets each one, and states which subtasks depend on which. Agents work with tools. The leader then synthesises everything into one answer. The Organization surface has no menu entry in this build — see <a href="#organization" style="color:var(--accent)">Organization</a> for what that changes and what it does not.</p>
       <p><strong>Why the steps do not finish in plan order.</strong> Subtasks that declare no dependency are independent by definition, so they are started together; the ones that declared a dependency run afterwards, each seeing everything finished so far. A five-step plan whose third step waits on another can therefore finish 0-1-3-2-4. That is the schedule working, not a fault, and the live trace now says which steps are waiting on which rather than leaving you to infer it.</p>
 
       <h3>What your agent&rsquo;s own prompt is worth in a team run</h3>
@@ -1735,7 +1735,8 @@ read_when:
 
     <section id="organization">
       <h2><span class="icon">🏢</span> Organization</h2>
-      <p>Create multi-agent teams. Build departments, assign agents, and delegate tasks across your AI company.</p>
+      <p>Multi-agent teams: departments, assigned agents, and a job delegated across your AI company.</p>
+      <p><strong>Organization has no entry in the menu.</strong> The way you use it is the chat — ask for a piece of work to be split across a team by name and the run starts there, with the approval card, the live trace and the result list in the conversation. The add-on switch and every tool behind it are untouched, and the <code>/organization</code> page answers as before for anybody who goes to it; what is described below is that page. What went away is the door.</p>
       <p>How this differs from Group Chat and from asking several agents at once: see <a href="#multi-agent" style="color:var(--accent)">Which multi-agent mode</a>.</p>
 
       <h3>Structure</h3>
@@ -1834,8 +1835,8 @@ read_when:
     <section id="swarm">
       <h2><span class="icon">🐝</span> Agent Swarm</h2>
       <p>Run multiple Skales instances on your network and have them work as one. Peers are discovered automatically via <strong>mDNS</strong>, or added manually by <strong>IP:port</strong> (perfect for Tailscale) &mdash; manual peers survive restarts and are health-checked every 30 seconds.</p>
-      <p>Swarm has no entry in the menu: <strong>Teams</strong> is the surface for two machines working together, and the delegation below is what Swarm still is. The <code>/swarm</code> page answers as before for anybody who goes to it.</p>
-      <p>Delegate from any chat: <code>/swarm &lt;task&gt;</code> sends to the best free device, <code>/swarm @name &lt;task&gt;</code> targets a specific one, and an optional mode prefix sets how the task runs on the receiver &mdash; <code>code:</code> (coding agent), <code>plan:</code> (read-only plan), <code>auto:</code> (fully autonomous). The Swarm page offers the same as a form, plus the shared task history with live status. Results return to the chat you sent from and to Notifications.</p>
+      <p><strong>Swarm has no screen at all any more.</strong> <a href="#teams" style="color:var(--accent)">Teams</a> is the surface for two machines working together; what is left of Swarm is the delegation below, and it lives entirely in the chat.</p>
+      <p>Delegate from any chat: <code>/swarm &lt;task&gt;</code> sends to the best free device, <code>/swarm @name &lt;task&gt;</code> targets a specific one, and an optional mode prefix sets how the task runs on the receiver &mdash; <code>code:</code> (coding agent), <code>plan:</code> (read-only plan), <code>auto:</code> (fully autonomous). Results return to the chat you sent from and to Notifications.</p>
       <p><strong>Security:</strong> receiving devices must opt in (&ldquo;Accept delegated tasks&rdquo;) and both devices need the same <code>SKALES_AGENT_SECRET</code> environment variable. Delegated tasks appear on the receiver&rsquo;s Tasks page with a 🐝 badge naming the sender.</p>
     </section>
 
@@ -1893,7 +1894,7 @@ read_when:
       </div>
 
       <h3>Where Skills Work</h3>
-      <p>Imported skills are loaded into <strong>all</strong> Skales contexts: Chat, Codework, Browser Agent, and Lio AI. The skill instructions are injected into the system prompt when the skill is enabled.</p>
+      <p>Imported skills are loaded into <strong>all</strong> Skales contexts: Chat, Skales Code, the browser agent, and Lio AI. The skill instructions are injected into the system prompt when the skill is enabled.</p>
 
       <h3>Browse Skills</h3>
       <p>Find community skills at:</p>
@@ -2021,7 +2022,6 @@ read_when:
       <div class="lead-index">
         <a href="#code">Skales Code</a>
         <a href="#chat-code-settings">Settings: Chat &amp; Code</a>
-        <a href="#codework">Skales Codework</a>
         <a href="#playground">Playground</a>
         <a href="#devkit">DevKit</a>
         <a href="#github-int">GitHub</a>
@@ -2146,36 +2146,6 @@ read_when:
       <p>Normally your conversation never touches a Skales server. This one line is the exception. The server sees the first sentence of your message and nothing else - no history, no system prompt, no files - and it keeps none of it: measured on the server, the lane stores a request counter and your device id as a one-way hash for rate limiting, and no text at all. Off by default.</p>
       <p>One boundary belongs next to that, because it is a different kind of promise: this is what <em>our</em> server does, and it is measured. The model that actually writes the sentence runs at a provider, and there the guarantee is the zero-data-retention setting Skales sends with every such request - a commitment we require, not something we can measure from here.</p>
       <p>If the lane is switched off on the server side, you get no line and no error: the feature is best-effort by design and never makes you wait twice. It does say so once, quietly, in <strong>Settings &gt; Advanced &gt; Diagnostics</strong>, so a switch that looks on but produces nothing can be explained rather than guessed at.</p>
-    </section>
-
-    <section id="codework">
-      <h2><span class="icon">🛠️</span> Skales Codework</h2>
-      <p>An autonomous coding agent built into Skales, with its own file tree, editor and terminal. Select any project folder, describe a task, and watch the AI work. For everyday coding the chat's Code mode (Chat / Code / Edits / Plan / Auto on a bound folder) is now the main surface; Codework stays for the full three-panel workspace and is opened with the <code>/codework</code> command from any chat rather than from the sidebar.</p>
-
-      <h3>How to Use</h3>
-      <ol style="margin: 1rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Enable</strong> the Codework skill in Settings > Skills</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Open Codework</strong> by typing <code>/codework</code> in any chat</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Select a folder</strong> using the Browse button (native file picker)</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Choose a model</strong> from the provider/model dropdown</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Describe the task</strong> and press Enter</li>
-      </ol>
-
-      <h3>3-Panel Layout</h3>
-      <table>
-        <thead><tr><th>Panel</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>File Tree</td><td>Shows all files in your selected project folder</td></tr>
-          <tr><td>Activity Log</td><td>Live stream of tool calls, file reads/writes, and agent decisions</td></tr>
-          <tr><td>Changes</td><td>Diff viewer showing what the agent modified</td></tr>
-        </tbody>
-      </table>
-
-      <h3>File System Access (Browse)</h3>
-      <p>The folder picker now uses the native File System Access API where available, with automatic fallback to Electron's dialog for broader compatibility. Select any project folder on your machine with a familiar OS-native dialog.</p>
-
-      <h3>Sessions</h3>
-      <p>Every Codework run is saved as a session. View past sessions on the welcome screen. Delete sessions with the trash icon. Continue a conversation after the agent finishes with the follow-up input.</p>
     </section>
 
     <section id="playground">
@@ -2652,7 +2622,7 @@ read_when:
         <p class="walk-goal">One scheduled task, tried as a dry run first so nothing happens the first time you get it wrong.</p>
         <ol>
           <li>
-            <span class="do">Sidebar, <strong>Tasks</strong>, then a new AI task. Describe it the way you would ask a person:</span>
+            <span class="do">Sidebar, <strong>Planner</strong>, then <strong>AI Tasks</strong> and a new task. Describe it the way you would ask a person:</span>
             <span class="say">Every weekday at 08:00, check my calendar for the day and write me a short summary of what is coming.</span>
             <span class="then">the schedule read out of the sentence, and a confidence score on the interpretation.</span>
           </li>
@@ -2666,9 +2636,9 @@ read_when:
             <span class="then">the result in Task History, with what it did and what it cost.</span>
           </li>
           <li>
-            <span class="do">Now try the other shape of the same idea. Open <strong>Cockpit</strong>, stay on its Goals tab, and give Autopilot a quick task.</span>
-            <span class="say">Collect the pricing pages of the five best known note taking apps and put them in one table.</span>
-            <span class="then">a plan you can read before it exists, then live execution on the board with the running cost beside it.</span>
+            <span class="do">Now try the other shape of the same idea. In the chat, start a goal:</span>
+            <span class="say">/goal Collect the pricing pages of the five best known note taking apps and put them in one table.</span>
+            <span class="then">a plan you can read before it runs, and then, in the <strong>Cockpit</strong> from the Chat sidebar, the same goal live on the board with the running cost beside it.</span>
           </li>
           <li>
             <span class="do">Leave one thing standing: <strong>Always-On Agent</strong> has built-in jobs and you can add your own schedule.</span>
@@ -2695,8 +2665,8 @@ read_when:
         <a href="#planner">Planner</a>
         <a href="#autopilot">Cockpit</a>
         <a href="#projects">Projects</a>
-        <a href="#always-on">Always-On Agent (Schedule)</a>
-        <a href="#browser">Browser</a>
+        <a href="#schedule">Schedule (Cockpit)</a>
+        <a href="#browser">The browser the agent drives</a>
         <a href="#playbooks">Playbooks</a>
         <a href="#workflow">Workflow</a>
         <a href="#computer-use">Computer Use</a>
@@ -2749,10 +2719,10 @@ read_when:
     <section id="autopilot">
       <h2><span class="icon">⚡</span> Cockpit</h2>
       <p><strong>What it is.</strong> The Cockpit is the one screen that shows everything standing: goals, tasks and scheduled jobs together, on a single board. It is not three screens behind three tabs any more and there is no Autopilot panel behind it &mdash; one heading, one board, and the full surfaces folded away underneath.</p>
-      <p><strong>Where it lives.</strong> The sidebar entry is called <strong>Cockpit</strong> and opens as a window over the conversation; the same screen answers at <code>/autopilot</code>. The route keeps its old name on purpose: renaming a surface is not a reason to break every link that already points at it. There is no Autopilot page or sidebar entry any more.</p>
+      <p><strong>Where it lives.</strong> The entry is called <strong>Cockpit</strong> and is the third row of the <strong>Chat</strong> sidebar, where it opens as a window over the conversation; the same screen answers at <code>/autopilot</code>. The route keeps its old name on purpose: renaming a surface is not a reason to break every link that already points at it. There is no Autopilot page or sidebar entry any more.</p>
 
       <h3>The head: one action</h3>
-      <p>The heading carries exactly one action, <strong>Pause</strong> or <strong>Resume</strong> for the background runner. Anything beside it is a message, not a button: if a spend ceiling paused the runner, the head says so and the switch that lifts it sits in the Control section, where the rest of the limits live.</p>
+      <p>The heading carries exactly one action, <strong>Pause</strong> or <strong>Resume</strong> for the background runner. Anything beside it is a message, not a button: if a spend ceiling paused the runner, the head says so.</p>
 
       <h3>The board: four columns, three sorts</h3>
       <p>The board has four columns &mdash; <strong>Pending</strong>, <strong>In Progress</strong>, <strong>Completed</strong> and <strong>Blocked</strong> &mdash; and every line of work takes the same card shape, with a label saying which sort it is.</p>
@@ -2767,20 +2737,13 @@ read_when:
       <p>Next to the board sits a single <strong>Board / Live</strong> switch, and the address carries it (<code>/autopilot?tab=board</code>, <code>?tab=live</code>) so a reload, a bookmark or a link you sent yourself comes back where it was. Live is one view, not two: the execution trace of the task that is running, and the runner’s own log beneath it &mdash; what it thought, which tool it called, what came back.</p>
 
       <h3>The sections under the board</h3>
-      <p>Below the board, five collapsible sections open the full surfaces unchanged. One is open at a time, and the Cockpit deliberately does not remember which &mdash; it starts closed every time, so the board is what you see first.</p>
+      <p>Below the board, three collapsible sections open the full surfaces unchanged. One is open at a time, and the Cockpit deliberately does not remember which &mdash; it starts closed every time, so the board is what you see first.</p>
       <ul>
         <li><strong>Goals</strong> &mdash; each goal with its objective, its criteria and the evidence against them, the last steps, the artifacts it produced, the lessons it drew and what it spent.</li>
         <li><strong>Schedule</strong> &mdash; the recurring jobs as a cron list. This is the list, not the calendar; the visual calendar is Planner.</li>
         <li><strong>Tasks</strong> &mdash; the same screen the <code>/tasks</code> page shows, hosted here rather than copied.</li>
-        <li><strong>Identity &amp; Memory</strong> &mdash; the profile every unattended run reads before it starts, the strategic roadmap and the roadmaps that came before it, and clearing them.</li>
-        <li><strong>Control</strong> &mdash; when the runner may be awake (manually, at startup, or inside a time window), the spend ceiling and the pause-after-N-tasks cap, lifting a cost pause, the deep-dive interview and the plan it drafts, a line typed straight into the queue, the daily stand-up, and the scheduler reset for when it wedges.</li>
       </ul>
-
-      <h3>A plan you read before it exists</h3>
-      <p>The deep-dive interview in Control ends in a plan, and the plan is a <em>draft</em>: a list of tasks you read, untick and edit. Nothing is created until you press &ldquo;Create these&rdquo;. If the model got one task wrong, the rest survive, and the ones left out are named with the reason.</p>
-
-      <h3>Quick Task</h3>
-      <p>Type one line in Control and Skales works it up into a task an agent can run: the instructions, the project it belongs to and the agent best suited to it. Each of the three is a suggestion with a tick beside it; untick whatever is wrong. If the runner is paused, the warning carries the switch itself, so the task you just made can start without going anywhere else.</p>
+      <p>There was a fourth, <strong>Control</strong>, and it is not in this build. What it held &mdash; when the runner may be awake, the spend ceiling and the pause-after-N-tasks cap, lifting a cost pause by hand, the deep-dive interview and the plan it drafted, a line typed straight into the queue, the daily stand-up and the scheduler reset &mdash; has no second door yet, so those controls cannot be operated from the Cockpit at the moment. Nothing behind them stopped: the runner, the spend ceiling and the scheduler go on working from the values already saved.</p>
 
       <h3>On the phone</h3>
       <p>Skales Mobile has the same Cockpit. Because a phone is tall and not wide, the four columns are drawn as four sections under each other in the same order, with the same cards, the same labels and the same actions; the Board/Live switch, the Pause/Resume in the head and the collapsible sections are all there. A card also says where it came from, this phone or your computer, so the two never blur.</p>
@@ -2793,14 +2756,25 @@ read_when:
       <h2><span class="icon">💡</span> Projects</h2>
       <p><strong>Projects</strong> is the tracker for work that runs longer than one conversation: an idea you captured, the milestones under it, the notes you kept, and the chats that belong to it. Everything is stored on this machine and nothing is sent anywhere.</p>
       <p>A project holds a status and a priority, milestones you tick off, tags, attachments and a set of notes. From a project you open a chat that already carries those notes and the tools the work needs, so a session about it never starts from an empty page. Sessions you started that way stay linked to the project and are listed on it; a link can be undone without touching the conversation.</p>
-      <p>Open it from the Chat sidebar under <em>More</em>, from the nav bar on the top-bar and icon-rail themes, or at <code>/projects</code>. It follows the <strong>Projects</strong> add-on: switch that off and the entry goes, while the page and the data stay.</p>
+      <p><strong>Projects has no entry in the menu in this build.</strong> The four project tools stay in the chat, so an agent can still open a project, add a note, tick a milestone and list what is standing; the <strong>Projects</strong> add-on still switches those, and the page answers at <code>/projects</code> for anybody who goes to it. Your projects and everything in them are untouched either way.</p>
     </section>
 
-    <section id="always-on">
-      <h2><span class="icon">⏰</span> Always-On Agent (the Schedule page)</h2>
-      <p>Schedule recurring tasks using cron expressions. Skales runs them automatically in the background, even when you're not actively chatting.</p>
+    <section id="schedule">
+      <h2><span class="icon">⏰</span> Schedule</h2>
+      <p>One job store, one clock. A job is anything Skales runs without you watching: a prompt, a goal, a workflow, a playbook, a team run or a plugin job. Every job lives in the same list, follows the same failure rule (three failures in a row pause it, and it says so) and shows up on the Cockpit board while it runs.</p>
 
-      <h3>Built-in Jobs</h3>
+      <h3>What fires a job</h3>
+      <table>
+        <thead><tr><th>Trigger</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td>Clock</td><td>A cron expression such as <code>0 9 * * 1-5</code> (weekdays at 9), read in your time zone.</td></tr>
+          <tr><td>Watched folder</td><td>A file arriving or changing in a folder you name starts the job with the file as context.</td></tr>
+          <tr><td>Watched mailbox</td><td>A message matching a sender, subject or label starts the job once per message, even across restarts.</td></tr>
+          <tr><td>Webhook</td><td>A call to the webhook address becomes a task on the Tasks page with its payload as context.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Built-in jobs</h3>
       <table>
         <thead><tr><th>Job</th><th>Schedule</th><th>Description</th></tr></thead>
         <tbody>
@@ -2809,32 +2783,14 @@ read_when:
         </tbody>
       </table>
 
-      <h3>Custom Schedules</h3>
-      <p>Add any cron job in Settings → Always-On. Examples:</p>
-      <pre><code>0 9 * * 1-5    # Weekdays at 9 AM
-0 */2 * * *    # Every 2 hours
-0 20 * * *     # Every day at 8 PM</code></pre>
+      <h3>Autonomous</h3>
+      <p>One switch, one name. <em>Autonomous</em> in Settings under Goals lets Skales act on its own inside a time window: run its jobs, work on goals, and pick an interrupted run back up after a restart. When it is off, jobs still run on their clock but nothing is resumed on its own.</p>
     </section>
 
     <section id="browser">
-      <h2><span class="icon">🌐</span> Browser</h2>
-      <p>A built-in browser with AI co-pilot. Navigate the web and ask Skales to help you while browsing.</p>
-
-      <h3>How it works</h3>
-      <p>Type a command in the input bar (e.g. <em>"Go to hacker news and summarize the top 5 stories"</em>). Skales navigates, reads the page, and responds — up to 10 agentic steps per command.</p>
-
-      <h3>Session Controls</h3>
-      <table>
-        <thead><tr><th>Control</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>+ New Session</td><td>Clears the current page and conversation log, starts fresh at Google</td></tr>
-          <tr><td>↩ Refresh</td><td>Reloads the current page</td></tr>
-          <tr><td>⬇ Export</td><td>Downloads the conversation log as a Markdown file (visible when log has entries)</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Conversation Log</h3>
-      <p>The last 5 exchanges are shown above the input bar — your commands (→) and Skales' responses (🦎). Full history is exported with the Markdown button.</p>
+      <h2><span class="icon">🌐</span> The browser the agent drives</h2>
+      <p>Skales has a real browser of its own, with its own profile and its own logins, and the agent drives it. <strong>You reach it from the chat.</strong> Ask for something on the web that needs more than a search — <em>"go to hacker news and summarise the top five stories"</em>, <em>"check the tracking number on the courier's site"</em> — and it navigates, reads the page and answers, up to ten steps per command. The tools are switched on and off as <strong>Browser Control</strong> on the Add-Ons page.</p>
+      <p><strong>The Browser surface has no entry in the menu in this build.</strong> The tools above are untouched and are where the feature actually lives now; the page still answers at <code>/browser</code> for anybody who goes to it, and the Code window keeps its own browser panel behind the globe in its title bar.</p>
 
       <h3>Sign in to sites</h3>
       <p>When a task needs you logged in (X, Reddit, a webshop), Skales opens a visible browser window so you can sign in by hand. Your login is saved to the Skales browser profile and reused by later browsing. Skales never sees your password. Open a login window any time from Settings → Browser Control ("Log in to a website"), or turn on "Show browser window" there to watch Skales work. When it reads a page, Skales now uses a compact text map of the page instead of a Vision screenshot for each step, which is faster and cheaper; screenshots are still used for image-heavy pages.</p>
@@ -2842,16 +2798,16 @@ read_when:
 
     <section id="playbooks">
       <h2><span class="icon">🚀</span> Playbooks</h2>
-      <p>A <strong>playbook</strong> is a browser run recorded once and replayed on demand. Press <em>Record</em>, do the task in the browser yourself — click, type, scroll, upload — and every step is written down as you go. The recording opens right where you are standing: from the Chat sidebar it swaps into the browser over your conversation, on <code>/playbooks</code> it opens the browser page.</p>
+      <p>A <strong>playbook</strong> is a browser run recorded once and replayed on demand. Press <em>Record</em>, do the task in the browser yourself — click, type, scroll, upload — and every step is written down as you go.</p>
       <p>Steps can be edited afterwards, and a step that holds something secret is marked as such so it is asked for rather than stored. A playbook can carry <strong>variables</strong> (<code>{{name}}</code>): running it then asks for the values first and fills them in. Runs can be put on a schedule, and a recorded playbook can be promoted into a <em>Workflow</em> so an agent can trigger it.</p>
-      <p>It follows the <strong>Playbooks</strong> add-on and is opened from the Chat sidebar under <em>More</em>, from the nav bar on the top-bar and icon-rail themes, or at <code>/playbooks</code>.</p>
+      <p><strong>Playbooks has no entry in the menu in this build.</strong> A recorded playbook still runs: an agent can be asked for one by name in the chat, and a playbook on a schedule fires the same as any other job. The <strong>Playbooks</strong> add-on still switches that, your recordings are untouched, and the page answers at <code>/playbooks</code> for anybody who goes to it. What is gone is the door, and with it the way to record a <em>new</em> one from the menu.</p>
     </section>
 
     <section id="workflow">
       <h2><span class="icon">🔀</span> Workflow</h2>
       <p>A <strong>workflow</strong> is a plan you draw by hand: the steps of a job, in order, with the tools each step may use, saved under a name the agent can be asked for. Where a playbook is a recording of a browser session, a workflow is the instruction for a piece of work — and a recorded playbook can become one, which is how the two halves of the automation chain meet.</p>
       <p>Each workflow has a trigger (a <code>/goal-name</code> command, a schedule, or a call from the chat) and the steps under it. They live on this machine and run with the tools you already have switched on.</p>
-      <p>It follows the <strong>Workflow</strong> add-on and is opened from the Chat sidebar under <em>More</em>, from the nav bar on the top-bar and icon-rail themes, or at <code>/workflow</code>.</p>
+      <p><strong>Workflow has no entry in the menu in this build.</strong> The workflows you already have keep their triggers — the <code>/goal-name</code> command, the schedule, the call from the chat — and the <strong>Workflow</strong> add-on still switches them; the page answers at <code>/workflow</code> for anybody who goes to it. What is gone is the door, and with it the way to draw a <em>new</em> one from the menu.</p>
     </section>
 
     <section id="computer-use">
@@ -3152,7 +3108,7 @@ read_when:
       <h2><span class="icon">🔎</span> Which model is answering</h2>
       <p>Skales runs whatever you configure, so the only useful question is which model the <em>next message</em> will go to. Three places on screen answer it, and they all answer the same way.</p>
       <ul>
-        <li><strong>The readout under the composer</strong> names the model this conversation will use and measures the conversation against <em>that</em> model's context window.</li>
+        <li><strong>The readout under the composer</strong> names the model this conversation will use and measures the conversation against <em>that</em> model's context window. The figure is <strong>measured on every turn</strong>, not guessed from the messages on screen: hover it and the card breaks the last turn into the five things that filled the window — the system prompt, the tool definitions, your skills, memory, and the conversation itself — and it survives a reload, because the measurement is kept with the answer it belongs to. Before the first answer of a session there is nothing to measure yet, and the card says it is an estimate rather than quietly showing one.</li>
         <li><strong>The status pill</strong> says where this conversation goes: a chat on a cloud model reads as that provider even if your default is local, and a chat on your own machine reads as local even if your default is a cloud provider. It is a statement about privacy, so it follows the conversation in front of you and goes back to your default when you leave it.</li>
         <li><strong>The Code window header</strong> names the model that session runs on, and shows your default when the session has none of its own.</li>
       </ul>
@@ -3377,7 +3333,7 @@ read_when:
         <p class="walk-goal">A paired phone that can read your chats, start work, and approve a tool call, with the pairing confirmed on the desktop rather than by whoever holds the phone.</p>
         <ol>
           <li>
-            <span class="do">On the desktop: sidebar, <strong>System</strong>, <strong>Skales Mobile</strong>.</span>
+            <span class="do">On the desktop: sidebar, <strong>Skales Mobile</strong>.</span>
             <span class="then">four blocks: the connection status, a QR code, the devices already paired, and the switches for what a phone may do.</span>
             <span class="stuck">the first block says it is not connected to the relay, that is what step 2 is for.</span>
           </li>
@@ -4055,7 +4011,7 @@ read_when:
 
     <section id="updates">
       <h2><span class="icon">🔄</span> Updates</h2>
-      <p><strong>Sidebar &rsaquo; System &rsaquo; Update.</strong> The page shows the version you are on and the newest one side by side, with what is new in it, and a <strong>Check now</strong> button for when you do not want to wait for the automatic check.</p>
+      <p><strong>The System button in the foot of the sidebar &rsaquo; Update.</strong> The page shows the version you are on and the newest one side by side, with what is new in it, and a <strong>Check now</strong> button for when you do not want to wait for the automatic check.</p>
 
       <h3>What an update touches</h3>
       <p>Only the application. Your <code>~/.skales-data</code> folder, which is where conversations, memory, settings and everything Studio made live, is not part of the update and is not replaced by it.</p>
@@ -4276,7 +4232,7 @@ read_when:
       <p>Two places answer &ldquo;what actually happened&rdquo;, and they answer different questions.</p>
 
       <h3>Logs</h3>
-      <p><strong>Sidebar &rsaquo; System &rsaquo; Logs</strong> is the running record of what this install has been doing - the turns, the tool calls and the errors as they came, in order. It is the place to look when something behaved oddly a minute ago and you want to see it rather than reconstruct it.</p>
+      <p><strong>The System button in the foot of the sidebar &rsaquo; Diagnose</strong> is the running record of what this install has been doing - the turns, the tool calls and the errors as they came, in order. It is the place to look when something behaved oddly a minute ago and you want to see it rather than reconstruct it.</p>
 
       <h3>Diagnostics</h3>
       <p><strong>Settings &rsaquo; Advanced &rsaquo; Diagnostics</strong> is the summary you can hand to somebody else. Press <strong>Show recent crashes and errors</strong> and the card fills with what this machine recorded: the build and the hardware, crashes, every provider call that failed in this session, recent warnings, and the update log, so a failed update can be shown instead of described. <strong>Copy</strong> puts the same text on the clipboard for a bug report.</p>
@@ -4286,7 +4242,7 @@ read_when:
 
     <section id="feedback">
       <h2><span class="icon">💌</span> Feedback & Reports</h2>
-      <p>Found a bug or have a suggestion? Use the <strong>Feedback</strong> button in the sidebar or visit <strong>Settings → Feedback</strong>.</p>
+      <p>Found a bug or have a suggestion? Open the <strong>System</strong> button in the foot of the sidebar and pick <strong>Report a bug</strong>, right-click any entry in the sidebar and choose it there, or visit <strong>Settings → Feedback</strong>.</p>
       <p>Your reports are saved locally under <strong>Your Reports</strong> so you can track their status. Anonymous telemetry (feature usage, not content) can be disabled in Settings → Privacy.</p>
       <p>A report can be up to <strong>4,000 characters</strong>, and once you are near that a line under the field counts down how many you have left. <strong>Nothing is cut off in silence</strong>: the field simply stops taking more, so a long report is never sent as half a report without your knowing.</p>
       <p>Skales also asks, once, whether you would like to leave a note about how it is going — and on the phone, once, whether you would rate it in the store. Both take no for an answer permanently, neither makes a sound or sends a notification, and <strong>they never arrive in the same sitting as one another</strong>.</p>
@@ -4294,7 +4250,7 @@ read_when:
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.9.21</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
+      <span>Skales v<span data-skales-version>12.9.25</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 
